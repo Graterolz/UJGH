@@ -53,6 +53,12 @@
  *
  * NOTE: If you change these, also change the error_reporting() code below
  */
+/*
+	Definiciones de directorios
+*/ 
+	define('DS','/');	
+	define('PATH_BACK', 'resources/sbAdminV2'.DS);
+
 	define('ENVIRONMENT', isset($_SERVER['CI_ENV']) ? $_SERVER['CI_ENV'] : 'development');
 
 /*
