@@ -56,8 +56,9 @@
 /*
 	Definiciones de directorios
 */ 
-	define('DS','/');	
-	define('PATH_BACK', 'resources/sbAdminV2'.DS);
+	//define('DS','/');	
+	define('PATH_BACK', 'resources/sbAdminV2');
+	define('PATH_MENU', 'index.php');
 
 	define('ENVIRONMENT', isset($_SERVER['CI_ENV']) ? $_SERVER['CI_ENV'] : 'development');
 
