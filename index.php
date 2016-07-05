@@ -58,7 +58,9 @@
 */ 
 	//define('DS','/');	
 	define('PATH_BACK', 'resources/sbAdminV2');
+	define('PATH_BACK2', 'resources/imgs');
 	define('PATH_MENU', 'index.php');
+	//
 
 	define('ENVIRONMENT', isset($_SERVER['CI_ENV']) ? $_SERVER['CI_ENV'] : 'development');
 
