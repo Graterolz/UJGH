@@ -15,7 +15,8 @@
                         <!-- /.panel-heading -->
                         <div class="panel-body">
                             <div class="table-responsive">
-                                <table class="table table-hover">
+                                <!--<table class="table table-hover">-->
+                                <table class="table table-striped table-bordered table-hover">
                                     <thead>
                                         <tr>
                                             <th>#</th>
@@ -48,15 +49,19 @@
                                                 idusu
                                                 fechaPostulacion
                                                 */
-
-
-                                                /*if(true){
-                                                    
-                                                }*/
                                             }
                                             //var_dump($row_postula);
-                                        }else{
-                                            echo "<tr><td colspan=3><h3>No has hecho ninguna, Postulate!!! </h3></td></tr>";
+                                        }else{                                        
+                                        ?>
+                                        <tr>                                            
+                                            <td colspan="4">
+                                                <center>
+                                                    <h2>No tienes Postulaciones</h2>
+                                                    <h3>Postulate a una de nuestras vacantes!!!</h3>
+                                                </center>
+                                            </td>
+                                        </tr>
+                                        <?php                                      
                                         }
                                         ?>
                                     </tbody>

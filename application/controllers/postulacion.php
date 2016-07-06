@@ -9,7 +9,7 @@ class Postulacion extends CI_Controller {
 	}
 
 	public function index(){
-		$var = 22;
+		$var = 2;
 
 		$data['usuario_postula'] = $this->Postulacion_model->getPostulacion($var);
 

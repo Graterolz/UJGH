@@ -9,7 +9,7 @@ class Vacante extends CI_Controller {
 	}
 
 	public function index(){
-		$data['vac'] = $this->Vacante_model->getVacantes();
+		$data['vacante'] = $this->Vacante_model->getVacantes();
 
 		$this->load->view('template/header');
 		$this->load->view('template/menu');
