@@ -4,12 +4,11 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 <div id="page-wrapper">
     <div class="row">
         <div class="col-lg-12">
-            <h1 class="page-header">Perfil</h1>
+            <h2 class="page-header">Perfil</h2>
         </div>
         <!-- /.col-lg-12 -->
     </div>
     <!-- /.row -->
-
     <div class="row">
         <div class="col-lg-12">
             <div class="panel panel-green">
@@ -29,7 +28,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                                     <p class="form-control-static">
 
                                         <strong>Fecha de nacimiento: </strong>
-                                        <?= $row_info->fechaNacimiento; ?><br>
+                                        <?= date("d/m/Y", strtotime($row_info->fechaNacimiento)); ?><br>
 
                                         <strong>Nacionalidad: </strong>
                                         <?= $row_info->nacionalidad; ?><br>

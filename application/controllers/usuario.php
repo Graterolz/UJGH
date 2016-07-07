@@ -9,7 +9,7 @@ class Usuario extends CI_Controller {
 	}
 
 	public function index(){
-		$var = 0;
+		$var = 2;
 
 		$data['usuario_info'] = $this->Usuario_model->getUsuarioInfo($var);
 		$data['usuario_academico'] = $this->Usuario_model->getUsuarioAcademico($var);

@@ -9,11 +9,21 @@ class Vacante extends CI_Controller {
 	}
 
 	public function index(){
-		$data['vacante'] = $this->Vacante_model->getVacantes();
+		$data['vacante'] = $this->Vacante_model->getVacantes(NULL);
 
 		$this->load->view('template/header');
 		$this->load->view('template/menu');
 		$this->load->view('vacante/vacante',$data);
 		$this->load->view('template/footer');
+	}
+
+	public function view($var){
+		$data['vacante'] = $this->Vacante_model->getVacantes($var);
+
+		$this->load->view('template/header');
+		$this->load->view('template/menu');
+		$this->load->view('vacante/view_vacante',$data);
+		$this->load->view('template/footer');		
+
 	}
 }

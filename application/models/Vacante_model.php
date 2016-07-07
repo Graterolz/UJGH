@@ -8,8 +8,13 @@ class Vacante_model extends CI_Model {
 		$this->load->database();
 	}
 
-	public function getVacantes(){	
-		$sql = "SELECT * FROM app_vacante";	
+	public function getVacantes($data){
+		$sql = "SELECT * FROM app_vacante";
+
+		if ($data!=NULL){
+			$sql = "SELECT * FROM app_vacante WHERE idvac = ".$data;			
+		}					
+
 		$query = $this->db->query($sql);
 		
 		if($query->num_rows()>0){
@@ -17,5 +22,5 @@ class Vacante_model extends CI_Model {
 		}else{
 			return false;
 		}
-	}	
+	}
 }
