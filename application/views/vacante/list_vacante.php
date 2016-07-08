@@ -13,30 +13,30 @@ defined('BASEPATH') OR exit('No direct script access allowed');
         <div class="col-lg-12">
 <?php
     if ($vacante){
-        foreach($vacante->result() as $row){
+        foreach($vacante->result() as $row_vacante){
 ?>
             <div class="panel panel-primary">
                 <div class="panel-heading">
-                    <?= $row->titulo; ?>
+                    <?= $row_vacante->titulo; ?>
                 </div>
                 <div class="panel-body">
                     <p>
                         <strong>Descripcion</strong><br><br>
-                        <?= $row->descripcion; ?><br>
+                        <?= $row_vacante->descripcion; ?><br>
                     </p>
                 </div>
                 <div class="panel-footer">
                     <div class="row">
                         <div class="col-lg-4">
                             <strong>Salario: </strong>
-                            <?= $row->salario; ?>
+                            <?= $row_vacante->salario; ?>
                         </div>
                         <div class="col-lg-4">
                             <strong>Tipo de vacante: </strong>
-                            <?= $row->tipo; ?>
+                            <?= $row_vacante->tipo; ?>
                         </div>
                         <div class="col-lg-4">
-                            <a href="Vacante/view/<?= $row->idvac; ?>" class="btn btn-success"><strong>Ver vacante</strong></a>
+                            <a href="Vacante/view/<?= $row_vacante->idvac; ?>" class="btn btn-success"><strong>VER VACANTE</strong></a>
                         </div>
                     </div>
                 </div>
@@ -45,7 +45,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
         }
     }else{
 ?>
-            <h2>No existen vacantes registradas</h2>
+            <h2>No existen vacantes registradas!!!</h2>
 <?php            
     }        
 ?>

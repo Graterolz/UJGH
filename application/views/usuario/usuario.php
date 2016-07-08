@@ -20,10 +20,10 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                         <div class="col-lg-12">
                             <form role="form">
                                 <div class="form">
-                                    <?php
-                                    if ($usuario_info){
-                                        $row_info = $usuario_info->row();
-                                    ?>
+<?php
+    if ($usuario_info){
+        $row_info = $usuario_info->row();
+?>
                                     <h3><?= $row_info->nombre ." ".$row_info->apellido; ?></h3>
                                     <p class="form-control-static">
 
@@ -46,13 +46,13 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                                         <?= $row_info->email; ?>
                                         <!-- idusu, idrol,contrasena,cedula,estado,ciudad,sexo-->
                                     </p>
-                                    <?php
-                                    }else{
-                                    ?>
+<?php
+    }else{
+?>
                                         <strong>Sin datos personales</strong>
-                                    <?php
-                                    }
-                                    ?>
+<?php
+    }
+?>
                                 </div>
                             </form>
                         </div>

@@ -13,7 +13,7 @@ class Vacante extends CI_Controller {
 
 		$this->load->view('template/header');
 		$this->load->view('template/menu');
-		$this->load->view('vacante/vacante',$data);
+		$this->load->view('vacante/list_vacante',$data);
 		$this->load->view('template/footer');
 	}
 
