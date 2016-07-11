@@ -22,7 +22,8 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                             <thead>
                                 <tr>
                                     <th>#</th>
-                                    <th>Cargo - Descripcion</th>
+                                    <th>Titulo</th>
+                                    <th>Descripcion</th>
                                     <th>Beneficios</th>
                                     <th>Fecha de Postulacion</th>
                                 </tr>
@@ -34,7 +35,8 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 ?> 
                                 <tr>
                                     <td><?= $row_postula->idpos; ?></td>
-                                    <td><strong><?= $row_postula->titulo; ?></strong><br><br><?= $row_postula->descripcion; ?></td>
+                                    <td><strong><?= $row_postula->titulo; ?></strong></td>
+                                    <td><?= $row_postula->descripcion; ?></td>
                                     <td><?= $row_postula->beneficios; ?></td>
                                     <td><?= date("d/m/Y", strtotime($row_postula->fechaPostulacion)); ?></td>
                                 </tr>
@@ -44,10 +46,10 @@ defined('BASEPATH') OR exit('No direct script access allowed');
     }else{                                        
 ?>
                                 <tr>
-                                    <td colspan="4">
+                                    <td colspan="5">
                                         <center>
                                             <h2>No tienes Postulaciones</h2>
-                                            <h3>Postulate a una de nuestras <a href="Vacante"><strong>VACANTES</strong></a>!!!</h3>
+                                            <h3>Postulate a una de nuestras <a href="<?= base_url(PATH_MENU)."/Vacante"; ?>"><strong>VACANTES</strong></a>!!!</h3>
                                         </center>
                                     </td>
                                 </tr>

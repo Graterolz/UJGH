@@ -8,7 +8,7 @@ class Postulacion_model extends CI_Model {
 		$this->load->database();
 	}
 
-	public function getPostulacion($data){
+	function getPostulacion($data){
 		$sql = "SELECT * FROM app_vacante a,app_postulacion b
 				WHERE a.idvac = b.idvac
 				AND b.idusu = ? ORDER BY fechaPostulacion DESC";
@@ -19,5 +19,15 @@ class Postulacion_model extends CI_Model {
 		}else{
 			return false;
 		}			
+	}
+
+	function addPostulacion($data){
+		$data = array(
+			'idvac' => $data['idvac'],
+			'idusu' => $data['idusu'],
+			'fechaPostulacion' => $data['fechaPostulacion']
+		);
+
+		$this->db->insert('app_postulacion',$data);
 	}
 }

@@ -23,8 +23,8 @@ CREATE TABLE `usuario_info` (
 
 INSERT INTO `usuario_info`
 (`idusu`, `idrol`, `email`, `contrasena`, `cedula`, `nombre`, `apellido`, `fechaNacimiento`, `nacionalidad`, `estado`, `ciudad`, `direccion`, `telefonoCelular`, `telefonoFijo`, `estadoCivil`, `sexo`) VALUES 
-(NULL, 'AMD', 'admin@admin.com', 'admin', '123456', 'Administrador', 'Sistema', '2016-01-01', 'Venezolano', 'Zulia', 'Maracaibo', 'Maracaibo', '0261-123456', '0414-123456', 'Soltero', 'M'),
-(NULL, 'USR', 'graterolz@outlook.com', '123', '123456', 'Emilio', 'Graterol', '2016-01-01', 'Venezolano', 'Zulia', 'Maracaibo', 'Bella vista', '0261-123456', '0414-123456', 'Soltero', 'M');
+(NULL, 'AMD', 'admin', 'admin', '123456', 'Administrador', 'Sistema', '2016-01-01', 'Venezolano', 'Zulia', 'Maracaibo', 'Maracaibo', '0261-123456', '0414-123456', 'Soltero', 'Masculino'),
+(NULL, 'USR', 'demo', 'demo', '123456', 'Jose', 'Hernandez', '2016-01-01', 'Venezolano', 'Zulia', 'Maracaibo', 'Bella vista', '0261-123456', '0414-123456', 'Soltero', 'Masculino');
 
 -- usuario_academico
 DROP TABLE `usuario_academico`;
@@ -80,7 +80,7 @@ CREATE TABLE `app_vacante` (
 	`idvac` int(10) NOT NULL AUTO_INCREMENT,
 	`titulo` varchar(100) NOT NULL,
 	`descripcion` varchar(100) NOT NULL,
-	`beneficios` varchar(100) NOT NULL,
+	`beneficios` varchar(200) NOT NULL,
 	`requisitos` varchar(100) NOT NULL,
 	`salario` float NOT NULL,
 	`fechaPublicacion` date NOT NULL,
@@ -90,9 +90,12 @@ CREATE TABLE `app_vacante` (
 
 INSERT INTO `app_vacante` 
 (`idvac`, `titulo`, `descripcion`, `beneficios`, `requisitos`, `salario`, `fechaPublicacion`, `tipo`) VALUES 
-(NULL, 'Vacante 1', 'Descripcion 1', 'Beneficios 1', 'Requisitos 1', '9999', '2016-01-01', 'Docente'),
-(NULL, 'Vacante 2', 'Descripcion 2', 'Beneficios 2', 'Requisitos 2', '9999', '2016-01-01', 'Administrativo'),
-(NULL, 'Vacante 3', 'Descripcion 3', 'Beneficios 3', 'Requisitos 3', '9999', '2016-01-01', 'Docente');
+(NULL, 'Profesor de Matematicas', 'Se solicita Profesor de Matematicas', 'Dentro de los beneficios que ofrecemos estan: Seguro H.C.M, L.P.H;Fideicomiso, Utilidades 1 Mes, Aumento Salarial 2/Año, Vacac. Colectivas, Bono Vac. al Año y Cesta Ticket BONUS.', 'Requisitos 1', '9999', '2016-01-01', 'Docente'),
+(NULL, 'Analista de Soporte tecnico', 'Se solicita Analista de Soporte tecnico', 'Dentro de los beneficios que ofrecemos estan: Seguro H.C.M, L.P.H;Fideicomiso, Utilidades 1 Mes, Aumento Salarial 2/Año, Vacac. Colectivas, Bono Vac. al Año y Cesta Ticket BONUS.', 'Requisitos 2', '9999', '2016-01-01', 'Administrativo'),
+(NULL, 'Programador WEB', 'Se solicita Programador WEB', 'Dentro de los beneficios que ofrecemos estan: Seguro H.C.M, L.P.H;Fideicomiso, Utilidades 1 Mes, Aumento Salarial 2/Año, Vacac. Colectivas, Bono Vac. al Año y Cesta Ticket BONUS.', 'Requisitos 3', '9999', '2016-01-01', 'Administrativo'),
+(NULL, 'Analista RRHH', 'Se solicita Analista RRHH', 'Dentro de los beneficios que ofrecemos estan: Seguro H.C.M, L.P.H;Fideicomiso, Utilidades 1 Mes, Aumento Salarial 2/Año, Vacac. Colectivas, Bono Vac. al Año y Cesta Ticket BONUS.', 'Requisitos 4', '9999', '2016-01-01', 'Administrativo'),
+(NULL, 'Profesor de Logica', 'Se solicita Profesor de Logica', 'Dentro de los beneficios que ofrecemos estan: Seguro H.C.M, L.P.H;Fideicomiso, Utilidades 1 Mes, Aumento Salarial 2/Año, Vacac. Colectivas, Bono Vac. al Año y Cesta Ticket BONUS.', 'Requisitos 5', '9999', '2016-01-01', 'Docente'),
+(NULL, 'Profesor de Programacion', 'Se solicita Profesor de Programacion', 'Dentro de los beneficios que ofrecemos estan: Seguro H.C.M, L.P.H;Fideicomiso, Utilidades 1 Mes, Aumento Salarial 2/Año, Vacac. Colectivas, Bono Vac. al Año y Cesta Ticket BONUS.', 'Requisitos 6', '9999', '2016-01-01', 'Docente');
 
 -- app_postulacion
 DROP TABLE `app_postulacion`;

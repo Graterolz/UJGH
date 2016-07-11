@@ -8,16 +8,16 @@ class Usuario extends CI_Controller {
 		$this->load->model('Usuario_model');
 	}
 
-	public function index(){
-		$var = 2;
+	function index(){
+		$datasession['idusu'] = $this->session->userdata('idusu');
+		$datasession['idrol'] = $this->session->userdata('idrol');
 
-		$data['usuario_info'] = $this->Usuario_model->getUsuarioInfo($var);
-		$data['usuario_academico'] = $this->Usuario_model->getUsuarioAcademico($var);
-		$data['usuario_laboral'] = $this->Usuario_model->getUsuarioLaboral($var);
-
+		$data['usuario_info'] = $this->Usuario_model->getUsuarioInfo($datasession['idusu']);
+		$data['usuario_academico'] = $this->Usuario_model->getUsuarioAcademico($datasession['idusu']);
+		$data['usuario_laboral'] = $this->Usuario_model->getUsuarioLaboral($datasession['idusu']);
 
 		$this->load->view('template/header');
-		$this->load->view('template/menu');
+		$this->load->view('template/menu',$datasession);
 		$this->load->view('usuario/usuario',$data);
 		$this->load->view('template/footer');
 	}

@@ -8,22 +8,27 @@ class Vacante extends CI_Controller {
 		$this->load->model('Vacante_model');
 	}
 
-	public function index(){
-		$data['vacante'] = $this->Vacante_model->getVacantes(NULL);
+	function index(){
+		$datasession['idusu'] = $this->session->userdata('idusu');
+		$datasession['idrol'] = $this->session->userdata('idrol');
+
+		$data['vacante'] = $this->Vacante_model->getVacantes(NULL,$datasession['idusu']);
 
 		$this->load->view('template/header');
-		$this->load->view('template/menu');
+		$this->load->view('template/menu',$datasession);
 		$this->load->view('vacante/list_vacante',$data);
 		$this->load->view('template/footer');
 	}
 
-	public function view($var){
-		$data['vacante'] = $this->Vacante_model->getVacantes($var);
+	function view($var){		
+		$datasession['idusu'] = $this->session->userdata('idusu');
+		$datasession['idrol'] = $this->session->userdata('idrol');
+
+		$data['vacante'] = $this->Vacante_model->getVacantes($var,$datasession['idusu']);
 
 		$this->load->view('template/header');
-		$this->load->view('template/menu');
+		$this->load->view('template/menu',$datasession);
 		$this->load->view('vacante/view_vacante',$data);
-		$this->load->view('template/footer');		
-
+		$this->load->view('template/footer');
 	}
 }

@@ -2,16 +2,58 @@
 defined('BASEPATH') OR exit('No direct script access allowed');
 
 class Login extends CI_Controller {
+
 	public function __construct() {
 		parent::__construct();
 		$this->load->helper('form');
-		//$this->load->model('Login_model');
+		$this->load->model('Usuario_model');
 	}
-	
-	public function index(){
+
+	function index(){
+		$datasession['idusu'] = $this->session->userdata('idusu');
+		$datasession['idrol'] = $this->session->userdata('idrol');
+
+		$this->UsuarioIn();
 		$this->load->view('template/header');
-		$this->load->view('template/menu');
+		$this->load->view('template/menu',$datasession);
 		$this->load->view('login/login');
 		$this->load->view('template/footer');
+	}
+
+	function UsuarioIn(){
+		if($this->session->userdata('idusu')){
+			redirect('usuario', 'refresh');
+		}
+	}
+
+	function login(){
+		if ($this->input->post('user') and $this->input->post('pass')){
+
+			$data = array(
+				'user' => $this->input->post('user'),
+				'pass' => $this->input->post('pass')
+			);
+			//var_dump($data);
+			if($this->Usuario_model->getLoginUsuario($data)){
+				$data['info'] = $this->Usuario_model->getLoginUsuario($data);
+
+				$datasession  = array(
+					'idusu' => $data['info']->result()[0]->idusu,
+					'idrol' => $data['info']->result()[0]->idrol
+				);
+
+				$this->session->set_userdata($datasession);
+				redirect('usuario', 'refresh');
+			}else{
+				redirect('login', 'refresh');
+			}
+		}else{
+			redirect('login', 'refresh');
+		}		
+	}
+	
+	function logout(){
+		$this->session->sess_destroy();
+		redirect('login', 'refresh');
 	}
 }

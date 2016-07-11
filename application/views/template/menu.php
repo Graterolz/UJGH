@@ -13,26 +13,37 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                 <a class="navbar-brand" href="<?php echo base_url(PATH_MENU)?>/Login">Empleo UJGH</a>
             </div>
             <!-- /.navbar-header -->
-
+<?php
+    if($idusu){
+?>
             <ul class="nav navbar-top-links navbar-right">
                 <li class="dropdown">
                     <a class="dropdown-toggle" data-toggle="dropdown" href="#">
                         <i class="fa fa-user fa-fw"></i>  <i class="fa fa-caret-down"></i>
                     </a>
                     <ul class="dropdown-menu dropdown-user">
-                        <li><a href="<?php echo base_url(PATH_MENU)?>/Usuario"><i class="fa fa-user fa-fw"></i>Pefil</a>
+<?php
+        if($idrol=='USR'){
+?>                        
+                        <li><a href="<?= base_url(PATH_MENU)."/Usuario"; ?>"><i class="fa fa-user fa-fw"></i>Pefil</a>
                         </li>
-                        <li><a href="<?php echo base_url(PATH_MENU)?>/Vacante"><i class="fa fa-gear fa-fw"></i> Vacantes</a>
+                        <li><a href="<?= base_url(PATH_MENU)."/Vacante"; ?>"><i class="fa fa-gear fa-fw"></i> Vacantes</a>
                         </li>
-                        <li><a href="<?php echo base_url(PATH_MENU)?>/Postulacion"><i class="fa fa-check fa-fw"></i> Postulaciones</a>
+                        <li><a href="<?= base_url(PATH_MENU)."/Postulacion"; ?>"><i class="fa fa-check fa-fw"></i> Postulaciones</a>
                         </li>                        
                         <li class="divider"></li>
-                        <li><a href="<?php echo base_url(PATH_MENU)?>/Login"><i class="fa fa-sign-out fa-fw"></i> Logout</a>
+<?php
+        }
+?>                        
+                        <li><a href="<?= base_url(PATH_MENU)."/Login/logout"; ?>"><i class="fa fa-sign-out fa-fw"></i> Logout</a>
                         </li>
                     </ul>
                     <!-- /.dropdown-user -->
                 </li>
                 <!-- /.dropdown -->
             </ul>
+<?php
+    }
+?>            
             <!-- /.navbar-top-links -->
         </nav>

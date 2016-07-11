@@ -11,9 +11,9 @@ defined('BASEPATH') OR exit('No direct script access allowed');
     <!-- /.row -->
     <div class="row">
         <div class="col-lg-12">
-            <div class="panel panel-green">
+            <div class="panel panel-default">
                 <div class="panel-heading">
-                    Datos Personales
+                    <strong>Datos Personales</strong>
                 </div>
                 <div class="panel-body">
                     <div class="row">
@@ -68,7 +68,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
         <div class="col-lg-12">
             <div class="panel panel-primary">
                 <div class="panel-heading">
-                    Datos Academicos
+                    <strong>Datos Academicos</strong>
                 </div>
                 <div class="panel-body">
                     <div class="row">
@@ -113,9 +113,9 @@ defined('BASEPATH') OR exit('No direct script access allowed');
         <!-- /.col-lg-12 -->
 
         <div class="col-lg-12">
-            <div class="panel panel-primary">
+            <div class="panel panel-green">
                 <div class="panel-heading">
-                    Datos Laborales
+                    <strong>Datos Laborales</strong>
                 </div>
                 <div class="panel-body">
                     <div class="row">
