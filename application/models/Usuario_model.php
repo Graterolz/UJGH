@@ -8,9 +8,9 @@ class Usuario_model extends CI_Model {
 		$this->load->database();
 	}
 	
-	function getUsuarioInfo($data){
-		$sql = "SELECT * FROM usuario_info WHERE idusu = ?";
-		$query = $this->db->query($sql,array($data));
+	function getUsuarioInfo($idusu){
+		$this->db->where('idusu',$idusu);
+		$query = $this->db->get('usuario_info');		
 		
 		if($query->num_rows()>0){
 			return $query;
@@ -19,9 +19,9 @@ class Usuario_model extends CI_Model {
 		}
 	}
 
-	function getUsuarioAcademico($data){
-		$sql = "SELECT * FROM usuario_academico WHERE idusu = ? ORDER BY idaca DESC";
-		$query = $this->db->query($sql,array($data));
+	function getUsuarioAcademico($idusu){
+		$this->db->where('idusu',$idusu);
+		$query = $this->db->get('usuario_academico');
 
 		if($query->num_rows()>0){
 			return $query;
@@ -30,15 +30,10 @@ class Usuario_model extends CI_Model {
 		}
 	}
 
-	function getUsuarioLaboral($data){
-		$sql = "SELECT * FROM usuario_laboral WHERE idusu = ? order by idlab DESC";
-		$query = $this->db->query($sql,array($data));
-
-		/*
+	function getUsuarioLaboral($idusu){
 		$this->db->where('idusu',$idusu);
 		$query = $this->db->get('usuario_laboral');
-		*/
-		
+				
 		if($query->num_rows()>0){
 			return $query;
 		}else{

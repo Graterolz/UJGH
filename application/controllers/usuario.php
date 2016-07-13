@@ -6,9 +6,14 @@ class Usuario extends CI_Controller {
 	public function __construct() {
 		parent::__construct();
 		$this->load->model('Usuario_model');
+		$this->load->model('Vacante_model');
 	}
 
 	function index(){
+		if(!$this->session->userdata('idusu')){
+			redirect('login', 'refresh');
+		}
+
 		$datasession['idusu'] = $this->session->userdata('idusu');
 		$datasession['idrol'] = $this->session->userdata('idrol');
 
@@ -18,7 +23,14 @@ class Usuario extends CI_Controller {
 
 		$this->load->view('template/header');
 		$this->load->view('template/menu',$datasession);
-		$this->load->view('usuario/usuario',$data);
+
+		if ($datasession['idrol']=='USR'){
+			$this->load->view('usuario/usuario',$data);	
+		}else{
+			$data['vacante'] = $this->Vacante_model->getVacantesADM();
+			$this->load->view('vacante/list_vacante_adm',$data);	
+		}
+		
 		$this->load->view('template/footer');
 	}
 }

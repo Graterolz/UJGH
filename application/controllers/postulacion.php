@@ -9,6 +9,10 @@ class Postulacion extends CI_Controller {
 	}
 
 	function index(){
+		if(!$this->session->userdata('idusu')){
+			redirect('login', 'refresh');
+		}
+				
 		$datasession['idusu'] = $this->session->userdata('idusu');
 		$datasession['idrol'] = $this->session->userdata('idrol');
 

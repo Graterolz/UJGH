@@ -9,14 +9,24 @@ class Vacante extends CI_Controller {
 	}
 
 	function index(){
+		if(!$this->session->userdata('idusu')){
+			redirect('login', 'refresh');
+		}
+
 		$datasession['idusu'] = $this->session->userdata('idusu');
 		$datasession['idrol'] = $this->session->userdata('idrol');
 
-		$data['vacante'] = $this->Vacante_model->getVacantes(NULL,$datasession['idusu']);
-
 		$this->load->view('template/header');
 		$this->load->view('template/menu',$datasession);
-		$this->load->view('vacante/list_vacante',$data);
+
+		if ($datasession['idrol']=='USR'){
+			$data['vacante'] = $this->Vacante_model->getVacantes(NULL,$datasession['idusu']);
+			$this->load->view('vacante/list_vacante_usr',$data);	
+		}else{
+			$data['vacante'] = $this->Vacante_model->getVacantesADM();
+			$this->load->view('vacante/list_vacante_adm',$data);	
+		}
+
 		$this->load->view('template/footer');
 	}
 
@@ -30,5 +40,17 @@ class Vacante extends CI_Controller {
 		$this->load->view('template/menu',$datasession);
 		$this->load->view('vacante/view_vacante',$data);
 		$this->load->view('template/footer');
+	}
+
+	function edit($var){
+		$datasession['idusu'] = $this->session->userdata('idusu');
+		$datasession['idrol'] = $this->session->userdata('idrol');
+
+		$data['vacante'] = $this->Vacante_model->getVacantes($var,NULL);
+						
+		$this->load->view('template/header');
+		$this->load->view('template/menu',$datasession);
+		$this->load->view('vacante/edit_vacante',$data);
+		$this->load->view('template/footer');		
 	}
 }

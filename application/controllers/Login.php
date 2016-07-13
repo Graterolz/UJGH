@@ -9,21 +9,18 @@ class Login extends CI_Controller {
 		$this->load->model('Usuario_model');
 	}
 
-	function index(){
+	function index(){		
+		if($this->session->userdata('idusu')){
+			redirect('usuario', 'refresh');
+		}
+
 		$datasession['idusu'] = $this->session->userdata('idusu');
 		$datasession['idrol'] = $this->session->userdata('idrol');
 
-		$this->UsuarioIn();
 		$this->load->view('template/header');
 		$this->load->view('template/menu',$datasession);
 		$this->load->view('login/login');
 		$this->load->view('template/footer');
-	}
-
-	function UsuarioIn(){
-		if($this->session->userdata('idusu')){
-			redirect('usuario', 'refresh');
-		}
 	}
 
 	function login(){

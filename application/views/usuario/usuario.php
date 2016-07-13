@@ -74,34 +74,36 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                     <div class="row">
                         <div class="col-lg-12">
                             <form role="form">
-                                <?php
-                                if($usuario_academico){
-                                    foreach($usuario_academico->result() as $row_academico){
-                                ?>
-                                <h3><?= $row_academico->titulo; ?>
-                                    <small>
-                                        <?= $row_academico->mesInicio." ".$row_academico->anioInicio; ?>
-                                        <strong> / </strong>
-                                        <?= $row_academico->mesFin." ".$row_academico->anioFin; ?><br>                                            
-                                    </small>
-                                </h3>
-                                <p class="form-control-static">
-                                    <strong>Institucion: </strong>
-                                    <?= $row_academico->institucion; ?><br>
-
-                                    <strong>Nivel de estudio: </strong>
-                                    <?= $row_academico->nivelEstudio; ?><br>
-                                    <!-- var_dump($row2);echo $row_academico->idaca."<br>";echo $row_academico->idusu."<br>";-->
-                                </p>
-                                <?php
-                                    }
-                                }else{
-                                ?>
+                                <div class="form">
+<?php
+    if($usuario_academico){
+        foreach($usuario_academico->result() as $row_academico){
+?>
+                                    <h3><?= $row_academico->titulo; ?>
+                                        <small>
+                                            <?= $row_academico->mesInicio." ".$row_academico->anioInicio; ?>
+                                            <strong> / </strong>
+                                            <?= $row_academico->mesFin." ".$row_academico->anioFin; ?><br>                                            
+                                        </small>
+                                    </h3>
+                                    <p class="form-control-static">
+                                        <strong>Institucion: </strong>
+                                        <?= $row_academico->institucion; ?><br>
+                                        
+                                        <strong>Nivel de estudio: </strong>
+                                        <?= $row_academico->nivelEstudio; ?><br>
+                                        <!-- var_dump($row2);echo $row_academico->idaca."<br>";echo $row_academico->idusu."<br>";-->
+                                    </p>
+<?php
+        }
+    }else{
+?>
                                     <strong>Sin datos academicos</strong>
-                                <?php
-                                }
-                                ?>
-                            </form>                            
+<?php
+    }
+?>
+                                </div>
+                            </form>
                         </div>
                     </div>
                     <!-- /.row (nested) -->
@@ -121,10 +123,10 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                     <div class="row">
                         <div class="col-lg-12">
                             <form role="form">
-                                <?php
-                                if($usuario_laboral){
-                                    foreach($usuario_laboral->result() as $row_laboral){
-                                ?>
+<?php
+    if($usuario_laboral){
+        foreach($usuario_laboral->result() as $row_laboral){
+?>
                                 <h3><?= $row_laboral->cargo; ?>
                                     <small>
                                         <?= $row_laboral->mesInicio." ".$row_laboral->anioInicio; ?>
@@ -151,14 +153,14 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                                     <?= $row_laboral->motivoRetiro; ?>
                                     <!--idlab,idusu-->
                                 </p>                                
-                                <?php
-                                    }
-                                }else{
-                                ?>
+<?php
+        }
+    }else{
+?>
                                     <strong>Sin datos laborales</strong>
-                                <?php
-                                }
-                                ?>
+<?php
+    }
+?>
                             </form>
                         </div>
                     </div>
