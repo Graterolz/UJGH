@@ -13,7 +13,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
         <div class="col-lg-12">
             <div class="panel panel-primary">
                 <div class="panel-heading">
-                    Lista de Postulaciones
+                    <strong>Lista de Postulaciones</strong>
                 </div>
                 <!-- /.panel-heading -->
                 <div class="panel-body">

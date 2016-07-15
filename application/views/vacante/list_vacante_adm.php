@@ -4,7 +4,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 <div id="page-wrapper">
     <div class="row">
         <div class="col-lg-12">
-            <h2 class="page-header">Vacantes</h2>
+            <h2 class="page-header">Menu de Administracion</h2>
         </div>
         <!-- /.col-lg-12 -->
     </div>
@@ -13,7 +13,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
         <div class="col-lg-12">
             <div class="panel panel-primary">
                 <div class="panel-heading">
-                    Administracion de Vacantes
+                    <strong>Administracion de Vacantes</strong>
                 </div>
                 <!-- /.panel-heading -->
                 <div class="panel-body">
@@ -72,14 +72,3 @@ defined('BASEPATH') OR exit('No direct script access allowed');
     <!-- /.row -->
 </div>
 <!-- /#page-wrapper -->
-
-<!--
-    `idvac` int(10) NOT NULL AUTO_INCREMENT,
-    `titulo` varchar(100) NOT NULL,
-    `descripcion` varchar(100) NOT NULL,
-    `beneficios` varchar(200) NOT NULL,
-    `requisitos` varchar(100) NOT NULL,
-    `salario` float NOT NULL,
-    `fechaPublicacion` date NOT NULL,
-    `tipo` varchar(100) NOT NULL, 
--->    
