@@ -56,7 +56,7 @@ class Vacante extends CI_Controller {
 				'beneficios' => $this->input->post('beneficios'),
 				'requisitos' => $this->input->post('requisitos'),
 				'salario' => $this->input->post('salario'),
-				//'fechaPublicacion' => date("d-m-y"),//$this->input->post('fechaPublicacion'),
+				'fechaPublicacion' => date("Y/m/d"),//date("d-m-y"),//$this->input->post('fechaPublicacion'),
 				'tipo' => $this->input->post('tipo')
 			);
 			$this->Vacante_model->editVacante($var,$data);

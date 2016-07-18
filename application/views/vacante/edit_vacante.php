@@ -15,7 +15,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
     if ($vacante){
         foreach($vacante->result() as $row_vacante){
 ?>              
-            <div class="panel panel-default">
+            <div class="panel panel-info">
                 <div class="panel-heading">
                     <div class="row">
                         <div class="col-lg-9">
@@ -65,9 +65,19 @@ defined('BASEPATH') OR exit('No direct script access allowed');
         'placeholder' => 'Enter text',
         'value' => $row_vacante->salario
     );
-    $tipo = array(
+    $tipoDocente = array(
+        'name' => 'tipo',
+        'id' => 'id1',
+        'value' => 'Docente',
+        'checked' => ($row_vacante->tipo === 'Docente' ? TRUE : FALSE),
+    );    
+    $tipoAdmin = array(
+        'name' => 'tipo',
+        'id' => 'id2',
+        'value' => 'Administrativo',
+        'checked' => ($row_vacante->tipo === 'Administrativo' ? TRUE : FALSE),
 
-    ); 
+    );
 ?>
                 <?= form_open(); ?>
                     <div class="row">
@@ -95,16 +105,15 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                                 <?= form_input($salario) ?>
                             </div>
                             <div class="form-group">
-                                <?= form_label('Tipo de vacante','tipo') ?>
-
-                                <select class="form-control" name="tipo">
-                                    <option value="Docente" selected>Docente</option>
-                                    <option value="Administrativo">Administrativo</option>
-                                </select>
+                                <?= form_label('Tipo de vacante','tipo') ?><br>
+                                <?= form_radio($tipoDocente); ?><strong>Docente</strong><br>
+                                <?= form_radio($tipoAdmin); ?><strong>Administrativo</strong><br>
+                                <br>
+                                <br>
                             </div>
                         </div>                            
                         <div class="col-lg-3">
-                            <center><a href="<?= base_url(PATH_MENU)."/Usuario"; ?>" class="btn btn-primary"><strong>ATRAS</strong></a></center>                            
+                            <center><a href="<?= base_url(PATH_MENU)."/Usuario"; ?>" class="btn btn-primary"><strong>ATRAS</strong></a></center>
                         </div>
                         <div class="col-lg-3">
                             <center><button type="submit" class="btn btn-success"><strong>Edita vacante</strong></button><!--<a href="<?= base_url(PATH_MENU)."/Postulacion/enviaPostulacion/".$row_vacante->idvac; ?>" class="btn btn-success"><strong>ENVIAR CV</strong></a>--></center>

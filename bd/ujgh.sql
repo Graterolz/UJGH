@@ -23,8 +23,9 @@ CREATE TABLE `usuario_info` (
 
 INSERT INTO `usuario_info`
 (`idusu`, `idrol`, `email`, `contrasena`, `cedula`, `nombre`, `apellido`, `fechaNacimiento`, `nacionalidad`, `estado`, `ciudad`, `direccion`, `telefonoCelular`, `telefonoFijo`, `estadoCivil`, `sexo`) VALUES 
-(NULL, 'AMD', 'admin', 'admin', '123456', 'Administrador', 'Sistema', '2016-01-01', 'Venezolano', 'Zulia', 'Maracaibo', 'Maracaibo', '0261-123456', '0414-123456', 'Soltero', 'Masculino'),
-(NULL, 'USR', 'demo', 'demo', '123456', 'Jose', 'Hernandez', '2016-01-01', 'Venezolano', 'Zulia', 'Maracaibo', 'Bella vista', '0261-123456', '0414-123456', 'Soltero', 'Masculino');
+(NULL, 'AMD', 'admin', 'admin', '123456', 'Administrador', 'Sistema', '2016-01-01', 'Venezolano/a', 'Zulia', 'Maracaibo', 'Maracaibo', '0261-123456', '0414-123456', 'Soltero/a', 'Masculino'),
+(NULL, 'USR', 'demo', 'demo', '24879654', 'Jose', 'Hernandez', '2016-01-01', 'Venezolano/a', 'Zulia', 'Maracaibo', 'Bella vista', '0261-123456', '0414-123456', 'Soltero/a', 'Masculino'),
+(NULL, 'USR', 'maria', 'maria', '9784168', 'Maria', 'Perez', '1985-04-12', 'Venezolano/a', 'Zulia', 'Maracaibo', 'San francisco', '0212-123456', '0416-123456', 'Soltero/a', 'Femenino');
 
 -- usuario_academico
 DROP TABLE `usuario_academico`;
@@ -45,7 +46,8 @@ CREATE TABLE `usuario_academico` (
 INSERT INTO `usuario_academico` 
 (`idaca`, `idusu`, `titulo`, `nivelEstudio`, `institucion`, `mesInicio`, `anioInicio`, `mesFin`, `anioFin`) VALUES 
 (NULL, '2', 'Tecnico Medio Informatica', 'Secundario Graduado', 'ETCR. Romulos Gallegos', 'Enero', '2005', 'Septiembre', '2010'),
-(NULL, '2', 'Ingeniero en Sistemas', 'Universitario Graduado', 'Univ. Dr. Jose Gregorio Hernandez', 'Enero', '2011', 'Diciembre', '2015');
+(NULL, '2', 'Ingeniero en Sistemas', 'Universitario Graduado', 'Univ. Dr. Jose Gregorio Hernandez', 'Enero', '2011', 'Diciembre', '2015'),
+(NULL, '3', 'Licenciada en Contaduria', 'Universitario Graduado', 'Univ. Dr. Jose Gregorio Hernandez', 'Agosto', '2010', 'Enero', '2014');
 
 -- usuario_laboral
 DROP TABLE `usuario_laboral`;
@@ -110,4 +112,5 @@ CREATE TABLE `app_postulacion` (
 
 INSERT INTO `app_postulacion` (`idpos`, `idvac`, `idusu`, `fechaPostulacion`) VALUES 
 (NULL, '1', '2', '2016-01-01'),
-(NULL, '2', '2', '2016-01-01');
+(NULL, '2', '2', '2016-01-01'),
+(NULL, '2', '3', '2016-01-01');

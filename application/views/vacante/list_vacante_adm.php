@@ -11,7 +11,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
     <!-- /.row -->
     <div class="row">
         <div class="col-lg-12">
-            <div class="panel panel-primary">
+            <div class="panel panel-info">
                 <div class="panel-heading">
                     <strong>Administracion de Vacantes</strong>
                 </div>
@@ -25,7 +25,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                                     <th>Titulo</th>
                                     <th>Descripcion</th>
                                     <th>Postulaciones</th>
-                                    <th>#</th>
+                                    <th></th>
                                 </tr>
                             </thead>
                             <tbody>
@@ -41,7 +41,10 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                                     <!--
                                     <td><a href="" class="btn btn-default btn-xs"><i class="fa fa-eye" title="Ver"></i></a></td>
                                     <td><a href="" class="btn btn-primary btn-xs"><i class="fa fa-send" title="Enviar"></i></a></td>-->
-                                    <td><a href="<?= base_url(PATH_MENU)."/Vacante/edit/".$row_vacante->idvac; ?>" class="btn btn-success btn-xs"><i class="fa fa-pencil" title="Editar"></i></a></td>                                   
+                                    <td>
+                                        <a href="<?= base_url(PATH_MENU)."/Vacante/edit/".$row_vacante->idvac; ?>" class="btn btn-success btn-xs"><i class="fa fa-pencil" title="Editar"></i></a>
+                                        <a href="<?= base_url(PATH_MENU)."/Postulacion/viewPostulacionVacante/".$row_vacante->idvac; ?>" class="btn btn-default btn-xs"><i class="fa fa-eye" title="Ver Postulados"></i></a>
+                                    </td>
                                 </tr>                                
 <?php
         }
