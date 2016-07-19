@@ -42,6 +42,36 @@ class Vacante extends CI_Controller {
 		$this->load->view('template/footer');
 	}
 
+	function add(){
+		$datasession['idusu'] = $this->session->userdata('idusu');
+		$datasession['idrol'] = $this->session->userdata('idrol');
+
+		$rules = $this->Vacante_model->rules;
+		$this->form_validation->set_rules($rules);
+
+		if ($this->form_validation->run() == TRUE) {
+			$data = array(
+				'titulo' => $this->input->post('titulo'),
+				'descripcion' => $this->input->post('descripcion'),
+				'beneficios' => $this->input->post('beneficios'),
+				'requisitos' => $this->input->post('requisitos'),
+				'salario' => $this->input->post('salario'),
+				'fechaPublicacion' => date("Y/m/d"),//date("d-m-y"),//$this->input->post('fechaPublicacion'),
+				'tipo' => $this->input->post('tipo')
+			);
+			$this->Vacante_model->addVacante($data);
+			//
+			redirect('Usuario', 'refresh');
+		}		
+
+		//$data['vacante'] = NULL;//$this->Vacante_model->getVacantes($var,$datasession['idusu']);
+
+		$this->load->view('template/header');
+		$this->load->view('template/menu',$datasession);
+		$this->load->view('vacante/add_vacante');
+		$this->load->view('template/footer');		
+	}
+
 	function edit($var){
 		$datasession['idusu'] = $this->session->userdata('idusu');
 		$datasession['idrol'] = $this->session->userdata('idrol');
@@ -49,7 +79,7 @@ class Vacante extends CI_Controller {
 		$rules = $this->Vacante_model->rules;
 		$this->form_validation->set_rules($rules);
 
-		if ($this->form_validation->run() == TRUE) {			
+		if ($this->form_validation->run() == TRUE) {
 			$data = array(
 				'titulo' => $this->input->post('titulo'),
 				'descripcion' => $this->input->post('descripcion'),

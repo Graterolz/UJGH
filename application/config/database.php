@@ -78,7 +78,10 @@ $db['default'] = array(
 	'hostname' => '127.0.0.1',
 	'username' => 'root',
 	'password' => '',
+
+	//'database' => 'c9',
 	'database' => 'ujgh',
+
 	'dbdriver' => 'mysqli',
 	'dbprefix' => '',
 	'pconnect' => FALSE,

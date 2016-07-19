@@ -4,7 +4,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 <div id="page-wrapper">
     <div class="row">
         <div class="col-lg-12">
-            <h2 class="page-header">Edita Vacante</h2>
+            <h2 class="page-header">Nueva Vacante</h2>
         </div>
         <!-- /.col-lg-12 -->
     </div>
@@ -12,19 +12,19 @@ defined('BASEPATH') OR exit('No direct script access allowed');
     <div class="row">
         <div class="col-lg-12">
 <?php
-    if ($vacante){
-        foreach($vacante->result() as $row_vacante){
+    /*if ($vacante){
+        foreach($vacante->result() as $row_vacante){*/
 ?>              
             <div class="panel panel-info">
                 <div class="panel-heading">
                     <div class="row">
-                        <div class="col-lg-9">
+                        <div class="col-lg-12">
                             <strong>Detalles de la vacante</strong>
                         </div>
-                        <div class="col-lg-3">
+                        <!--<div class="col-lg-3">
                             Fecha de publicacion: 
                             <strong><?= date("d/m/Y", strtotime($row_vacante->fechaPublicacion)); ?></strong>
-                        </div>
+                        </div>-->
                     </div>
                 </div>
                 <div class="panel-body">
@@ -36,58 +36,59 @@ defined('BASEPATH') OR exit('No direct script access allowed');
         'class' => 'form-control',
         'name' => 'titulo',
         'placeholder' => 'Enter text',
-        'value' => $row_vacante->titulo,
         'required' => TRUE
+        //'value' => $row_vacante->titulo
     );
     $descripcion = array(
         'class' => 'form-control',
         'name' => 'descripcion',
         'placeholder' => 'Enter text',
         'rows' => 5,
-        'value' => $row_vacante->descripcion,
         'required' => TRUE
+        //'value' => $row_vacante->descripcion
     );
     $beneficios = array(
         'class' => 'form-control',
         'name' => 'beneficios',
         'placeholder' => 'Enter text',
         'rows' => 5,
-        'value' => $row_vacante->beneficios,
         'required' => TRUE
+        //'value' => $row_vacante->beneficios
     );
     $requisitos = array(
         'class' => 'form-control',
         'name' => 'requisitos',
         'placeholder' => 'Enter text',
         'rows' => 5,
-        'value' => $row_vacante->requisitos,
         'required' => TRUE
+        //'value' => $row_vacante->requisitos        
     );
     $salario = array(
         'class' => 'form-control',
         'name' => 'salario',
         'placeholder' => 'Enter text',
-        'value' => $row_vacante->salario,
         'required' => TRUE
+        //'value' => $row_vacante->salario
     );
     $tipoDocente = array(
         'name' => 'tipo',
         'id' => 'id1',
         'value' => 'Docente',
-        'checked' => ($row_vacante->tipo === 'Docente' ? TRUE : FALSE),        
+        'checked' => TRUE
+        //'checked' => ($row_vacante->tipo === 'Docente' ? TRUE : FALSE),
     );    
     $tipoAdmin = array(
         'name' => 'tipo',
         'id' => 'id2',
         'value' => 'Administrativo',
-        'checked' => ($row_vacante->tipo === 'Administrativo' ? TRUE : FALSE),
+        //'checked' => ($row_vacante->tipo === 'Administrativo' ? TRUE : FALSE),
 
     );
 
     $attributes = array(
         'role' => 'form',
         'autocomplete' => 'off'
-    );       
+    );    
 ?>
                 <?= form_open('',$attributes); ?>
                     <div class="row">
@@ -126,17 +127,17 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                             <center><a href="<?= base_url(PATH_MENU)."/Usuario"; ?>" class="btn btn-primary"><strong>ATRAS</strong></a></center>
                         </div>
                         <div class="col-lg-3">
-                            <center><button type="submit" class="btn btn-success"><strong>Edita vacante</strong></button><!--<a href="<?= base_url(PATH_MENU)."/Postulacion/enviaPostulacion/".$row_vacante->idvac; ?>" class="btn btn-success"><strong>ENVIAR CV</strong></a>--></center>
+                            <center><button type="submit" class="btn btn-success"><strong>Crear vacante</strong></button><!--<a href="<?= base_url(PATH_MENU)."/Postulacion/enviaPostulacion/".$row_vacante->idvac; ?>" class="btn btn-success"><strong>ENVIAR CV</strong></a>--></center>
                         </div>
                     </div>                            
                 <?= form_close(); ?>
 <?php
-        }
+       /* }
     }else{
 ?>
             <h2>No existe la vacantes registradas!!!</h2>
 <?php            
-    }
+    }*/
 ?>                                    
                         </div>
                         <!-- /.col-lg-6 (nested) -->

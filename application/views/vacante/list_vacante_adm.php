@@ -13,7 +13,14 @@ defined('BASEPATH') OR exit('No direct script access allowed');
         <div class="col-lg-12">
             <div class="panel panel-info">
                 <div class="panel-heading">
-                    <strong>Administracion de Vacantes</strong>
+                    <div class="row">
+                        <div class="col-lg-10">
+                            <strong>Administracion de Vacantes</strong>
+                        </div>
+                        <div class="col-lg-2">
+                            <center><a href="<?= base_url(PATH_MENU)."/Vacante/add"; ?>" class="btn btn-primary"><strong>Nueva vacante</strong></a></center>
+                        </div>                        
+                    </div>                                            
                 </div>
                 <!-- /.panel-heading -->
                 <div class="panel-body">
