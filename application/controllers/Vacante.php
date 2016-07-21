@@ -91,7 +91,7 @@ class Vacante extends CI_Controller {
 			);
 			$this->Vacante_model->editVacante($var,$data);
 			//
-			redirect('Usuario', 'refresh');
+			redirect('Usuario', 'refresh');			
 		}
 
 		$data['vacante'] = $this->Vacante_model->getVacantes($var,NULL);

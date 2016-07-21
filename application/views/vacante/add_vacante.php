@@ -10,21 +10,13 @@ defined('BASEPATH') OR exit('No direct script access allowed');
     </div>
     <!-- /.row -->
     <div class="row">
-        <div class="col-lg-12">
-<?php
-    /*if ($vacante){
-        foreach($vacante->result() as $row_vacante){*/
-?>              
+        <div class="col-lg-12">           
             <div class="panel panel-info">
                 <div class="panel-heading">
                     <div class="row">
                         <div class="col-lg-12">
                             <strong>Detalles de la vacante</strong>
                         </div>
-                        <!--<div class="col-lg-3">
-                            Fecha de publicacion: 
-                            <strong><?= date("d/m/Y", strtotime($row_vacante->fechaPublicacion)); ?></strong>
-                        </div>-->
                     </div>
                 </div>
                 <div class="panel-body">
@@ -37,7 +29,6 @@ defined('BASEPATH') OR exit('No direct script access allowed');
         'name' => 'titulo',
         'placeholder' => 'Enter text',
         'required' => TRUE
-        //'value' => $row_vacante->titulo
     );
     $descripcion = array(
         'class' => 'form-control',
@@ -45,7 +36,6 @@ defined('BASEPATH') OR exit('No direct script access allowed');
         'placeholder' => 'Enter text',
         'rows' => 5,
         'required' => TRUE
-        //'value' => $row_vacante->descripcion
     );
     $beneficios = array(
         'class' => 'form-control',
@@ -53,7 +43,6 @@ defined('BASEPATH') OR exit('No direct script access allowed');
         'placeholder' => 'Enter text',
         'rows' => 5,
         'required' => TRUE
-        //'value' => $row_vacante->beneficios
     );
     $requisitos = array(
         'class' => 'form-control',
@@ -61,27 +50,21 @@ defined('BASEPATH') OR exit('No direct script access allowed');
         'placeholder' => 'Enter text',
         'rows' => 5,
         'required' => TRUE
-        //'value' => $row_vacante->requisitos        
     );
     $salario = array(
         'class' => 'form-control',
         'name' => 'salario',
         'placeholder' => 'Enter text',
         'required' => TRUE
-        //'value' => $row_vacante->salario
     );
     $tipoDocente = array(
         'name' => 'tipo',
-        'id' => 'id1',
         'value' => 'Docente',
         'checked' => TRUE
-        //'checked' => ($row_vacante->tipo === 'Docente' ? TRUE : FALSE),
     );    
     $tipoAdmin = array(
         'name' => 'tipo',
-        'id' => 'id2',
         'value' => 'Administrativo',
-        //'checked' => ($row_vacante->tipo === 'Administrativo' ? TRUE : FALSE),
 
     );
 
@@ -130,15 +113,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                             <center><button type="submit" class="btn btn-success"><strong>Crear vacante</strong></button><!--<a href="<?= base_url(PATH_MENU)."/Postulacion/enviaPostulacion/".$row_vacante->idvac; ?>" class="btn btn-success"><strong>ENVIAR CV</strong></a>--></center>
                         </div>
                     </div>                            
-                <?= form_close(); ?>
-<?php
-       /* }
-    }else{
-?>
-            <h2>No existe la vacantes registradas!!!</h2>
-<?php            
-    }*/
-?>                                    
+                <?= form_close(); ?>                                 
                         </div>
                         <!-- /.col-lg-6 (nested) -->
                     </div>

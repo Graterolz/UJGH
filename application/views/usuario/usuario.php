@@ -68,7 +68,14 @@ defined('BASEPATH') OR exit('No direct script access allowed');
         <div class="col-lg-12">
             <div class="panel panel-primary">
                 <div class="panel-heading">
-                    <strong>Datos Academicos</strong>
+                    <div class="row">
+                        <div class="col-lg-10">
+                            <strong>Datos Academicos</strong>
+                        </div>
+                        <div class="col-lg-2">
+                            <center><a href="<?= base_url(PATH_MENU)."/Usuario/addUsuarioAcademico"; ?>" class="btn btn-success"><strong>Agregar</strong></a></center>
+                        </div>
+                    </div>                    
                 </div>
                 <div class="panel-body">
                     <div class="row">
@@ -79,6 +86,8 @@ defined('BASEPATH') OR exit('No direct script access allowed');
     if($usuario_academico){
         foreach($usuario_academico->result() as $row_academico){
 ?>
+                            <div class="row">
+                                <div class="col-lg-10">
                                     <h3><?= $row_academico->titulo; ?>
                                         <small>
                                             <?= $row_academico->mesInicio." ".$row_academico->anioInicio; ?>
@@ -86,6 +95,11 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                                             <?= $row_academico->mesFin." ".$row_academico->anioFin; ?><br>                                            
                                         </small>
                                     </h3>
+                                </div>
+                                <div class="col-lg-2"> 
+                                    <center><a href="<?= base_url(PATH_MENU)."/Usuario/editUsuarioAcademico/$row_academico->idaca"; ?>" class="btn btn-default"><strong>Editar</strong></a></center>
+                                </div>
+                            </div>
                                     <p class="form-control-static">
                                         <strong>Institucion: </strong>
                                         <?= $row_academico->institucion; ?><br>
@@ -115,9 +129,16 @@ defined('BASEPATH') OR exit('No direct script access allowed');
         <!-- /.col-lg-12 -->
 
         <div class="col-lg-12">
-            <div class="panel panel-green">
+            <div class="panel panel-info">
                 <div class="panel-heading">
-                    <strong>Datos Laborales</strong>
+                    <div class="row">
+                        <div class="col-lg-10">
+                            <strong>Datos Laborales</strong>
+                        </div>
+                        <div class="col-lg-2">
+                            <center><a href="<?= base_url(PATH_MENU)."/Usuario/addUsuarioLaboral"; ?>" class="btn btn-primary"><strong>Agregar</strong></a></center>
+                        </div>
+                    </div>
                 </div>
                 <div class="panel-body">
                     <div class="row">
@@ -127,6 +148,8 @@ defined('BASEPATH') OR exit('No direct script access allowed');
     if($usuario_laboral){
         foreach($usuario_laboral->result() as $row_laboral){
 ?>
+                    <div class="row">
+                        <div class="col-lg-10">
                                 <h3><?= $row_laboral->cargo; ?>
                                     <small>
                                         <?= $row_laboral->mesInicio." ".$row_laboral->anioInicio; ?>
@@ -134,6 +157,11 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                                         <?= $row_laboral->mesFin." ".$row_laboral->anioFin; ?><br>
                                     </small>
                                 </h3>
+                        </div>
+                        <div class="col-lg-2"> 
+                            <center><a href="<?= base_url(PATH_MENU)."/Usuario/editUsuarioLaboral/$row_laboral->idlab"; ?>" class="btn btn-default"><strong>Editar</strong></a></center>
+                        </div>
+                    </div>                                                       
                                 <h4><?= $row_laboral->empresa; ?></h4>
 
                                 <p class="form-control-static">                                        

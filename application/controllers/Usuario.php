@@ -34,6 +34,20 @@ class Usuario extends CI_Controller {
 		$this->load->view('template/footer');
 	}
 
+	function registro(){
+		if($this->session->userdata('idusu')){
+			redirect('usuario', 'refresh');
+		}
+
+		$datasession['idusu'] = $this->session->userdata('idusu');
+		$datasession['idrol'] = $this->session->userdata('idrol');
+
+		$this->load->view('template/header');
+		$this->load->view('template/menu',$datasession);
+		$this->load->view('usuario/register_usuario');
+		$this->load->view('template/footer');
+	}
+
 	function viewCV($idusu){
 		if(!$this->session->userdata('idusu')){
 			redirect('login', 'refresh');
@@ -49,6 +63,42 @@ class Usuario extends CI_Controller {
 		$this->load->view('template/header');
 		$this->load->view('template/menu',$datasession);
 		$this->load->view('usuario/usuario',$data);
+		$this->load->view('template/footer');
+	}
+
+	function editUsuarioInfo($idusu){
+
+	}
+
+	function editUsuarioAcademico($idaca){
+		if(!$this->session->userdata('idusu')){
+			redirect('login', 'refresh');
+		}
+
+		$datasession['idusu'] = $this->session->userdata('idusu');
+		$datasession['idrol'] = $this->session->userdata('idrol');
+
+		$data['usuario_academico'] = $this->Usuario_model->getUsuarioAcademicoV2($datasession['idusu'],$idaca);
+
+		$this->load->view('template/header');
+		$this->load->view('template/menu',$datasession);
+		$this->load->view('usuario/edit_usuario_academico',$data);
+		$this->load->view('template/footer');
+	}
+
+	function editUsuarioLaboral($idlab){
+		if(!$this->session->userdata('idusu')){
+			redirect('login', 'refresh');
+		}
+
+		$datasession['idusu'] = $this->session->userdata('idusu');
+		$datasession['idrol'] = $this->session->userdata('idrol');
+
+		//$data['usuario_laboral'] = $this->Usuario_model->getUsuarioLaboral($datasession['idusu']);
+
+		$this->load->view('template/header');
+		$this->load->view('template/menu',$datasession);
+		$this->load->view('usuario/edit_usuario_laboral',$data);
 		$this->load->view('template/footer');
 	}
 }

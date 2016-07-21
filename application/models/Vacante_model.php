@@ -24,30 +24,19 @@ class Vacante_model extends CI_Model {
             'label' => 'beneficios',
             'rules' => 'trim|required',
             ),
+        'requisitos' => array(
+            'field' => 'requisitos',
+            'label' => 'requisitos',
+            'rules' => 'trim|required',        	
+        	),
+        'salario' => array(
+            'field' => 'salario',
+            'label' => 'salario',
+            'rules' => 'trim|required',
+        	),
 	);
 
 	function getVacantes($idvac,$idusu){
-		//$sql = "SELECT * FROM app_vacante";
-		/*$sql = "SELECT * FROM app_vacante WHERE idvac NOT IN (SELECT idvac FROM app_postulacion WHERE idusu = ?)";
-		$data = $idusu;
-
-		if ($idvac!=NULL){
-			$sql = "SELECT * FROM app_vacante WHERE idvac = ?";
-			$data = $idvac;
-		}
-
-		$query = $this->db->query($sql,$data);
-
-		echo "VAC: ".$idvac."<br>";
-		echo "USU: ".$idusu."<br>";
-		
-		if($query->num_rows()>0){
-			return $query;
-		}else{
-			return false;
-		}*/
-		//echo $idvac;
-
 		return $this->gerVacanteV2($idvac,$idusu,NULL);
 	}
 

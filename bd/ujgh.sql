@@ -84,7 +84,7 @@ CREATE TABLE `app_vacante` (
 	`descripcion` varchar(100) NOT NULL,
 	`beneficios` varchar(200) NOT NULL,
 	`requisitos` varchar(100) NOT NULL,
-	`salario` float NOT NULL,
+	`salario` varchar(100) NOT NULL,
 	`fechaPublicacion` date NOT NULL,
 	`tipo` varchar(100) NOT NULL, 
 	PRIMARY KEY (`idvac`)

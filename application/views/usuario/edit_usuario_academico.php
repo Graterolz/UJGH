@@ -1,10 +1,21 @@
+<?
+	/*`idaca` int(10) NOT NULL AUTO_INCREMENT,
+	`idusu` int(10) NOT NULL,
+	`titulo` varchar(100) NOT NULL,
+	`nivelEstudio` varchar(100) NOT NULL,
+	`institucion` varchar(100) NOT NULL,
+	`mesInicio` varchar(15) NOT NULL,
+	`anioInicio` varchar(15) NOT NULL,
+	`mesFin` varchar(15) NOT NULL,
+	`anioFin` varchar(15) NOT NULL,*/
+?>
 <?php
 defined('BASEPATH') OR exit('No direct script access allowed');
 ?>
 <div id="page-wrapper">
     <div class="row">
         <div class="col-lg-12">
-            <h2 class="page-header">Edita Vacante</h2>
+            <h2 class="page-header">Edita datos Academico</h2>
         </div>
         <!-- /.col-lg-12 -->
     </div>
@@ -12,14 +23,14 @@ defined('BASEPATH') OR exit('No direct script access allowed');
     <div class="row">
         <div class="col-lg-12">
 <?php
-    if ($vacante){
-        foreach($vacante->result() as $row_vacante){
+    if ($usuario_academico){
+        foreach($usuario_academico->result() as $row_usuario_academico){
 ?>              
             <div class="panel panel-info">
                 <div class="panel-heading">
                     <div class="row">
                         <div class="col-lg-9">
-                            <strong>Detalles de la vacante</strong>
+                            <strong>Detalles</strong>
                         </div>
                         <div class="col-lg-3">
                             Fecha de publicacion: 
@@ -32,7 +43,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                         <div class="col-lg-12">
                                   
 <?php
-    $titulo = array(
+    /*$titulo = array(
         'class' => 'form-control',
         'name' => 'titulo',
         'placeholder' => 'Enter text',
@@ -85,7 +96,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
     $attributes = array(
         'role' => 'form',
         'autocomplete' => 'off'
-    );       
+    );*/       
 ?>
                 <?= form_open('',$attributes); ?>
                     <div class="row">
@@ -132,7 +143,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
         }
     }else{
 ?>
-            <h2>No existe la vacantes registradas!!!</h2>
+            <h2>No existe infomacion academica solicitada!!!</h2>
 <?php            
     }
 ?>                                    

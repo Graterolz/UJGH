@@ -20,7 +20,31 @@ class Usuario_model extends CI_Model {
 	}
 
 	function getUsuarioAcademico($idusu){
-		$this->db->where('idusu',$idusu);
+		/*$this->db->where('idusu',$idusu);
+		$query = $this->db->get('usuario_academico');
+
+		if($query->num_rows()>0){
+			return $query;
+		}else{
+			return false;
+		}*/
+
+		return $this->getUsuarioAcademicoV2($idusu,NULL);
+	}
+
+	function getUsuarioAcademicoV2($idusu,$idaca){
+
+		/*echo $idusu."\n";
+		echo $idaca."12"."\n";*/
+
+		if ($idusu!=NULL){
+			$this->db->where('idusu',$idusu);
+		}
+
+		if ($idaca!=NULL){
+			$this->db->where('idaca',$idaca);	
+		}
+
 		$query = $this->db->get('usuario_academico');
 
 		if($query->num_rows()>0){

@@ -32,6 +32,7 @@
                                 <input class="form-control" placeholder="Password" name="pass" type="password" value="" required>
                             </div>
                             <input type="submit" class="btn btn-lg btn-success btn-block" id="login" value="Login">
+                            <a href="<?= base_url(PATH_MENU)."/Usuario/registro"; ?>" class="btn btn-lg btn-primary btn-block"><strong>Registrate</strong></a>
                             </fieldset>
                     <?= form_close() ?>
                 </div>
