@@ -78,6 +78,32 @@ class Usuario extends CI_Controller {
 		$datasession['idusu'] = $this->session->userdata('idusu');
 		$datasession['idrol'] = $this->session->userdata('idrol');
 
+		$rules = $this->Usuario_model->rules_academico;
+		$this->form_validation->set_rules($rules);	
+
+		if ($this->form_validation->run() == TRUE) {
+			$data = array(
+				'titulo' => $this->input->post('titulo'),
+				'nivelEstudio' => $this->input->post('nivelEstudio'),
+				'institucion' => $this->input->post('institucion'),
+				'mesInicio' => $this->input->post('mesInicio'),
+				'anioInicio' => $this->input->post('anioInicio'),
+				'mesFin' => $this->input->post('mesFin'),
+				'anioFin' => $this->input->post('anioFin')	
+				/*'titulo' => $this->input->post('titulo'),
+				'descripcion' => $this->input->post('descripcion'),
+				'beneficios' => $this->input->post('beneficios'),
+				'requisitos' => $this->input->post('requisitos'),
+				'salario' => $this->input->post('salario'),
+				'fechaPublicacion' => date("Y/m/d"),//date("d-m-y"),//$this->input->post('fechaPublicacion'),
+				'tipo' => $this->input->post('tipo')*/
+			);
+			//var_dump($data);
+			$this->Usuario_model->editUsuarioAcademico($idaca,$data);
+			//
+			redirect('Usuario', 'refresh');			
+		}			
+
 		$data['usuario_academico'] = $this->Usuario_model->getUsuarioAcademicoV2($datasession['idusu'],$idaca);
 
 		$this->load->view('template/header');

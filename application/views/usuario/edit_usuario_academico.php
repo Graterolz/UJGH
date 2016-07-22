@@ -1,21 +1,10 @@
-<?
-	/*`idaca` int(10) NOT NULL AUTO_INCREMENT,
-	`idusu` int(10) NOT NULL,
-	`titulo` varchar(100) NOT NULL,
-	`nivelEstudio` varchar(100) NOT NULL,
-	`institucion` varchar(100) NOT NULL,
-	`mesInicio` varchar(15) NOT NULL,
-	`anioInicio` varchar(15) NOT NULL,
-	`mesFin` varchar(15) NOT NULL,
-	`anioFin` varchar(15) NOT NULL,*/
-?>
 <?php
 defined('BASEPATH') OR exit('No direct script access allowed');
 ?>
 <div id="page-wrapper">
     <div class="row">
         <div class="col-lg-12">
-            <h2 class="page-header">Edita datos Academico</h2>
+            <h2 class="page-header">Edita datos academicos</h2>
         </div>
         <!-- /.col-lg-12 -->
     </div>
@@ -32,10 +21,6 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                         <div class="col-lg-9">
                             <strong>Detalles</strong>
                         </div>
-                        <div class="col-lg-3">
-                            Fecha de publicacion: 
-                            <strong><?= date("d/m/Y", strtotime($row_vacante->fechaPublicacion)); ?></strong>
-                        </div>
                     </div>
                 </div>
                 <div class="panel-body">
@@ -43,100 +28,147 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                         <div class="col-lg-12">
                                   
 <?php
-    /*$titulo = array(
+    $titulo = array(
         'class' => 'form-control',
         'name' => 'titulo',
         'placeholder' => 'Enter text',
-        'value' => $row_vacante->titulo,
+        'value' => $row_usuario_academico->titulo,
         'required' => TRUE
     );
-    $descripcion = array(
+    $nivelEstudio = array(
         'class' => 'form-control',
-        'name' => 'descripcion',
+        'name' => 'nivelEstudio',
         'placeholder' => 'Enter text',
-        'rows' => 5,
-        'value' => $row_vacante->descripcion,
+        'rows' => 3,
+        'value' => $row_usuario_academico->nivelEstudio,
         'required' => TRUE
     );
-    $beneficios = array(
+    $institucion = array(
         'class' => 'form-control',
-        'name' => 'beneficios',
+        'name' => 'institucion',
         'placeholder' => 'Enter text',
-        'rows' => 5,
-        'value' => $row_vacante->beneficios,
+        'rows' => 3,
+        'value' => $row_usuario_academico->institucion,
         'required' => TRUE
     );
-    $requisitos = array(
+    $mesInicio = array(
         'class' => 'form-control',
-        'name' => 'requisitos',
-        'placeholder' => 'Enter text',
-        'rows' => 5,
-        'value' => $row_vacante->requisitos,
+        'name' => 'mesInicio',
         'required' => TRUE
     );
-    $salario = array(
+    $anioInicio = array(
         'class' => 'form-control',
-        'name' => 'salario',
-        'placeholder' => 'Enter text',
-        'value' => $row_vacante->salario,
+        'name' => 'anioInicio',
         'required' => TRUE
     );
-    $tipoDocente = array(
-        'name' => 'tipo',
-        'value' => 'Docente',
-        'checked' => ($row_vacante->tipo === 'Docente' ? TRUE : FALSE),        
+    $mesFin = array(
+        'class' => 'form-control',
+        'name' => 'mesFin',
+        'required' => TRUE
     );    
-    $tipoAdmin = array(
-        'name' => 'tipo',
-        'value' => 'Administrativo',
-        'checked' => ($row_vacante->tipo === 'Administrativo' ? TRUE : FALSE),
-
+    $anioFin = array(
+        'class' => 'form-control',
+        'name' => 'anioFin',
+        'required' => TRUE
     );
 
     $attributes = array(
         'role' => 'form',
         'autocomplete' => 'off'
-    );*/       
+    );
+
+    $meses = array(
+        '' => '(None)',
+        'Enero'     => 'Enero',
+        'Febrero'   => 'Febrero',
+        'Marzo'     => 'Marzo',
+        'Abril'    => 'Abril',
+        'Mayo'    => 'Mayo',
+        'Junio'    => 'Junio',
+        'Julio'    => 'Julio',
+        'Agosto'    => 'Agosto',
+        'Septiembre'    => 'Septiembre',
+        'Octubre'    => 'Octubre',
+        'Noviembre'    => 'Noviembre',
+        'Diciembre'    => 'Diciembre',
+    );
+
+    $anio = array(
+        '' => '(None)',
+        '2000' => '2000',
+        '2001' => '2001',
+        '2002' => '2002',
+        '2003' => '2003',
+        '2004' => '2004',
+        '2005' => '2005',
+        '2006' => '2006',
+        '2007' => '2007',
+        '2008' => '2008',
+        '2009' => '2009',
+        '2010' => '2010',
+        '2011' => '2011',
+        '2012' => '2012',
+        '2013' => '2013',
+        '2014' => '2014',
+        '2015' => '2015',
+        '2016' => '2016',
+    );
 ?>
                 <?= form_open('',$attributes); ?>
                     <div class="row">
-                        <div class="col-lg-6">                        
+                        <div class="col-lg-12">                        
                             <div class="form-group">
-                                <?= form_label('Titulo','titulo') ?>
-                                <?= form_input($titulo) ?>
+                                <div class="row">
+                                    <div class="col-lg-6">
+                                        <?= form_label('Titulo','titulo') ?>
+                                        <?= form_input($titulo) ?>                                        
+                                    </div>
+                                    <div class="col-lg-3">
+                                        <?= form_label('Mes inicio / Año inicio','mesInicio') ?>
+                                        <!--<?= form_label('Año desde','anioInicio') ?>-->
+                                        <br>
+                                        <?= form_dropdown('mesInicio',$meses,$row_usuario_academico->mesInicio,$mesInicio); ?>
+                                        <?= form_dropdown('anioInicio',$anio,$row_usuario_academico->anioInicio,$anioInicio); ?>
+                                    </div>
+                                
+                                    <div class="col-lg-3">
+                                        <?= form_label('Mes fin / Año fin','mesFin') ?>
+                                        <!--<?= form_label('Año hasta','anioFin') ?>-->
+                                        <br>
+                                        <?= form_dropdown('mesFin',$meses,$row_usuario_academico->mesFin,$mesFin); ?>
+                                        <?= form_dropdown('anioFin',$anio,$row_usuario_academico->anioFin,$anioFin); ?>
+                                    </div>                                                                    
+                                </div>
                             </div>
                             <div class="form-group">
-                                <?= form_label('Descripcion','descripcion') ?>
-                                <?= form_textarea($descripcion) ?>
+                                <div class="row">
+                                    <div class="col-lg-12">
+                                        <?= form_label('Nivel de estudio','nivelEstudio') ?>
+                                        <?= form_textarea($nivelEstudio) ?>
+                                    </div>
+                                    <div class="col-lg-12">
+                                        <?= form_label('Institucion','institucion') ?>
+                                        <?= form_textarea($institucion) ?>                                        
+                                    </div>
+                                </div>                                
                             </div>
                             <div class="form-group">
-                                <?= form_label('Beneficios','beneficios') ?>
-                                <?= form_textarea($beneficios) ?>
-                            </div>
-                        </div>
-                        <div class="col-lg-6">
-                            <div class="form-group">
-                                <?= form_label('Requisitos','requisitos') ?>
-                                <?= form_textarea($requisitos) ?>
+
                             </div>
                             <div class="form-group">
-                                <?= form_label('Salario','salario') ?>
-                                <?= form_input($salario) ?>
-                            </div>
+
+                            </div>                        
                             <div class="form-group">
-                                <?= form_label('Tipo de vacante','tipo') ?><br>
-                                <?= form_radio($tipoDocente); ?><strong>Docente</strong><br>
-                                <?= form_radio($tipoAdmin); ?><strong>Administrativo</strong><br>
-                                <br>
-                                <br>
-                            </div>
-                        </div>                            
-                        <div class="col-lg-3">
-                            <center><a href="<?= base_url(PATH_MENU)."/Usuario"; ?>" class="btn btn-primary"><strong>ATRAS</strong></a></center>
-                        </div>
-                        <div class="col-lg-3">
-                            <center><button type="submit" class="btn btn-success"><strong>Edita vacante</strong></button><!--<a href="<?= base_url(PATH_MENU)."/Postulacion/enviaPostulacion/".$row_vacante->idvac; ?>" class="btn btn-success"><strong>ENVIAR CV</strong></a>--></center>
-                        </div>
+                                <div class="row">
+                                    <div class="col-lg-6">
+                                        <center><a href="<?= base_url(PATH_MENU)."/Usuario"; ?>" class="btn btn-primary"><strong>ATRAS</strong></a></center>
+                                    </div>
+                                    <div class="col-lg-6">
+                                        <center><button type="submit" class="btn btn-success"><strong>Editar datos</strong></button><!--<a href="<?= base_url(PATH_MENU)."/Postulacion/enviaPostulacion/".$row_vacante->idvac; ?>" class="btn btn-success"><strong>ENVIAR CV</strong></a>--></center>
+                                    </div>                                        
+                                </div>
+                            </div>                                
+                        <!--</div>    -->                        
                     </div>                            
                 <?= form_close(); ?>
 <?php

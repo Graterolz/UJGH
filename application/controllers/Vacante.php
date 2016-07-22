@@ -30,7 +30,11 @@ class Vacante extends CI_Controller {
 		$this->load->view('template/footer');
 	}
 
-	function view($var){		
+	function view($var){
+		if(!$this->session->userdata('idusu')){
+			redirect('login', 'refresh');
+		}
+
 		$datasession['idusu'] = $this->session->userdata('idusu');
 		$datasession['idrol'] = $this->session->userdata('idrol');
 
