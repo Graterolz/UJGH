@@ -62,7 +62,7 @@ class Usuario extends CI_Controller {
 
 		$this->load->view('template/header');
 		$this->load->view('template/menu',$datasession);
-		$this->load->view('usuario/usuario',$data);
+		$this->load->view('usuario/usuario_adm',$data);
 		$this->load->view('template/footer');
 	}
 
@@ -89,14 +89,7 @@ class Usuario extends CI_Controller {
 				'mesInicio' => $this->input->post('mesInicio'),
 				'anioInicio' => $this->input->post('anioInicio'),
 				'mesFin' => $this->input->post('mesFin'),
-				'anioFin' => $this->input->post('anioFin')	
-				/*'titulo' => $this->input->post('titulo'),
-				'descripcion' => $this->input->post('descripcion'),
-				'beneficios' => $this->input->post('beneficios'),
-				'requisitos' => $this->input->post('requisitos'),
-				'salario' => $this->input->post('salario'),
-				'fechaPublicacion' => date("Y/m/d"),//date("d-m-y"),//$this->input->post('fechaPublicacion'),
-				'tipo' => $this->input->post('tipo')*/
+				'anioFin' => $this->input->post('anioFin')
 			);
 			//var_dump($data);
 			$this->Usuario_model->editUsuarioAcademico($idaca,$data);
@@ -120,7 +113,31 @@ class Usuario extends CI_Controller {
 		$datasession['idusu'] = $this->session->userdata('idusu');
 		$datasession['idrol'] = $this->session->userdata('idrol');
 
-		//$data['usuario_laboral'] = $this->Usuario_model->getUsuarioLaboral($datasession['idusu']);
+		$rules = $this->Usuario_model->rules_laboral;
+		$this->form_validation->set_rules($rules);	
+
+		if ($this->form_validation->run() == TRUE) {
+			$data = array(
+				'empresa' => $this->input->post('empresa'),
+				'direccion' => $this->input->post('direccion'),
+				'telefono' => $this->input->post('telefono'),
+				'cargo' => $this->input->post('cargo'),
+				'labores' => $this->input->post('labores'),
+				'mesInicio' => $this->input->post('mesInicio'),
+				'anioInicio' => $this->input->post('anioInicio'),
+				'mesFin' => $this->input->post('mesFin'),
+				'anioFin' => $this->input->post('anioFin'),
+				'beneficios' => $this->input->post('beneficios'),
+				'salario' => $this->input->post('salario'),
+				'motivoRetiro' => $this->input->post('motivoRetiro')
+			);
+
+			$this->Usuario_model->editUsuarioLaboral($idlab,$data);
+			//
+			redirect('Usuario', 'refresh');			
+		}
+
+		$data['usuario_laboral'] = $this->Usuario_model->getUsuarioLaboralV2($datasession['idusu'],$idlab);
 
 		$this->load->view('template/header');
 		$this->load->view('template/menu',$datasession);

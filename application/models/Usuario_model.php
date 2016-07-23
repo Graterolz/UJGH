@@ -46,6 +46,68 @@ class Usuario_model extends CI_Model {
         	),        	        	        
 	);
 
+	public $rules_laboral = array(
+		'empresa' => array(
+            'field' => 'empresa',
+            'label' => 'empresa',
+            'rules' => 'trim|required',			
+			),
+		'direccion' => array(
+            'field' => 'direccion',
+            'label' => 'direccion',
+            'rules' => 'trim|required',			
+			),
+		'telefono' => array(
+            'field' => 'telefono',
+            'label' => 'telefono',
+            'rules' => 'trim|required',			
+			),
+		'cargo' => array(
+            'field' => 'cargo',
+            'label' => 'cargo',
+            'rules' => 'trim|required',			
+			),
+		'labores' => array(
+            'field' => 'labores',
+            'label' => 'labores',
+            'rules' => 'trim|required',			
+			),
+		'mesInicio' => array(
+            'field' => 'mesInicio',
+            'label' => 'mesInicio',
+            'rules' => 'trim|required',			
+			),
+		'anioInicio' => array(
+            'field' => 'anioInicio',
+            'label' => 'anioInicio',
+            'rules' => 'trim|required',			
+			),
+		'mesFin' => array(
+            'field' => 'mesFin',
+            'label' => 'mesFin',
+            'rules' => 'trim|required',			
+			),
+		'anioFin' => array(
+            'field' => 'anioFin',
+            'label' => 'anioFin',
+            'rules' => 'trim|required',			
+			),
+		'beneficios' => array(
+            'field' => 'beneficios',
+            'label' => 'beneficios',
+            'rules' => 'trim|required',			
+			),
+		'salario' => array(
+            'field' => 'salario',
+            'label' => 'salario',
+            'rules' => 'trim|required',			
+			),
+		'motivoRetiro' => array(
+            'field' => 'motivoRetiro',
+            'label' => 'motivoRetiro',
+            'rules' => 'trim|required',			
+			),
+	);
 	
 	function getUsuarioInfo($idusu){
 		$this->db->where('idusu',$idusu);
@@ -73,9 +135,6 @@ class Usuario_model extends CI_Model {
 
 	function getUsuarioAcademicoV2($idusu,$idaca){
 
-		/*echo $idusu."\n";
-		echo $idaca."12"."\n";*/
-
 		if ($idusu!=NULL){
 			$this->db->where('idusu',$idusu);
 		}
@@ -92,6 +151,27 @@ class Usuario_model extends CI_Model {
 			return false;
 		}
 	}
+
+	function getUsuarioLaboralV2($idusu,$idlab){
+
+		if ($idusu!=NULL){
+			$this->db->where('idusu',$idusu);
+		}
+
+		if ($idlab!=NULL){
+			$this->db->where('idlab',$idlab);	
+		}
+
+		$query = $this->db->get('usuario_laboral');
+
+		if($query->num_rows()>0){
+			return $query;
+		}else{
+			return false;
+		}
+	}	
+
+
 
 	function getUsuarioLaboral($idusu){
 		$this->db->where('idusu',$idusu);
@@ -132,5 +212,25 @@ class Usuario_model extends CI_Model {
 
 		$this->db->where('idaca',$idaca);
 		$this->db->update('usuario_academico',$data);
+	}
+
+	function editUsuarioLaboral($idlab,$data){
+		$data = array(
+			'empresa' => $data['empresa'],
+			'direccion' => $data['direccion'],
+			'telefono' => $data['telefono'],
+			'cargo' => $data['cargo'],
+			'labores' => $data['labores'],
+			'mesInicio' => $data['mesInicio'],
+			'anioInicio' => $data['anioInicio'],
+			'mesFin' => $data['mesFin'],
+			'anioFin' => $data['anioFin'],
+			'beneficios' => $data['beneficios'],
+			'salario' => $data['salario'],
+			'motivoRetiro' => $data['motivoRetiro']
+		);
+
+		$this->db->where('idlab',$idlab);
+		$this->db->update('usuario_laboral',$data);		
 	}
 }

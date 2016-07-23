@@ -65,7 +65,7 @@ CREATE TABLE `usuario_laboral` (
 	`mesFin` varchar(15) NOT NULL,
 	`anioFin` varchar(15) NOT NULL,	
 	`beneficios` varchar(1000) NOT NULL,
-	`salario` float NOT NULL,
+	`salario` varchar(100) NOT NULL,
 	`motivoRetiro` varchar(1000) NOT NULL,
 	PRIMARY KEY  (`idlab`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
