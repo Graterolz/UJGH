@@ -3,7 +3,7 @@
         <div class="col-lg-12">
             <div class="page-header">
                 <center>
-                    <img src="<?php echo base_url(PATH_BACK2)?>/ujgh.png" class="img-thumbnail" alt="imgs">
+                    <img src="<?php echo base_url(PATH_BACK2)?>/ujgh.png" class="img-thumbnail" alt="imgs">                    
                 </center>
             </div>
         </div>
@@ -14,7 +14,7 @@
         <div class="col-md-4 col-md-offset-4">
             <div class="login-panel panel panel-default">
                 <div class="panel-heading">
-                    <center><h3 class="panel-title">Trabaja con Nosotros - Ingresa tus datos</h3></center>
+                    <center><h3 class="panel-title">Ingresa tus datos</h3></center>
                 </div>
                 <div class="panel-body">
 <?php

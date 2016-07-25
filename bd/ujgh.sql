@@ -11,8 +11,6 @@ CREATE TABLE `usuario_info` (
 	`apellido` varchar(50) NOT NULL,  
 	`fechaNacimiento` date NOT NULL,
 	`nacionalidad` varchar(50) NOT NULL,
-	`estado` varchar(50) NOT NULL,
-	`ciudad` varchar(50) NOT NULL,
 	`direccion` varchar(50) NOT NULL,
 	`telefonoCelular` varchar(50) NOT NULL,
 	`telefonoFijo` varchar(50) NOT NULL,
@@ -22,10 +20,10 @@ CREATE TABLE `usuario_info` (
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 INSERT INTO `usuario_info`
-(`idusu`, `idrol`, `email`, `contrasena`, `cedula`, `nombre`, `apellido`, `fechaNacimiento`, `nacionalidad`, `estado`, `ciudad`, `direccion`, `telefonoCelular`, `telefonoFijo`, `estadoCivil`, `sexo`) VALUES 
-(NULL, 'AMD', 'admin', 'admin', '123456', 'Administrador', 'Sistema', '2016-01-01', 'Venezolano/a', 'Zulia', 'Maracaibo', 'Maracaibo', '0261-123456', '0414-123456', 'Soltero/a', 'Masculino'),
-(NULL, 'USR', 'demo', 'demo', '24879654', 'Jose', 'Hernandez', '2016-01-01', 'Venezolano/a', 'Zulia', 'Maracaibo', 'Bella vista', '0261-123456', '0414-123456', 'Soltero/a', 'Masculino'),
-(NULL, 'USR', 'maria', 'maria', '9784168', 'Maria', 'Perez', '1985-04-12', 'Venezolano/a', 'Zulia', 'Maracaibo', 'San francisco', '0212-123456', '0416-123456', 'Soltero/a', 'Femenino');
+(`idusu`, `idrol`, `email`, `contrasena`, `cedula`, `nombre`, `apellido`, `fechaNacimiento`, `nacionalidad`,  `direccion`, `telefonoCelular`, `telefonoFijo`, `estadoCivil`, `sexo`) VALUES 
+(NULL, 'AMD', 'admin', 'admin', '123456', 'Administrador', 'Sistema', '2016-01-01', 'Venezolano/a', 'Maracaibo', '0261-123456', '0414-123456', 'Soltero/a', 'Masculino'),
+(NULL, 'USR', 'demo', 'demo', '24879654', 'Jose', 'Hernandez', '2016-01-01', 'Venezolano/a', 'Bella vista', '0261-123456', '0414-123456', 'Soltero/a', 'Masculino'),
+(NULL, 'USR', 'maria', 'maria', '9784168', 'Maria', 'Perez', '1985-04-12', 'Venezolano/a', 'San francisco', '0212-123456', '0416-123456', 'Soltero/a', 'Femenino');
 
 -- usuario_academico
 DROP TABLE `usuario_academico`;

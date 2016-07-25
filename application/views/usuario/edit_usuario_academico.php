@@ -121,7 +121,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                                 <div class="row">
                                     <div class="col-lg-6">
                                         <?= form_label('Titulo','titulo') ?>
-                                        <?= form_input($titulo) ?>                                        
+                                        <?= form_input($titulo) ?>
                                     </div>
                                     <div class="col-lg-3">
                                         <?= form_label('Mes inicio / Año inicio','mesInicio') ?>

@@ -42,6 +42,26 @@ class Usuario extends CI_Controller {
 		$datasession['idusu'] = $this->session->userdata('idusu');
 		$datasession['idrol'] = $this->session->userdata('idrol');
 
+
+		$rules = $this->Usuario_model->rules_registro;
+		$this->form_validation->set_rules($rules);
+		if ($this->form_validation->run() == TRUE) {
+			/*$data = array(
+				'titulo' => $this->input->post('titulo'),
+				'nivelEstudio' => $this->input->post('nivelEstudio'),
+				'institucion' => $this->input->post('institucion'),
+				'mesInicio' => $this->input->post('mesInicio'),
+				'anioInicio' => $this->input->post('anioInicio'),
+				'mesFin' => $this->input->post('mesFin'),
+				'anioFin' => $this->input->post('anioFin')
+			);
+			//var_dump($data);
+			$this->Usuario_model->editUsuarioAcademico($idaca,$data);*/
+			//
+			redirect('Usuario', 'refresh');			
+		}
+
+
 		$this->load->view('template/header');
 		$this->load->view('template/menu',$datasession);
 		$this->load->view('usuario/register_usuario');
@@ -79,7 +99,7 @@ class Usuario extends CI_Controller {
 		$datasession['idrol'] = $this->session->userdata('idrol');
 
 		$rules = $this->Usuario_model->rules_academico;
-		$this->form_validation->set_rules($rules);	
+		$this->form_validation->set_rules($rules);
 
 		if ($this->form_validation->run() == TRUE) {
 			$data = array(
