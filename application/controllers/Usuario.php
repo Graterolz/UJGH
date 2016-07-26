@@ -8,9 +8,9 @@ class Usuario extends CI_Controller {
 		$this->load->model('Usuario_model');
 		$this->load->model('Vacante_model');
 		
-		if(!$this->session->userdata('idusu')){
+		/*if(!$this->session->userdata('idusu')){
 			redirect('login', 'refresh');
-		}		
+		}*/		
 	}
 
 	function index(){
@@ -39,9 +39,9 @@ class Usuario extends CI_Controller {
 	}
 
 	function registro(){
-		if($this->session->userdata('idusu')){
+		/*if($this->session->userdata('idusu')){
 			redirect('usuario', 'refresh');
-		}
+		}*/
 
 		$datasession['idusu'] = $this->session->userdata('idusu');
 		$datasession['idrol'] = $this->session->userdata('idrol');
@@ -119,6 +119,9 @@ class Usuario extends CI_Controller {
 	}
 
 	function addUsuarioAcademico(){
+		if(!$this->session->userdata('idusu')){
+			redirect('login', 'refresh');
+		}		
 		$data = NULL;
 
 		$datasession['idusu'] = $this->session->userdata('idusu');
@@ -131,6 +134,9 @@ class Usuario extends CI_Controller {
 	}
 
 	function addUsuarioLaboral(){
+		if(!$this->session->userdata('idusu')){
+			redirect('login', 'refresh');
+		}		
 		$data = NULL;
 
 		$datasession['idusu'] = $this->session->userdata('idusu');
