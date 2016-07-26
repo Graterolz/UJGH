@@ -46,19 +46,47 @@ class Usuario extends CI_Controller {
 		$rules = $this->Usuario_model->rules_registro;
 		$this->form_validation->set_rules($rules);
 		if ($this->form_validation->run() == TRUE) {
-			/*$data = array(
-				'titulo' => $this->input->post('titulo'),
-				'nivelEstudio' => $this->input->post('nivelEstudio'),
-				'institucion' => $this->input->post('institucion'),
-				'mesInicio' => $this->input->post('mesInicio'),
-				'anioInicio' => $this->input->post('anioInicio'),
-				'mesFin' => $this->input->post('mesFin'),
-				'anioFin' => $this->input->post('anioFin')
-			);
-			//var_dump($data);
-			$this->Usuario_model->editUsuarioAcademico($idaca,$data);*/
-			//
-			redirect('Usuario', 'refresh');			
+			if($this->input->post('contrasena')==$this->input->post('contrasena2')){
+				$data = array(
+					'nombre' => $this->input->post('nombre'),
+					'apellido' => $this->input->post('apellido'),
+					'cedula' => $this->input->post('cedula'),
+					'email' => $this->input->post('email'),
+					'fechaNacimiento' => date("Y/m/d"), //$this->input->post('fechaNacimiento'),
+					'nacionalidad' => $this->input->post('nacionalidad'),
+					'direccion' => $this->input->post('direccion'),
+					'telefonoCelular' => $this->input->post('telefonoCelular'),
+					'telefonoFijo' => $this->input->post('telefonoFijo'),
+					'estadoCivil' => $this->input->post('estadoCivil'),
+					'sexo' => $this->input->post('sexo'),
+					'contrasena' => $this->input->post('contrasena')
+				);
+				$this->Usuario_model->addUsuarioInfo($data);
+				//var_dump($data);
+				
+				$data2 = array(
+					'user' => $this->input->post('email'),
+					'pass' => $this->input->post('contrasena')
+				);
+				
+			if($this->Usuario_model->getLoginUsuario($data2)){
+				$data['info'] = $this->Usuario_model->getLoginUsuario($data2);
+
+				$datasession  = array(
+					'idusu' => $data['info']->result()[0]->idusu,
+					'idrol' => $data['info']->result()[0]->idrol
+				);
+
+				$this->session->set_userdata($datasession);
+				redirect('usuario', 'refresh');
+			}else{
+				redirect('login', 'refresh');
+			}				
+				
+				
+				
+				//redirect('Usuario', 'refresh');
+			}
 		}
 
 

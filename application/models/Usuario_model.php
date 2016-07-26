@@ -7,6 +7,71 @@ class Usuario_model extends CI_Model {
 		parent::__construct();
 		$this->load->database();
 	}
+	
+	public $rules_registro = array(
+		'nombre' => array(
+            'field' => 'nombre',
+            'label' => 'nombre',
+            'rules' => 'trim|required',
+            ),
+		'apellido' => array(
+            'field' => 'apellido',
+            'label' => 'apellido',
+            'rules' => 'trim|required',
+            ),
+		'cedula' => array(
+            'field' => 'cedula',
+            'label' => 'cedula',
+            'rules' => 'trim|required',
+            ),
+		'email' => array(
+            'field' => 'email',
+            'label' => 'email',
+            'rules' => 'trim|required',
+            ),
+        /*'fechaNacimiento' => array(
+        	),*/
+		'nacionalidad' => array(
+            'field' => 'nacionalidad',
+            'label' => 'nacionalidad',
+            'rules' => 'trim|required',
+            ),
+		'direccion' => array(
+            'field' => 'direccion',
+            'label' => 'direccion',
+            'rules' => 'trim|required',
+            ),
+		'telefonoCelular' => array(
+            'field' => 'telefonoCelular',
+            'label' => 'telefonoCelular',
+            'rules' => 'trim|required',
+            ),
+		'telefonoFijo' => array(
+            'field' => 'telefonoFijo',
+            'label' => 'telefonoFijo',
+            'rules' => 'trim|required',
+            ),
+		'estadoCivil' => array(
+            'field' => 'estadoCivil',
+            'label' => 'estadoCivil',
+            'rules' => 'trim|required',
+            ),
+		'sexo' => array(
+            'field' => 'sexo',
+            'label' => 'sexo',
+            'rules' => 'trim|required',
+            ),
+		'contrasena' => array(
+            'field' => 'contrasena',
+            'label' => 'contrasena',
+            'rules' => 'trim|required',
+            ),
+		'contrasena2' => array(
+            'field' => 'contrasena2',
+            'label' => 'contrasena2',
+            'rules' => 'trim|required',
+            )
+	);
 
 	public $rules_academico = array(
 		'titulo' => array(
@@ -197,6 +262,27 @@ class Usuario_model extends CI_Model {
 		}else{
 			return false;
 		}		
+	}
+	
+	function addUsuarioInfo($data){
+		$data = array(
+			'idusu' => NULL,
+			'idrol' => 'USR',
+			'email' => $data['email'],
+			'contrasena' => $data['contrasena'],
+			'cedula' => $data['cedula'],
+			'nombre' => $data['nombre'],
+			'apellido' => $data['apellido'],
+			'fechaNacimiento' => $data['fechaNacimiento'],
+			'nacionalidad' => $data['nacionalidad'],
+			'direccion' => $data['direccion'],
+			'telefonoCelular' => $data['telefonoCelular'],
+			'telefonoFijo' => $data['telefonoFijo'],
+			'estadoCivil' => $data['estadoCivil'],
+			'sexo' => $data['sexo']
+		);
+		
+		$this->db->insert('usuario_info',$data);
 	}
 
 	function editUsuarioAcademico($idaca,$data){
