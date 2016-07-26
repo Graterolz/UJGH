@@ -4,7 +4,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 <div id="page-wrapper">
     <div class="row">
         <div class="col-lg-12">
-            <h2 class="page-header">Edita datos laborales</h2>
+            <h2 class="page-header">Agrega datos laborales</h2>
         </div>
         <!-- /.col-lg-12 -->
     </div>
@@ -12,8 +12,8 @@ defined('BASEPATH') OR exit('No direct script access allowed');
     <div class="row">
         <div class="col-lg-12">
 <?php
-    if ($usuario_laboral){
-        foreach($usuario_laboral->result() as $row_usuario_laboral){
+    /*if ($usuario_laboral){
+        foreach($usuario_laboral->result() as $row_usuario_laboral){*/
 ?>              
             <div class="panel panel-info">
                 <div class="panel-heading">
@@ -37,7 +37,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
         'class' => 'form-control',
         'name' => 'empresa',
         'placeholder' => 'Enter text',
-        'value' => $row_usuario_laboral->empresa,
+        //'value' => $row_usuario_laboral->empresa,
         'required' => TRUE
     );
     $direccion = array(
@@ -45,7 +45,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
         'name' => 'direccion',
         'placeholder' => 'Enter text',
         'rows' => 3,
-        'value' => $row_usuario_laboral->direccion,
+        //'value' => $row_usuario_laboral->direccion,
         'required' => TRUE
     );
     $telefono = array(
@@ -53,7 +53,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
         'name' => 'telefono',
         'placeholder' => 'Enter text',
         'rows' => 3,
-        'value' => $row_usuario_laboral->telefono,
+        //'value' => $row_usuario_laboral->telefono,
         'required' => TRUE
     );
     $cargo = array(
@@ -61,7 +61,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
         'name' => 'cargo',
         'placeholder' => 'Enter text',
         'rows' => 3,
-        'value' => $row_usuario_laboral->cargo,
+        //'value' => $row_usuario_laboral->cargo,
         'required' => TRUE
     );
     $labores = array(
@@ -69,7 +69,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
         'name' => 'labores',
         'placeholder' => 'Enter text',
         'rows' => 3,
-        'value' => $row_usuario_laboral->labores,
+        //'value' => $row_usuario_laboral->labores,
         'required' => TRUE
     );
     $mesInicio = array(
@@ -97,7 +97,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
         'name' => 'beneficios',
         'placeholder' => 'Enter text',
         'rows' => 3,
-        'value' => $row_usuario_laboral->beneficios,
+        //'value' => $row_usuario_laboral->beneficios,
         'required' => TRUE
     );
     $salario = array(
@@ -105,7 +105,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
         'name' => 'salario',
         'placeholder' => 'Enter text',
         'rows' => 3,
-        'value' => $row_usuario_laboral->salario,
+        //'value' => $row_usuario_laboral->salario,
         'required' => TRUE
     );
     $motivoRetiro = array(
@@ -113,7 +113,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
         'name' => 'motivoRetiro',
         'placeholder' => 'Enter text',
         'rows' => 3,
-        'value' => $row_usuario_laboral->motivoRetiro,
+        //'value' => $row_usuario_laboral->motivoRetiro,
         'required' => TRUE
     );            
 
@@ -192,15 +192,15 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                                         <?= form_label('Mes inicio / Año inicio','mesInicio') ?>
 
                                         <br>
-                                        <?= form_dropdown('mesInicio',$meses,$row_usuario_laboral->mesInicio,$mesInicio); ?>
-                                        <?= form_dropdown('anioInicio',$anio,$row_usuario_laboral->anioInicio,$anioInicio); ?>
+                                        <?= form_dropdown('mesInicio',$meses,'',$mesInicio); ?>
+                                        <?= form_dropdown('anioInicio',$anio,'',$anioInicio); ?>
                                     </div>
                                 
                                     <div class="col-lg-3">
                                         <?= form_label('Mes fin / Año fin','mesFin') ?>
                                         <br>
-                                        <?= form_dropdown('mesFin',$meses,$row_usuario_laboral->mesFin,$mesFin); ?>
-                                        <?= form_dropdown('anioFin',$anio,$row_usuario_laboral->anioFin,$anioFin); ?>
+                                        <?= form_dropdown('mesFin',$meses,'',$mesFin); ?>
+                                        <?= form_dropdown('anioFin',$anio,'',$anioFin); ?>
                                     </div>
 
                                     <div class="col-lg-6">
@@ -258,7 +258,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                                         <center><a href="<?= base_url(PATH_MENU)."/Usuario"; ?>" class="btn btn-primary"><strong>ATRAS</strong></a></center>
                                     </div>
                                     <div class="col-lg-6">
-                                        <center><button type="submit" class="btn btn-success"><strong>Editar datos</strong></button><!--<a href="<?= base_url(PATH_MENU)."/Postulacion/enviaPostulacion/".$row_vacante->idvac; ?>" class="btn btn-success"><strong>ENVIAR CV</strong></a>--></center>
+                                        <center><button type="submit" class="btn btn-success"><strong>Agrega datos</strong></button><!--<a href="<?= base_url(PATH_MENU)."/Postulacion/enviaPostulacion/".$row_vacante->idvac; ?>" class="btn btn-success"><strong>ENVIAR CV</strong></a>--></center>
                                     </div>                                        
                                 </div>
                             </div>                                
@@ -266,12 +266,12 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                     </div>                            
                 <?= form_close(); ?>
 <?php
-        }
+       /* }
     }else{
 ?>
-            <h2>No existe infomacion laboral solicitada!!!</h2>
+            <h2>No existe infomacion academica solicitada!!!</h2>
 <?php            
-    }
+    }*/
 ?>                                    
                         </div>
                         <!-- /.col-lg-6 (nested) -->

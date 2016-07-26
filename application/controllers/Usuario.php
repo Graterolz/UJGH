@@ -7,6 +7,10 @@ class Usuario extends CI_Controller {
 		parent::__construct();
 		$this->load->model('Usuario_model');
 		$this->load->model('Vacante_model');
+		
+		if(!$this->session->userdata('idusu')){
+			redirect('login', 'refresh');
+		}		
 	}
 
 	function index(){
@@ -114,8 +118,32 @@ class Usuario extends CI_Controller {
 		$this->load->view('template/footer');
 	}
 
-	function editUsuarioInfo($idusu){
+	function addUsuarioAcademico(){
+		$data = NULL;
 
+		$datasession['idusu'] = $this->session->userdata('idusu');
+		$datasession['idrol'] = $this->session->userdata('idrol');
+
+		$this->load->view('template/header');
+		$this->load->view('template/menu',$datasession);
+		$this->load->view('usuario/add_usuario_academico',$data);
+		$this->load->view('template/footer');
+	}
+
+	function addUsuarioLaboral(){
+		$data = NULL;
+
+		$datasession['idusu'] = $this->session->userdata('idusu');
+		$datasession['idrol'] = $this->session->userdata('idrol');		
+
+		$this->load->view('template/header');
+		$this->load->view('template/menu',$datasession);
+		$this->load->view('usuario/add_usuario_laboral',$data);
+		$this->load->view('template/footer');
+	}
+
+	function editUsuarioInfo($idusu){
+		return NULL;
 	}
 
 	function editUsuarioAcademico($idaca){

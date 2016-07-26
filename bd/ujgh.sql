@@ -1,7 +1,7 @@
 -- usuario_info
-DROP TABLE `usuario_info`;
+DROP TABLE IF EXISTS `usuario_info`;
 
-CREATE TABLE `usuario_info` (
+CREATE TABLE IF NOT EXISTS `usuario_info` (
 	`idusu` int(10) AUTO_INCREMENT,
 	`idrol` varchar(3) NOT NULL,
 	`email` varchar(50) NOT NULL,
@@ -26,9 +26,9 @@ INSERT INTO `usuario_info`
 (NULL, 'USR', 'maria', 'maria', '9784168', 'Maria', 'Perez', '1985-04-12', 'Venezolano/a', 'San francisco', '0212-123456', '0416-123456', 'Soltero/a', 'Femenino');
 
 -- usuario_academico
-DROP TABLE `usuario_academico`;
+DROP TABLE IF EXISTS `usuario_academico`;
 
-CREATE TABLE `usuario_academico` (
+CREATE TABLE IF NOT EXISTS `usuario_academico` (
 	`idaca` int(10) NOT NULL AUTO_INCREMENT,
 	`idusu` int(10) NOT NULL,
 	`titulo` varchar(100) NOT NULL,
@@ -48,9 +48,9 @@ INSERT INTO `usuario_academico`
 (NULL, '3', 'Licenciada en Contaduria', 'Universitario Graduado', 'Univ. Dr. Jose Gregorio Hernandez', 'Agosto', '2010', 'Enero', '2014');
 
 -- usuario_laboral
-DROP TABLE `usuario_laboral`;
+DROP TABLE IF EXISTS `usuario_laboral`;
 
-CREATE TABLE `usuario_laboral` (
+CREATE TABLE IF NOT EXISTS `usuario_laboral` (
 	`idlab` int(10) NOT NULL AUTO_INCREMENT,
 	`idusu` int(10) NOT NULL,
 	`empresa` varchar(100) NOT NULL,
@@ -74,9 +74,9 @@ INSERT INTO `usuario_laboral`
 (NULL, '2', 'Empresa 2', 'Direccion 2', '0261-123456', 'Administrador de bases de datos', 'Labores 2', 'Enero', '2011', 'Diciembre', '2015', 'Beneficio 2', '9999', 'Motivo 2');
 
 -- app_vacante
-DROP TABLE `app_vacante`;
+DROP TABLE IF EXISTS `app_vacante`;
 
-CREATE TABLE `app_vacante` (
+CREATE TABLE IF NOT EXISTS `app_vacante` (
 	`idvac` int(10) NOT NULL AUTO_INCREMENT,
 	`titulo` varchar(100) NOT NULL,
 	`descripcion` varchar(100) NOT NULL,
@@ -98,9 +98,9 @@ INSERT INTO `app_vacante`
 (NULL, 'Profesor de Programacion', 'Se solicita Profesor de Programacion', 'Dentro de los beneficios que ofrecemos estan: Seguro H.C.M, L.P.H;Fideicomiso, Utilidades 1 Mes, Aumento Salarial 2/Año, Vacac. Colectivas, Bono Vac. al Año y Cesta Ticket BONUS.', 'Requisitos 6', '9999', '2016-01-01', 'Docente');
 
 -- app_postulacion
-DROP TABLE `app_postulacion`;
+DROP TABLE IF EXISTS `app_postulacion`;
 
-CREATE TABLE `app_postulacion` (
+CREATE TABLE IF NOT EXISTS `app_postulacion` (
 	`idpos` int(10) NOT NULL AUTO_INCREMENT,
 	`idvac` int(10) NOT NULL,
 	`idusu` int(10) NOT NULL,

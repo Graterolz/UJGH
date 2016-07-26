@@ -73,7 +73,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                             <strong>Datos Academicos</strong>
                         </div>
                         <div class="col-lg-2">
-                            <!--<center><a href="<?= base_url(PATH_MENU)."/Usuario/addUsuarioAcademico"; ?>" class="btn btn-success"><strong>Agregar</strong></a></center>-->
+                            <center><a href="<?= base_url(PATH_MENU)."/Usuario/addUsuarioAcademico"; ?>" class="btn btn-success"><strong>Agregar</strong></a></center>
                         </div>
                     </div>                    
                 </div>
@@ -136,7 +136,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                             <strong>Datos Laborales</strong>
                         </div>
                         <div class="col-lg-2">
-                            <!--<center><a href="<?= base_url(PATH_MENU)."/Usuario/addUsuarioLaboral"; ?>" class="btn btn-primary"><strong>Agregar</strong></a></center>-->
+                            <center><a href="<?= base_url(PATH_MENU)."/Usuario/addUsuarioLaboral"; ?>" class="btn btn-primary"><strong>Agregar</strong></a></center>
                         </div>
                     </div>
                 </div>
