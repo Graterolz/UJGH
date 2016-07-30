@@ -57,7 +57,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                             <center><a href="<?= base_url(PATH_MENU)."/Vacante"; ?>" class="btn btn-primary"><strong>ATRAS</strong></a></center>
                         </div>
                         <div class="col-lg-6">
-                            <center><a href="<?= base_url(PATH_MENU)."/Postulacion/enviaPostulacion/".$row_vacante->idvac; ?>" class="btn btn-success"><strong>ENVIAR CV</strong></a></center>
+                            <center><a href="<?= base_url(PATH_MENU)."/Postulacion/enviaPostulacion/".$row_vacante->idvac; ?>" class="btn btn-success"><strong>ENVIAR CURRICULUM</strong></a></center>
                         </div>
                     </div>
                 </div>

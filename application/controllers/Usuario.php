@@ -121,15 +121,33 @@ class Usuario extends CI_Controller {
 	function addUsuarioAcademico(){
 		if(!$this->session->userdata('idusu')){
 			redirect('login', 'refresh');
-		}		
-		$data = NULL;
+		}
 
 		$datasession['idusu'] = $this->session->userdata('idusu');
-		$datasession['idrol'] = $this->session->userdata('idrol');
+		$datasession['idrol'] = $this->session->userdata('idrol');				
+
+		$rules = $this->Usuario_model->rules_academico;
+		$this->form_validation->set_rules($rules);
+
+		if ($this->form_validation->run() == TRUE) {
+			$data = array(
+				'idusu' => $datasession['idusu'],
+				'titulo' => $this->input->post('titulo'),
+				'nivelEstudio' => $this->input->post('nivelEstudio'),
+				'institucion' => $this->input->post('institucion'),
+				'mesInicio' => $this->input->post('mesInicio'),
+				'anioInicio' => $this->input->post('anioInicio'),
+				'mesFin' => $this->input->post('mesFin'),
+				'anioFin' => $this->input->post('anioFin')
+			);
+			$this->Usuario_model->addUsuarioAcademico($data);
+			//
+			redirect('Usuario', 'refresh');			
+		}
 
 		$this->load->view('template/header');
 		$this->load->view('template/menu',$datasession);
-		$this->load->view('usuario/add_usuario_academico',$data);
+		$this->load->view('usuario/add_usuario_academico');
 		$this->load->view('template/footer');
 	}
 
@@ -137,14 +155,38 @@ class Usuario extends CI_Controller {
 		if(!$this->session->userdata('idusu')){
 			redirect('login', 'refresh');
 		}		
-		$data = NULL;
 
 		$datasession['idusu'] = $this->session->userdata('idusu');
-		$datasession['idrol'] = $this->session->userdata('idrol');		
+		$datasession['idrol'] = $this->session->userdata('idrol');
+
+		$rules = $this->Usuario_model->rules_laboral;
+		$this->form_validation->set_rules($rules);	
+
+		if ($this->form_validation->run() == TRUE) {
+			$data = array(
+				'idusu' => $datasession['idusu'], 
+				'empresa' => $this->input->post('empresa'),
+				'direccion' => $this->input->post('direccion'),
+				'telefono' => $this->input->post('telefono'),
+				'cargo' => $this->input->post('cargo'),
+				'labores' => $this->input->post('labores'),
+				'mesInicio' => $this->input->post('mesInicio'),
+				'anioInicio' => $this->input->post('anioInicio'),
+				'mesFin' => $this->input->post('mesFin'),
+				'anioFin' => $this->input->post('anioFin'),
+				'beneficios' => $this->input->post('beneficios'),
+				'salario' => $this->input->post('salario'),
+				'motivoRetiro' => $this->input->post('motivoRetiro')
+			);
+
+			$this->Usuario_model->addUsuarioLaboral($data);
+			//
+			redirect('Usuario', 'refresh');			
+		}	
 
 		$this->load->view('template/header');
 		$this->load->view('template/menu',$datasession);
-		$this->load->view('usuario/add_usuario_laboral',$data);
+		$this->load->view('usuario/add_usuario_laboral');
 		$this->load->view('template/footer');
 	}
 

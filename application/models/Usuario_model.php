@@ -236,8 +236,6 @@ class Usuario_model extends CI_Model {
 		}
 	}	
 
-
-
 	function getUsuarioLaboral($idusu){
 		$this->db->where('idusu',$idusu);
 		$query = $this->db->get('usuario_laboral');
@@ -285,6 +283,21 @@ class Usuario_model extends CI_Model {
 		$this->db->insert('usuario_info',$data);
 	}
 
+	function addUsuarioAcademico($data){
+		$data = array(
+			'idaca' => NULL,
+			'idusu' => $data['idusu'],
+			'titulo' => $data['titulo'],
+			'nivelEstudio' => $data['nivelEstudio'],
+			'institucion' => $data['institucion'],
+			'mesInicio' => $data['mesInicio'],
+			'anioInicio' => $data['anioInicio'],
+			'mesFin' => $data['mesFin'],
+			'anioFin' => $data['anioFin']
+		);
+		$this->db->insert('usuario_academico',$data);
+	}
+
 	function editUsuarioAcademico($idaca,$data){
 		$data = array(
 			'titulo' => $data['titulo'],
@@ -298,6 +311,27 @@ class Usuario_model extends CI_Model {
 
 		$this->db->where('idaca',$idaca);
 		$this->db->update('usuario_academico',$data);
+	}
+
+	function addUsuarioLaboral($data){
+		$data = array(
+			'idlab' => NULL,
+			'idusu' => $data['idusu'],
+			'empresa' => $data['empresa'],
+			'direccion' => $data['direccion'],
+			'telefono' => $data['telefono'],
+			'cargo' => $data['cargo'],
+			'labores' => $data['labores'],
+			'mesInicio' => $data['mesInicio'],
+			'anioInicio' => $data['anioInicio'],
+			'mesFin' => $data['mesFin'],
+			'anioFin' => $data['anioFin'],
+			'beneficios' => $data['beneficios'],
+			'salario' => $data['salario'],
+			'motivoRetiro' => $data['motivoRetiro']
+		);
+
+		$this->db->insert('usuario_laboral',$data);
 	}
 
 	function editUsuarioLaboral($idlab,$data){
@@ -317,6 +351,6 @@ class Usuario_model extends CI_Model {
 		);
 
 		$this->db->where('idlab',$idlab);
-		$this->db->update('usuario_laboral',$data);		
+		$this->db->update('usuario_laboral',$data);
 	}
 }

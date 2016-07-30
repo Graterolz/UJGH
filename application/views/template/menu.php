@@ -4,24 +4,25 @@ defined('BASEPATH') OR exit('No direct script access allowed');
         <!-- Navigation -->
         <nav class="navbar navbar-default navbar-static-top" role="navigation" style="margin: 0 150px 0 150px;">
             <div class="navbar-header">
-                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">                    
                     <span class="sr-only">Toggle navigation</span>
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
-                </button>
+                </button>                
                 <a class="navbar-brand" href="<?php echo base_url(PATH_MENU)?>/Login">Empleo UJGH</a>
+                <!--<img src="<?php echo base_url(PATH_BACK2)?>/ujgh3.jpg" class="img-circle" height="50" width="50" alt="imgs">-->
             </div>
             <!-- /.navbar-header -->
 <?php
     if($idusu){
 ?>
             <ul class="nav navbar-top-links navbar-right">
-                <li class="dropdown">
+                <!--<li class="dropdown">                    
                     <a class="dropdown-toggle" data-toggle="dropdown" href="#">
                         <i class="fa fa-user fa-fw"></i>  <i class="fa fa-caret-down"></i>
                     </a>
-                    <ul class="dropdown-menu dropdown-user">                       
+                    <ul class="dropdown-menu dropdown-user">                       -->
                         <li><a href="<?= base_url(PATH_MENU)."/Usuario"; ?>"><i class="fa fa-user fa-fw"></i>Inicio</a>
                         </li>
 <?php
@@ -37,7 +38,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 ?>                        
                         <li><a href="<?= base_url(PATH_MENU)."/Login/logout"; ?>"><i class="fa fa-sign-out fa-fw"></i> Logout</a>
                         </li>
-                    </ul>
+                    <!--</ul>-->
                     <!-- /.dropdown-user -->
                 </li>
                 <!-- /.dropdown -->

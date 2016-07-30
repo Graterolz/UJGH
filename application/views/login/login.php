@@ -3,7 +3,7 @@
         <div class="col-lg-12">
             <div class="page-header">
                 <center>
-                    <img src="<?php echo base_url(PATH_BACK2)?>/ujgh.png" class="img-thumbnail" alt="imgs">                    
+                    <img src="<?php echo base_url(PATH_BACK2)?>/ujgh.png" class="img-thumbnail" alt="imgs" height="70%" width="70%">
                 </center>
             </div>
         </div>
