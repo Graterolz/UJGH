@@ -7,6 +7,7 @@ class Usuario extends CI_Controller {
 		parent::__construct();
 		$this->load->model('Usuario_model');
 		$this->load->model('Vacante_model');
+		$this->load->helper('MyHelper_helper');
 		
 		/*if(!$this->session->userdata('idusu')){
 			redirect('login', 'refresh');
@@ -22,8 +23,9 @@ class Usuario extends CI_Controller {
 		$datasession['idrol'] = $this->session->userdata('idrol');
 
 		$data['usuario_info'] = $this->Usuario_model->getUsuarioInfo($datasession['idusu']);
+		$data['usuario_adjunto'] = $this->Usuario_model->getUsuarioAdjunto($datasession['idusu']);		
 		$data['usuario_academico'] = $this->Usuario_model->getUsuarioAcademico($datasession['idusu']);
-		$data['usuario_laboral'] = $this->Usuario_model->getUsuarioLaboral($datasession['idusu']);
+		$data['usuario_laboral'] = $this->Usuario_model->getUsuarioLaboral($datasession['idusu']);		
 
 		$this->load->view('template/header');
 		$this->load->view('template/menu',$datasession);
@@ -116,6 +118,25 @@ class Usuario extends CI_Controller {
 		$this->load->view('template/menu',$datasession);
 		$this->load->view('usuario/usuario_adm',$data);
 		$this->load->view('template/footer');
+	}
+
+	function addUsuarioAdjunto(){
+		if(!$this->session->userdata('idusu')){
+			redirect('login', 'refresh');
+		}
+
+		$datasession['idusu'] = $this->session->userdata('idusu');
+		$datasession['idrol'] = $this->session->userdata('idrol');
+
+		$rules = $this->Usuario_model->rules_adjunto;
+		$this->form_validation->set_rules($rules);
+		
+				
+		$this->load->view('template/header');
+		$this->load->view('template/menu',$datasession);
+		$this->load->view('usuario/add_usuario_adjunto', array('error' => ' ' ));
+		//$this->load->view('upload_form', array('error' => ' ' ));
+		$this->load->view('template/footer');		
 	}
 
 	function addUsuarioAcademico(){
@@ -268,4 +289,9 @@ class Usuario extends CI_Controller {
 		$this->load->view('usuario/edit_usuario_laboral',$data);
 		$this->load->view('template/footer');
 	}
+
+
+	/**/
+
+	/**/
 }

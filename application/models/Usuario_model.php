@@ -73,6 +73,19 @@ class Usuario_model extends CI_Model {
             )
 	);
 
+	public $rules_adjunto = array(
+		'titulo' => array(
+            'field' => 'titulo',
+            'label' => 'titulo',
+            'rules' => 'trim|required',			
+		),
+		'url' => array(
+            'field' => 'url',
+            'label' => 'url',
+            'rules' => 'trim|required',
+		)
+	);
+
 	public $rules_academico = array(
 		'titulo' => array(
             'field' => 'titulo',
@@ -245,6 +258,17 @@ class Usuario_model extends CI_Model {
 		}else{
 			return false;
 		}		
+	}
+
+	function getUsuarioAdjunto($idusu){
+		$this->db->where('idusu',$idusu);
+		$query = $this->db->get('usuario_adjunto');		
+		
+		if($query->num_rows()>0){
+			return $query;
+		}else{
+			return false;
+		}
 	}
 
 	function getLoginUsuario($data){
