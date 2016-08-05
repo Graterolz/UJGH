@@ -136,7 +136,7 @@ class Usuario extends CI_Controller {
 
         	$valor = do_upload2();
 
-        	var_dump($valor);
+        	//var_dump($valor);
 
 			$data = array(
 				'idusu' => $datasession['idusu'],
