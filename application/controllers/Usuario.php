@@ -7,7 +7,7 @@ class Usuario extends CI_Controller {
 		parent::__construct();
 		$this->load->model('Usuario_model');
 		$this->load->model('Vacante_model');
-		$this->load->helper('MyHelper_helper');
+		$this->load->helper('myhelper_helper');
 		
 		/*if(!$this->session->userdata('idusu')){
 			redirect('login', 'refresh');
@@ -127,17 +127,56 @@ class Usuario extends CI_Controller {
 
 		$datasession['idusu'] = $this->session->userdata('idusu');
 		$datasession['idrol'] = $this->session->userdata('idrol');
-
+        
 		$rules = $this->Usuario_model->rules_adjunto;
 		$this->form_validation->set_rules($rules);
-		
+
+        if ($this->form_validation->run()){
+        	$data = $this->input->post();
+
+        	$valor = do_upload2();
+
+        	var_dump($valor);
+
+			$data = array(
+				'idusu' => $datasession['idusu'],
+				'titulo' => $this->input->post('titulo'),
+				//'url' => $this->input->post('url'),
+
+			);
+
+            if ($valor != NULL) {
+                $data['url'] = $valor['upload_data']['file_name'];
+            }else{
+            	redirect('Usuario', 'refresh');	
+            }
+
+			$this->Usuario_model->addUsuarioAdjunto($data);
+			//
+			redirect('Usuario', 'refresh');	
+
+			//var_dump($rules);		
+			//$valor = do_upload();
+        	/*if(!isset($data['estado'])){
+				$data['estado']=0;
+			}else{
+				$data['estado']=1;
+			}
+			$data['fecha']=date('d-m-y');
+        	$this->News_m->save($data);
+        	redirect('admin/news');*/
+        	//echo "file: ".$valor['upload_data']['file_name']."<br>";
+        	//var_dump($valor);        	
+        	//var_dump($data);
+        }
+        
 				
 		$this->load->view('template/header');
 		$this->load->view('template/menu',$datasession);
-		$this->load->view('usuario/add_usuario_adjunto', array('error' => ' ' ));
-		//$this->load->view('upload_form', array('error' => ' ' ));
+		$this->load->view('usuario/add_usuario_adjunto');
 		$this->load->view('template/footer');		
 	}
+
 
 	function addUsuarioAcademico(){
 		if(!$this->session->userdata('idusu')){
@@ -289,9 +328,4 @@ class Usuario extends CI_Controller {
 		$this->load->view('usuario/edit_usuario_laboral',$data);
 		$this->load->view('template/footer');
 	}
-
-
-	/**/
-
-	/**/
 }

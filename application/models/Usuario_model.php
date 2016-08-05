@@ -77,13 +77,13 @@ class Usuario_model extends CI_Model {
 		'titulo' => array(
             'field' => 'titulo',
             'label' => 'titulo',
-            'rules' => 'trim|required',			
-		),
+            'rules' => 'trim|required',
+		),/*,
 		'url' => array(
             'field' => 'url',
             'label' => 'url',
             'rules' => 'trim|required',
-		)
+		)*/
 	);
 
 	public $rules_academico = array(
@@ -305,6 +305,17 @@ class Usuario_model extends CI_Model {
 		);
 		
 		$this->db->insert('usuario_info',$data);
+	}
+
+	function addUsuarioAdjunto($data){
+		$data = array(
+			'idadj' => NULL,
+			'idusu' => $data['idusu'],
+			'titulo' => $data['titulo'],
+			'url' => $data['url']
+		);
+		
+		$this->db->insert('usuario_adjunto',$data);
 	}
 
 	function addUsuarioAcademico($data){
