@@ -104,7 +104,8 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                         </div>
                     </div>
                     <p class="form-control-static">
-                        <a href="<?= base_url()."uploads/".$row_adjunto->url; ?>" target="_blank"><strong><?= " # ".$row_adjunto->titulo; ?></strong></a>
+                        <a href="<?= base_url(PATH_MENU)."/Usuario/delUsuarioAdjunto/".$row_adjunto->idadj; ?>" class="btn btn-danger"><i class="fa fa-minus" title="Eliminar"></i></a>
+                        <a href="<?= base_url()."uploads/".$row_adjunto->url; ?>" target="_blank"><strong><?= $row_adjunto->titulo; ?></strong></a>                        
                         <!--<?= PATH_MENU."/".$row_adjunto->url; ?>-->
                     </p>                        
 

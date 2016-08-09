@@ -111,6 +111,7 @@ class Usuario extends CI_Controller {
 		$datasession['idrol'] = $this->session->userdata('idrol');
 
 		$data['usuario_info'] = $this->Usuario_model->getUsuarioInfo($idusu);
+		$data['usuario_adjunto'] = $this->Usuario_model->getUsuarioAdjunto($idusu);
 		$data['usuario_academico'] = $this->Usuario_model->getUsuarioAcademico($idusu);
 		$data['usuario_laboral'] = $this->Usuario_model->getUsuarioLaboral($idusu);
 
@@ -177,6 +178,18 @@ class Usuario extends CI_Controller {
 		$this->load->view('template/footer');		
 	}
 
+	function delUsuarioAdjunto($idadj){
+		if(!$this->session->userdata('idusu')){
+			redirect('login', 'refresh');
+		}
+
+		$datasession['idusu'] = $this->session->userdata('idusu');
+		$datasession['idrol'] = $this->session->userdata('idrol');
+
+		$this->Usuario_model->delUsuarioAdjunto($datasession['idusu'],$idadj);
+
+		redirect('Usuario', 'refresh');
+	}
 
 	function addUsuarioAcademico(){
 		if(!$this->session->userdata('idusu')){

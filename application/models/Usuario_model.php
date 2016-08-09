@@ -318,6 +318,12 @@ class Usuario_model extends CI_Model {
 		$this->db->insert('usuario_adjunto',$data);
 	}
 
+	function delUsuarioAdjunto($idusu,$idadj){
+		$this->db->where('idadj', $idadj);
+		$this->db->where('idusu', $idusu);
+		$this->db->delete('usuario_adjunto');		
+	}
+
 	function addUsuarioAcademico($data){
 		$data = array(
 			'idaca' => NULL,

@@ -51,6 +51,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                                     <td>
                                         <a href="<?= base_url(PATH_MENU)."/Vacante/edit/".$row_vacante->idvac; ?>" class="btn btn-success btn-xs"><i class="fa fa-pencil" title="Editar"></i></a>
                                         <a href="<?= base_url(PATH_MENU)."/Postulacion/viewPostulacionVacante/".$row_vacante->idvac; ?>" class="btn btn-default btn-xs"><i class="fa fa-eye" title="Ver Postulados"></i></a>
+                                        <a href="<?= base_url(PATH_MENU)."/Vacante/del/".$row_vacante->idvac; ?>" class="btn btn-danger btn-xs"><i class="fa fa-minus" title="Eliminar vacante"></i></a>
                                     </td>
                                 </tr>                                
 <?php

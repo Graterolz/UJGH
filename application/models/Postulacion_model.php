@@ -42,4 +42,9 @@ class Postulacion_model extends CI_Model {
 
 		$this->db->insert('app_postulacion',$data);
 	}	
+
+	function delVacante($idvac){
+		$this->db->where('idvac', $idvac);
+		$this->db->delete('app_postulacion');
+	}	
 }

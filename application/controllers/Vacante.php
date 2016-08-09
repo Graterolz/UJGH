@@ -6,6 +6,7 @@ class Vacante extends CI_Controller {
 	public function __construct() {
 		parent::__construct();
 		$this->load->model('Vacante_model');
+		$this->load->model('Postulacion_model');
 	}
 
 	function index(){
@@ -104,5 +105,19 @@ class Vacante extends CI_Controller {
 		$this->load->view('template/menu',$datasession);
 		$this->load->view('vacante/edit_vacante',$data);
 		$this->load->view('template/footer');		
+	}
+
+	function del($idvac){
+		if(!$this->session->userdata('idusu')){
+			redirect('login', 'refresh');
+		}
+
+		$datasession['idusu'] = $this->session->userdata('idusu');
+		$datasession['idrol'] = $this->session->userdata('idrol');
+
+		$this->Vacante_model->delVacante($idvac);
+		$this->Postulacion_model->delVacante($idvac);
+
+		redirect('Usuario', 'refresh');
 	}
 }
