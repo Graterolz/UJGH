@@ -4,8 +4,11 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 <div id="page-wrapper">
     <div class="row">
         <div class="col-lg-12">
-            <h2 class="page-header">Menu de Administracion</h2>
-        </div>
+            <div class="page-header">                        
+                <img src="<?php echo base_url(PATH_BACK2)?>/ujgh.png" class="img-thumbnail" alt="imgs" width="100%">
+                <h2>Menu de Administracion</h2>
+            </div>
+        </div>        
         <!-- /.col-lg-12 -->
     </div>
     <!-- /.row -->
