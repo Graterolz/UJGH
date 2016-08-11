@@ -1,5 +1,5 @@
 <?php
-    function do_upload($name){
+    /*function do_upload($name){
         $config['upload_path']          = './uploads/';
         $config['allowed_types']        = 'jpg|png|jpeg|pdf';
         //$config['max_size'] = 100;
@@ -24,7 +24,7 @@ echo "asdf: ".$name."<br>";
         }
 
         return $data;
-    }
+    }*/
 
 function do_upload2($name = NULL) {
     $config ['upload_path'] = './uploads/';
