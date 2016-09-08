@@ -5,140 +5,145 @@ defined('BASEPATH') OR exit('No direct script access allowed');
     <div class="row">
         <div class="col-lg-12">
             <div class="page-header">
-                <img src="<?php echo base_url(PATH_BACK2)?>/ujgh.png" class="img-thumbnail" alt="imgs" width="100%">                        
-                <h2 class="page-header">Edita Vacante</h2>
-            </div>                
+                <img src="<?php echo base_url(PATH_BACK2)?>/ujgh.png" class="img-thumbnail" alt="imgs" width="100%">
+            </div>
         </div>
         <!-- /.col-lg-12 -->
     </div>
     <!-- /.row -->
     <div class="row">
         <div class="col-lg-12">
-<?php
-    if ($vacante){
-        foreach($vacante->result() as $row_vacante){
-?>              
             <div class="panel panel-info">
                 <div class="panel-heading">
                     <div class="row">
-                        <div class="col-lg-9">
+                        <div class="col-lg-12">
                             <strong>Detalles de la vacante</strong>
-                        </div>
-                        <div class="col-lg-3">
-                            Fecha de publicacion: 
-                            <strong><?= date("d/m/Y", strtotime($row_vacante->fechaPublicacion)); ?></strong>
                         </div>
                     </div>
                 </div>
                 <div class="panel-body">
                     <div class="row">
                         <div class="col-lg-12">
-                                  
 <?php
-    $titulo = array(
-        'class' => 'form-control',
-        'name' => 'titulo',
-        'placeholder' => 'Enter text',
-        'value' => $row_vacante->titulo,
-        'required' => TRUE
-    );
-    $descripcion = array(
-        'class' => 'form-control',
-        'name' => 'descripcion',
-        'placeholder' => 'Enter text',
-        'rows' => 5,
-        'value' => $row_vacante->descripcion,
-        'required' => TRUE
-    );
-    $beneficios = array(
-        'class' => 'form-control',
-        'name' => 'beneficios',
-        'placeholder' => 'Enter text',
-        'rows' => 5,
-        'value' => $row_vacante->beneficios,
-        'required' => TRUE
-    );
-    $requisitos = array(
-        'class' => 'form-control',
-        'name' => 'requisitos',
-        'placeholder' => 'Enter text',
-        'rows' => 5,
-        'value' => $row_vacante->requisitos,
-        'required' => TRUE
-    );
-    $salario = array(
-        'class' => 'form-control',
-        'name' => 'salario',
-        'placeholder' => 'Enter text',
-        'value' => $row_vacante->salario,
-        'required' => TRUE
-    );
-    $tipoDocente = array(
-        'name' => 'tipo',
-        'value' => 'Docente',
-        'checked' => ($row_vacante->tipo === 'Docente' ? TRUE : FALSE),        
-    );    
-    $tipoAdmin = array(
-        'name' => 'tipo',
-        'value' => 'Administrativo',
-        'checked' => ($row_vacante->tipo === 'Administrativo' ? TRUE : FALSE),
+if ($vacante){
+    $row_vacante = $vacante->row();
+    //var_dump($rules_vacante);
 
+    $rules_form = array(
+        'titulo' => array(
+            'class' => 'form-control',
+            'name' => 'titulo',
+            'placeholder' => 'Ingrese titulo',
+            'value' => $row_vacante->titulo,
+            'required' => TRUE
+        ),
+        'descripcion' => array(
+            'class' => 'form-control',
+            'name' => 'descripcion',
+            'placeholder' => 'Ingrese descripcion',
+            'value' => $row_vacante->descripcion,
+            'rows' => 5,
+            'required' => TRUE
+        ),
+        'beneficios' => array(
+            'class' => 'form-control',
+            'name' => 'beneficios',
+            'placeholder' => 'Ingrese beneficios',
+            'value' => $row_vacante->beneficios,
+            'rows' => 5,            
+            'required' => TRUE
+        ),
+        'requisitos' => array(
+            'class' => 'form-control',
+            'name' => 'requisitos',
+            'placeholder' => 'Ingrese requisitos',
+            'value' => $row_vacante->requisitos,
+            'rows' => 5,
+            'required' => TRUE
+        ),
+        'salario' => array(
+            'class' => 'form-control',
+            'name' => 'salario',
+            'placeholder' => 'Ingrese salario',
+            'value' => $row_vacante->salario,
+            'required' => TRUE
+        ),
+        'tipo' => array(
+            'docente' => array(
+                'name' => 'tipo',
+                'value' => 'Docente',
+                'checked' => ($row_vacante->tipo === 'Docente' ? TRUE : FALSE)
+            ),
+            'administrativo' => array(
+                'name' => 'tipo',
+                'value' => 'Administrativo',
+                'checked' => ($row_vacante->tipo === 'Administrativo' ? TRUE : FALSE)
+            )
+        )
     );
 
     $attributes = array(
         'role' => 'form',
         'autocomplete' => 'off'
-    );       
+    );
 ?>
                 <?= form_open('',$attributes); ?>
                     <div class="row">
-                        <div class="col-lg-6">                        
+                        <div class="col-lg-6">
                             <div class="form-group">
-                                <?= form_label('Titulo','titulo') ?>
-                                <?= form_input($titulo) ?>
+                                <?= form_label($rules_vacante['titulo']['label'],$rules_vacante['titulo']['field']) ?>
+                                <?= form_input($rules_form['titulo']) ?>
                             </div>
                             <div class="form-group">
-                                <?= form_label('Descripcion','descripcion') ?>
-                                <?= form_textarea($descripcion) ?>
+                                <?= form_label($rules_vacante['descripcion']['label'],$rules_vacante['descripcion']['field']) ?>
+                                <?= form_textarea($rules_form['descripcion']) ?>
                             </div>
                             <div class="form-group">
-                                <?= form_label('Beneficios','beneficios') ?>
-                                <?= form_textarea($beneficios) ?>
+                                <?= form_label($rules_vacante['beneficios']['label'],$rules_vacante['beneficios']['field']) ?>
+                                <?= form_textarea($rules_form['beneficios']) ?>
                             </div>
                         </div>
                         <div class="col-lg-6">
                             <div class="form-group">
-                                <?= form_label('Requisitos','requisitos') ?>
-                                <?= form_textarea($requisitos) ?>
+                                <?= form_label($rules_vacante['requisitos']['label'],$rules_vacante['requisitos']['field']) ?>
+                                <?= form_textarea($rules_form['requisitos']) ?>
                             </div>
                             <div class="form-group">
-                                <?= form_label('Salario','salario') ?>
-                                <?= form_input($salario) ?>
+                                <?= form_label($rules_vacante['salario']['label'],$rules_vacante['salario']['field']) ?>
+                                <?= form_input($rules_form['salario']) ?>
                             </div>
                             <div class="form-group">
-                                <?= form_label('Tipo de vacante','tipo') ?><br>
-                                <?= form_radio($tipoDocente); ?><strong>Docente</strong><br>
-                                <?= form_radio($tipoAdmin); ?><strong>Administrativo</strong><br>
-                                <br>
+                                <?= form_label($rules_vacante['tipo']['label'],$rules_vacante['tipo']['field']) ?><br><br>
+                                <?= form_radio($rules_form['tipo']['docente']); ?>
+                                    <strong>
+                                        <?= $rules_form['tipo']['docente']['value']?>
+                                    </strong><br>
+                                <?= form_radio($rules_form['tipo']['administrativo']); ?>
+                                    <strong>
+                                        <?= $rules_form['tipo']['administrativo']['value']?>
+                                    </strong><br>
                                 <br>
                             </div>
-                        </div>                            
-                        <div class="col-lg-3">
-                            <center><a href="<?= base_url(PATH_MENU)."/Usuario"; ?>" class="btn btn-primary"><strong>ATRAS</strong></a></center>
                         </div>
                         <div class="col-lg-3">
-                            <center><button type="submit" class="btn btn-success"><strong>Edita vacante</strong></button><!--<a href="<?= base_url(PATH_MENU)."/Postulacion/enviaPostulacion/".$row_vacante->idvac; ?>" class="btn btn-success"><strong>ENVIAR CV</strong></a>--></center>
+                            <center>
+                                <a href="<?= base_url(PATH_MENU)."/usuario"; ?>" class="btn btn-primary"><strong>ATRAS</strong></a>
+                            </center>
                         </div>
-                    </div>                            
+                        <div class="col-lg-3">
+                            <center>
+                                <button type="submit" class="btn btn-success"><strong>EDITAR VACANTE</strong></button>
+                            </center>
+                        </div>
+                    </div>
                 <?= form_close(); ?>
 <?php
-        }
     }else{
 ?>
-            <h2>No existe la vacantes registradas!!!</h2>
+            <center><h2>No existe la vacante solicitada.</h2></center>
 <?php            
     }
-?>                                    
+?>
                         </div>
                         <!-- /.col-lg-6 (nested) -->
                     </div>

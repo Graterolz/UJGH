@@ -4,9 +4,9 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 <div id="page-wrapper">
     <div class="row">
         <div class="col-lg-12">
-            <div class="page-header">                        
-                <img src="<?php echo base_url(PATH_BACK2)?>/ujgh.png" class="img-thumbnail" alt="imgs" width="100%">
-                <h2>Perfil</h2>
+            <div class="page-header">
+                <img src="<?php echo base_url(PATH_BACK2)?>/ujgh.png" class="img-thumbnail" alt="imgs" width="100%">            
+                <h2 class="page-header">Perfil del postulado CAMBIAR ESTO</h2>
             </div>
         </div>
         <!-- /.col-lg-12 -->
@@ -68,10 +68,6 @@ defined('BASEPATH') OR exit('No direct script access allowed');
         </div>
         <!-- /.col-lg-12 -->
 
-
-
-
-
         <div class="col-lg-4">
             <div class="panel panel-default">
                 <div class="panel-heading">
@@ -80,7 +76,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                             <strong>Datos Adjuntos</strong>
                         </div>
                         <div class="col-lg-6">
-                            <center><a href="<?= base_url(PATH_MENU)."/Usuario/addUsuarioAdjunto"; ?>" class="btn btn-primary"><strong>Agregar</strong></a></center>
+                            <!--<center><a href="<?= base_url(PATH_MENU)."/Usuario/addUsuarioAdjunto"; ?>" class="btn btn-primary"><strong>Agregar</strong></a></center>-->
                         </div>
                     </div>
                 </div>
@@ -107,7 +103,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                         </div>
                     </div>
                     <p class="form-control-static">
-                        <a href="<?= base_url(PATH_MENU)."/Usuario/delUsuarioAdjunto/".$row_adjunto->idadj; ?>" class="btn btn-danger"><i class="fa fa-minus" title="Eliminar"></i></a>
+                        <!--<a href="<?= base_url(PATH_MENU)."/Usuario/delUsuarioAdjunto/".$row_adjunto->idadj; ?>" class="btn btn-danger"><i class="fa fa-minus" title="Eliminar"></i></a>-->
                         <a href="<?= base_url()."uploads/".$row_adjunto->url; ?>" target="_blank"><strong><?= $row_adjunto->titulo; ?></strong></a>                        
                         <!--<?= PATH_MENU."/".$row_adjunto->url; ?>-->
                     </p>                        
@@ -151,25 +147,6 @@ defined('BASEPATH') OR exit('No direct script access allowed');
             <!-- /.panel -->
         </div>
         <!-- /.col-lg-12 -->
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
         <div class="col-lg-12">
             <div class="panel panel-primary">
                 <div class="panel-heading">
@@ -178,7 +155,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                             <strong>Datos Academicos</strong>
                         </div>
                         <div class="col-lg-2">
-                            <center><a href="<?= base_url(PATH_MENU)."/Usuario/addUsuarioAcademico"; ?>" class="btn btn-success"><strong>Agregar</strong></a></center>
+                            <!--<center><a href="<?= base_url(PATH_MENU)."/Usuario/addUsuarioAcademico"; ?>" class="btn btn-success"><strong>Agregar</strong></a></center>-->
                         </div>
                     </div>                    
                 </div>
@@ -202,7 +179,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                                     </h3>
                                 </div>
                                 <div class="col-lg-2"> 
-                                    <center><a href="<?= base_url(PATH_MENU)."/Usuario/editUsuarioAcademico/$row_academico->idaca"; ?>" class="btn btn-default"><strong>Editar</strong></a></center>
+                                    <!--<center><a href="<?= base_url(PATH_MENU)."/Usuario/editUsuarioAcademico/$row_academico->idaca"; ?>" class="btn btn-default"><strong>Editar</strong></a></center>-->
                                 </div>
                             </div>
                                     <p class="form-control-static">
@@ -241,7 +218,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                             <strong>Datos Laborales</strong>
                         </div>
                         <div class="col-lg-2">
-                            <center><a href="<?= base_url(PATH_MENU)."/Usuario/addUsuarioLaboral"; ?>" class="btn btn-primary"><strong>Agregar</strong></a></center>
+                            <!--<center><a href="<?= base_url(PATH_MENU)."/Usuario/addUsuarioLaboral"; ?>" class="btn btn-primary"><strong>Agregar</strong></a></center>-->
                         </div>
                     </div>
                 </div>
@@ -264,7 +241,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                                 </h3>
                         </div>
                         <div class="col-lg-2"> 
-                            <center><a href="<?= base_url(PATH_MENU)."/Usuario/editUsuarioLaboral/$row_laboral->idlab"; ?>" class="btn btn-default"><strong>Editar</strong></a></center>
+                            <!--<center><a href="<?= base_url(PATH_MENU)."/Usuario/editUsuarioLaboral/$row_laboral->idlab"; ?>" class="btn btn-default"><strong>Editar</strong></a></center>-->
                         </div>
                     </div>                                                       
                                 <h4><?= $row_laboral->empresa; ?></h4>
@@ -304,23 +281,6 @@ defined('BASEPATH') OR exit('No direct script access allowed');
             <!-- /.panel -->
         </div>
         <!-- /.col-lg-12 -->
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
     </div>
     <!-- /.row -->
 </div>

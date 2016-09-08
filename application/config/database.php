@@ -80,7 +80,7 @@ $db['default'] = array(
 	'password' => '',
 
 	//'database' => 'c9',
-	'database' => 'ujgh',
+	'database' => 'ujghempleo',
 
 	'dbdriver' => 'mysqli',
 	'dbprefix' => '',

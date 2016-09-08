@@ -4,11 +4,10 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 <div id="page-wrapper">
     <div class="row">
         <div class="col-lg-12">
-            <div class="page-header">                        
+            <div class="page-header">
                 <img src="<?php echo base_url(PATH_BACK2)?>/ujgh.png" class="img-thumbnail" alt="imgs" width="100%">
-                <h2>Menu de Administracion</h2>
             </div>
-        </div>        
+        </div>
         <!-- /.col-lg-12 -->
     </div>
     <!-- /.row -->
@@ -18,16 +17,16 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                 <div class="panel-heading">
                     <div class="row">
                         <div class="col-lg-10">
-                            <strong>Administracion de Vacantes</strong>
+                            <h4>Modulo de Vacantes</h4>
                         </div>
                         <div class="col-lg-2">
-                            <center><a href="<?= base_url(PATH_MENU)."/Vacante/add"; ?>" class="btn btn-primary"><strong>Nueva vacante</strong></a></center>
-                        </div>                        
-                    </div>                                            
+                            <center><a href="<?= base_url(PATH_MENU)."/vacante/add"; ?>" class="btn btn-primary"><strong>NUEVA VACANTE</strong></a></center>
+                        </div>
+                    </div>
                 </div>
                 <!-- /.panel-heading -->
                 <div class="panel-body">
-                    <div class="table-responsive">                        
+                    <div class="table-responsive">
                         <table class="table table-striped table-bordered table-hover">
                             <thead>
                                 <tr>
@@ -48,28 +47,27 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                                     <td><strong><?= $row_vacante->titulo; ?></strong></td>
                                     <td><?= $row_vacante->descripcion; ?></td>
                                     <td><strong><?= $row_vacante->postulaciones; ?></strong></td>
-                                    <!--
-                                    <td><a href="" class="btn btn-default btn-xs"><i class="fa fa-eye" title="Ver"></i></a></td>
-                                    <td><a href="" class="btn btn-primary btn-xs"><i class="fa fa-send" title="Enviar"></i></a></td>-->
                                     <td>
-                                        <a href="<?= base_url(PATH_MENU)."/Vacante/edit/".$row_vacante->idvac; ?>" class="btn btn-success btn-xs"><i class="fa fa-pencil" title="Editar"></i></a>
-                                        <a href="<?= base_url(PATH_MENU)."/Postulacion/viewPostulacionVacante/".$row_vacante->idvac; ?>" class="btn btn-default btn-xs"><i class="fa fa-eye" title="Ver Postulados"></i></a>
-                                        <a href="<?= base_url(PATH_MENU)."/Vacante/del/".$row_vacante->idvac; ?>" class="btn btn-danger btn-xs"><i class="fa fa-minus" title="Eliminar vacante"></i></a>
+                                        <center>
+                                            <a href="<?= base_url(PATH_MENU)."/vacante/get/".$row_vacante->idvac; ?>" class="btn btn-default btn-xs"><strong>VER</strong></i></a>
+                                            <a href="<?= base_url(PATH_MENU)."/vacante/edit/".$row_vacante->idvac; ?>" class="btn btn-success btn-xs"><strong>EDITAR</strong></a>
+                                            <a href="<?= base_url(PATH_MENU)."/vacante/del/".$row_vacante->idvac; ?>" class="btn btn-danger btn-xs"><strong>BORRAR</strong></a>
+                                        </center>
                                     </td>
-                                </tr>                                
+                                </tr>
 <?php
         }
-    }else{                                        
+    }else{
 ?>
                                 <tr>
                                     <td colspan="5">
                                         <center>
-                                            <h2>No tienes Postulaciones</h2>
-                                            <!--<h3>Postulate a una de nuestras <a href="<?= base_url(PATH_MENU)."/Vacante"; ?>"><strong>VACANTES</strong></a>!!!</h3>-->
+                                            <h2>No existen vacantes.</h2>
+                                            <h3>Crea una nueva <a href="<?= base_url(PATH_MENU)."/vacante/add"; ?>"><strong>VACANTE</strong></a>!!!</h3>
                                         </center>
                                     </td>
                                 </tr>
-<?php                                      
+<?php
     }
 ?>
                             </tbody>

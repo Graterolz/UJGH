@@ -3,342 +3,155 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 
 class Usuario extends CI_Controller {
 
-	public function __construct() {
+	function __construct() {
 		parent::__construct();
-		$this->load->model('Usuario_model');
+		$this->load->model('Usuario_info_model');
+		$this->load->model('Usuario_adjunto_model');
+		$this->load->model('Usuario_academico_model');
+		$this->load->model('Usuario_laboral_model');
+		//
 		$this->load->model('Vacante_model');
-		$this->load->helper('myhelper_helper');
-		
-		/*if(!$this->session->userdata('idusu')){
-			redirect('login', 'refresh');
-		}*/		
 	}
 
+	//
 	function index(){
 		if(!$this->session->userdata('idusu')){
-			redirect('login', 'refresh');
+			redirect('usuario/login', 'refresh');
 		}
 
 		$datasession['idusu'] = $this->session->userdata('idusu');
-		$datasession['idrol'] = $this->session->userdata('idrol');
-
-		$data['usuario_info'] = $this->Usuario_model->getUsuarioInfo($datasession['idusu']);
-		$data['usuario_adjunto'] = $this->Usuario_model->getUsuarioAdjunto($datasession['idusu']);		
-		$data['usuario_academico'] = $this->Usuario_model->getUsuarioAcademico($datasession['idusu']);
-		$data['usuario_laboral'] = $this->Usuario_model->getUsuarioLaboral($datasession['idusu']);		
+		$datasession['idrol'] = $this->session->userdata('idrol');	
 
 		$this->load->view('template/header');
 		$this->load->view('template/menu',$datasession);
 
 		if ($datasession['idrol']=='USR'){
-			$this->load->view('usuario/usuario',$data);	
+			//$datasession['idusu'] = 1212;
+
+			$data['usuario_info'] = $this->Usuario_info_model->get($datasession['idusu']);
+			$data['usuario_adjunto'] = $this->Usuario_adjunto_model->getUsuario($datasession['idusu']);
+			$data['usuario_academico'] = $this->Usuario_academico_model->getUsuario($datasession['idusu']);
+			$data['usuario_laboral'] = $this->Usuario_laboral_model->getUsuario($datasession['idusu']);
+
+			//Reglas
+			$data['rules_usuario_info'] = $this->Usuario_info_model->usuario_info_rules;
+			$data['rules_usuario_academico'] = $this->Usuario_academico_model->usuario_academico_rules;
+			$data['rules_usuario_adjunto'] = $this->Usuario_adjunto_model->usuario_adjunto_rules;
+			$data['rules_usuario_laboral'] = $this->Usuario_laboral_model->usuario_laboral_rules;
+
+
+			$this->load->view('usuario_info/get_usuario_usr',$data);
 		}else{
-			$data['vacante'] = $this->Vacante_model->getVacantesADM();
-			$this->load->view('vacante/list_vacante_adm',$data);	
+			$data['vacante'] = $this->Vacante_model->get(NULL);
+			$this->load->view('vacante/list_vacante_adm',$data);
 		}
-		
+
 		$this->load->view('template/footer');
 	}
 
-	function registro(){
-		/*if($this->session->userdata('idusu')){
+	//
+	function get($idusu){
+		// Validaciones
+		if(!$this->session->userdata('idusu')){
+			redirect('usuario/login', 'refresh');
+		}
+		if($this->session->userdata('idrol')!='ADM'){
 			redirect('usuario', 'refresh');
-		}*/
+		}
+		if(!$this->Usuario_info_model->get($idusu)){
+			redirect('usuario', 'refresh');
+		}		
 
 		$datasession['idusu'] = $this->session->userdata('idusu');
-		$datasession['idrol'] = $this->session->userdata('idrol');
+		$datasession['idrol'] = $this->session->userdata('idrol');	
 
+		$this->load->view('template/header');
+		$this->load->view('template/menu',$datasession);
 
-		$rules = $this->Usuario_model->rules_registro;
-		$this->form_validation->set_rules($rules);
-		if ($this->form_validation->run() == TRUE) {
-			if($this->input->post('contrasena')==$this->input->post('contrasena2')){
-				$data = array(
-					'nombre' => $this->input->post('nombre'),
-					'apellido' => $this->input->post('apellido'),
-					'cedula' => $this->input->post('cedula'),
-					'email' => $this->input->post('email'),
-					'fechaNacimiento' => date("Y/m/d"), //$this->input->post('fechaNacimiento'),
-					'nacionalidad' => $this->input->post('nacionalidad'),
-					'direccion' => $this->input->post('direccion'),
-					'telefonoCelular' => $this->input->post('telefonoCelular'),
-					'telefonoFijo' => $this->input->post('telefonoFijo'),
-					'estadoCivil' => $this->input->post('estadoCivil'),
-					'sexo' => $this->input->post('sexo'),
-					'contrasena' => $this->input->post('contrasena')
-				);
-				$this->Usuario_model->addUsuarioInfo($data);
-				//var_dump($data);
-				
-				$data2 = array(
-					'user' => $this->input->post('email'),
-					'pass' => $this->input->post('contrasena')
-				);
-				
-			if($this->Usuario_model->getLoginUsuario($data2)){
-				$data['info'] = $this->Usuario_model->getLoginUsuario($data2);
+		//if ($datasession['idrol']=='ADM'){
+			$datasession['idusu'] = $idusu;
+
+			$data['usuario_info'] = $this->Usuario_info_model->get($datasession['idusu']);
+			$data['usuario_adjunto'] = $this->Usuario_adjunto_model->getUsuario($datasession['idusu']);
+			$data['usuario_academico'] = $this->Usuario_academico_model->getUsuario($datasession['idusu']);
+			$data['usuario_laboral'] = $this->Usuario_laboral_model->getUsuario($datasession['idusu']);
+
+			//Reglas
+			$data['rules_usuario_info'] = $this->Usuario_info_model->usuario_info_rules;
+			$data['rules_usuario_academico'] = $this->Usuario_academico_model->usuario_academico_rules;
+			$data['rules_usuario_adjunto'] = $this->Usuario_adjunto_model->usuario_adjunto_rules;
+			$data['rules_usuario_laboral'] = $this->Usuario_laboral_model->usuario_laboral_rules;
+
+			$this->load->view('usuario_info/get_usuario_adm',$data);
+		//}else{
+			//redirect('usuario', 'refresh');
+		//}
+
+		$this->load->view('template/footer');
+	}
+
+	//
+	/*function add(){
+		if(!$this->session->userdata('idusu')){
+			redirect('usuario/login', 'refresh');
+		}		
+	}
+
+	//
+	function edit($idusu){
+		if(!$this->session->userdata('idusu')){
+			redirect('usuario/login', 'refresh');
+		}
+	}
+
+	//
+	function del($idusu){
+		if(!$this->session->userdata('idusu')){
+			redirect('usuario/login', 'refresh');
+		}
+	}*/
+
+	//
+	//
+	//
+	function login(){
+		if ($this->input->post('user') && $this->input->post('pass')){
+			$data = array(
+				'user' => $this->input->post('user'),
+				'pass' => $this->input->post('pass')
+			);
+			//var_dump($data);
+			
+			if($this->Usuario_info_model->login($data)){
+				$data['info'] = $this->Usuario_info_model->login($data);
 
 				$datasession  = array(
 					'idusu' => $data['info']->result()[0]->idusu,
 					'idrol' => $data['info']->result()[0]->idrol
 				);
 
-				$this->session->set_userdata($datasession);
-				redirect('usuario', 'refresh');
-			}else{
-				redirect('login', 'refresh');
-			}				
-				
-				
-				
-				//redirect('Usuario', 'refresh');
+				$this->session->set_userdata($datasession);			
 			}
 		}
 
-
-		$this->load->view('template/header');
-		$this->load->view('template/menu',$datasession);
-		$this->load->view('usuario/register_usuario');
-		$this->load->view('template/footer');
-	}
-
-	function viewCV($idusu){
-		if(!$this->session->userdata('idusu')){
-			redirect('login', 'refresh');
+		if($this->session->userdata('idusu')){
+			redirect('usuario', 'refresh');
 		}
 
 		$datasession['idusu'] = $this->session->userdata('idusu');
 		$datasession['idrol'] = $this->session->userdata('idrol');
 
-		$data['usuario_info'] = $this->Usuario_model->getUsuarioInfo($idusu);
-		$data['usuario_adjunto'] = $this->Usuario_model->getUsuarioAdjunto($idusu);
-		$data['usuario_academico'] = $this->Usuario_model->getUsuarioAcademico($idusu);
-		$data['usuario_laboral'] = $this->Usuario_model->getUsuarioLaboral($idusu);
-
 		$this->load->view('template/header');
 		$this->load->view('template/menu',$datasession);
-		$this->load->view('usuario/usuario_adm',$data);
-		$this->load->view('template/footer');
-	}
-
-	function addUsuarioAdjunto(){
-		if(!$this->session->userdata('idusu')){
-			redirect('login', 'refresh');
-		}
-
-		$datasession['idusu'] = $this->session->userdata('idusu');
-		$datasession['idrol'] = $this->session->userdata('idrol');
-        
-		$rules = $this->Usuario_model->rules_adjunto;
-		$this->form_validation->set_rules($rules);
-
-        if ($this->form_validation->run()){
-        	$data = $this->input->post();
-
-        	$valor = do_upload2();
-
-        	//var_dump($valor);
-
-			$data = array(
-				'idusu' => $datasession['idusu'],
-				'titulo' => $this->input->post('titulo'),
-				//'url' => $this->input->post('url'),
-
-			);
-
-            if ($valor != NULL) {
-                $data['url'] = $valor['upload_data']['file_name'];
-            }else{
-            	redirect('Usuario', 'refresh');	
-            }
-
-			$this->Usuario_model->addUsuarioAdjunto($data);
-			//
-			redirect('Usuario', 'refresh');	
-
-			//var_dump($rules);		
-			//$valor = do_upload();
-        	/*if(!isset($data['estado'])){
-				$data['estado']=0;
-			}else{
-				$data['estado']=1;
-			}
-			$data['fecha']=date('d-m-y');
-        	$this->News_m->save($data);
-        	redirect('admin/news');*/
-        	//echo "file: ".$valor['upload_data']['file_name']."<br>";
-        	//var_dump($valor);        	
-        	//var_dump($data);
-        }
-        
-				
-		$this->load->view('template/header');
-		$this->load->view('template/menu',$datasession);
-		$this->load->view('usuario/add_usuario_adjunto');
+		$this->load->view('usuario_info/get_login');
 		$this->load->view('template/footer');		
 	}
-
-	function delUsuarioAdjunto($idadj){
-		if(!$this->session->userdata('idusu')){
-			redirect('login', 'refresh');
-		}
-
-		$datasession['idusu'] = $this->session->userdata('idusu');
-		$datasession['idrol'] = $this->session->userdata('idrol');
-
-		$this->Usuario_model->delUsuarioAdjunto($datasession['idusu'],$idadj);
-
-		redirect('Usuario', 'refresh');
-	}
-
-	function addUsuarioAcademico(){
-		if(!$this->session->userdata('idusu')){
-			redirect('login', 'refresh');
-		}
-
-		$datasession['idusu'] = $this->session->userdata('idusu');
-		$datasession['idrol'] = $this->session->userdata('idrol');				
-
-		$rules = $this->Usuario_model->rules_academico;
-		$this->form_validation->set_rules($rules);
-
-		if ($this->form_validation->run() == TRUE) {
-			$data = array(
-				'idusu' => $datasession['idusu'],
-				'titulo' => $this->input->post('titulo'),
-				'nivelEstudio' => $this->input->post('nivelEstudio'),
-				'institucion' => $this->input->post('institucion'),
-				'mesInicio' => $this->input->post('mesInicio'),
-				'anioInicio' => $this->input->post('anioInicio'),
-				'mesFin' => $this->input->post('mesFin'),
-				'anioFin' => $this->input->post('anioFin')
-			);
-			$this->Usuario_model->addUsuarioAcademico($data);
-			//
-			redirect('Usuario', 'refresh');			
-		}
-
-		$this->load->view('template/header');
-		$this->load->view('template/menu',$datasession);
-		$this->load->view('usuario/add_usuario_academico');
-		$this->load->view('template/footer');
-	}
-
-	function addUsuarioLaboral(){
-		if(!$this->session->userdata('idusu')){
-			redirect('login', 'refresh');
-		}		
-
-		$datasession['idusu'] = $this->session->userdata('idusu');
-		$datasession['idrol'] = $this->session->userdata('idrol');
-
-		$rules = $this->Usuario_model->rules_laboral;
-		$this->form_validation->set_rules($rules);	
-
-		if ($this->form_validation->run() == TRUE) {
-			$data = array(
-				'idusu' => $datasession['idusu'], 
-				'empresa' => $this->input->post('empresa'),
-				'direccion' => $this->input->post('direccion'),
-				'telefono' => $this->input->post('telefono'),
-				'cargo' => $this->input->post('cargo'),
-				'labores' => $this->input->post('labores'),
-				'mesInicio' => $this->input->post('mesInicio'),
-				'anioInicio' => $this->input->post('anioInicio'),
-				'mesFin' => $this->input->post('mesFin'),
-				'anioFin' => $this->input->post('anioFin'),
-				'beneficios' => $this->input->post('beneficios'),
-				'salario' => $this->input->post('salario'),
-				'motivoRetiro' => $this->input->post('motivoRetiro')
-			);
-
-			$this->Usuario_model->addUsuarioLaboral($data);
-			//
-			redirect('Usuario', 'refresh');			
-		}	
-
-		$this->load->view('template/header');
-		$this->load->view('template/menu',$datasession);
-		$this->load->view('usuario/add_usuario_laboral');
-		$this->load->view('template/footer');
-	}
-
-	function editUsuarioInfo($idusu){
-		return NULL;
-	}
-
-	function editUsuarioAcademico($idaca){
-		if(!$this->session->userdata('idusu')){
-			redirect('login', 'refresh');
-		}
-
-		$datasession['idusu'] = $this->session->userdata('idusu');
-		$datasession['idrol'] = $this->session->userdata('idrol');
-
-		$rules = $this->Usuario_model->rules_academico;
-		$this->form_validation->set_rules($rules);
-
-		if ($this->form_validation->run() == TRUE) {
-			$data = array(
-				'titulo' => $this->input->post('titulo'),
-				'nivelEstudio' => $this->input->post('nivelEstudio'),
-				'institucion' => $this->input->post('institucion'),
-				'mesInicio' => $this->input->post('mesInicio'),
-				'anioInicio' => $this->input->post('anioInicio'),
-				'mesFin' => $this->input->post('mesFin'),
-				'anioFin' => $this->input->post('anioFin')
-			);
-			//var_dump($data);
-			$this->Usuario_model->editUsuarioAcademico($idaca,$data);
-			//
-			redirect('Usuario', 'refresh');			
-		}			
-
-		$data['usuario_academico'] = $this->Usuario_model->getUsuarioAcademicoV2($datasession['idusu'],$idaca);
-
-		$this->load->view('template/header');
-		$this->load->view('template/menu',$datasession);
-		$this->load->view('usuario/edit_usuario_academico',$data);
-		$this->load->view('template/footer');
-	}
-
-	function editUsuarioLaboral($idlab){
-		if(!$this->session->userdata('idusu')){
-			redirect('login', 'refresh');
-		}
-
-		$datasession['idusu'] = $this->session->userdata('idusu');
-		$datasession['idrol'] = $this->session->userdata('idrol');
-
-		$rules = $this->Usuario_model->rules_laboral;
-		$this->form_validation->set_rules($rules);	
-
-		if ($this->form_validation->run() == TRUE) {
-			$data = array(
-				'empresa' => $this->input->post('empresa'),
-				'direccion' => $this->input->post('direccion'),
-				'telefono' => $this->input->post('telefono'),
-				'cargo' => $this->input->post('cargo'),
-				'labores' => $this->input->post('labores'),
-				'mesInicio' => $this->input->post('mesInicio'),
-				'anioInicio' => $this->input->post('anioInicio'),
-				'mesFin' => $this->input->post('mesFin'),
-				'anioFin' => $this->input->post('anioFin'),
-				'beneficios' => $this->input->post('beneficios'),
-				'salario' => $this->input->post('salario'),
-				'motivoRetiro' => $this->input->post('motivoRetiro')
-			);
-
-			$this->Usuario_model->editUsuarioLaboral($idlab,$data);
-			//
-			redirect('Usuario', 'refresh');			
-		}
-
-		$data['usuario_laboral'] = $this->Usuario_model->getUsuarioLaboralV2($datasession['idusu'],$idlab);
-
-		$this->load->view('template/header');
-		$this->load->view('template/menu',$datasession);
-		$this->load->view('usuario/edit_usuario_laboral',$data);
-		$this->load->view('template/footer');
+	
+	//
+	//
+	//
+	function logout(){
+		$this->session->sess_destroy();
+		redirect('usuario', 'refresh');
 	}
 }

@@ -8,43 +8,74 @@ class Postulacion_model extends CI_Model {
 		$this->load->database();
 	}
 
-	function getPostulacion($data){
-		$sql = "SELECT * FROM app_vacante a,app_postulacion b
-				WHERE a.idvac = b.idvac
-				AND b.idusu = ? ORDER BY fechaPostulacion DESC";
-		$query = $this->db->query($sql,array($data));
+	// Retorna postulacion
+	function get($idpos){
+		$this->db->where('idpos',$idpos);
+		$query=$this->db->get('postulacion');
 
 		if($query->num_rows()>0){
 			return $query;
 		}else{
 			return false;
-		}			
+		}
 	}
 
-	function getPostulacionVacante($data){
-		$sql = "SELECT * FROM usuario_info WHERE idusu IN (SELECT idusu FROM app_postulacion WHERE idvac = ?)";
-
-		$query = $this->db->query($sql,array($data));
-
-		if($query->num_rows()>0){
-			return $query;
-		}else{
-			return false;
-		}		
-	}
-
-	function addPostulacion($data){
+	// Agrega postulacion
+	function add($data){
 		$data = array(
 			'idvac' => $data['idvac'],
 			'idusu' => $data['idusu'],
 			'fechaPostulacion' => $data['fechaPostulacion']
 		);
 
-		$this->db->insert('app_postulacion',$data);
-	}	
+		$this->db->insert('postulacion',$data);
+	}
 
-	function delVacante($idvac){
-		$this->db->where('idvac', $idvac);
-		$this->db->delete('app_postulacion');
-	}	
+	// Edita postulacion
+	function edit($idpos,$data){
+		$data = array(
+			'idvac' => $data['idvac'],
+			'idusu' => $data['idusu'],
+			'fechaPostulacion' => $data['fechaPostulacion']
+		);
+
+		$this->db->where('idpos',$idpos);
+		$this->db->update('postulacion',$data);		
+	}
+
+	// Borra postulacion
+	function del($idpos){
+		$this->db->where('idpos', $idpos);
+		$this->db->delete('postulacion');
+	}
+
+	//
+	//
+	// Retorna postulacion de Usuario o Vacante
+	function getUsuario($idusu,$idvac){
+		if ($idvac!=NULL){
+			$this->db->where('idvac',$idvac);	
+		}			
+		
+		$this->db->where('idusu',$idusu);		
+		$query=$this->db->get('postulacion');
+
+		if($query->num_rows()>0){
+			return $query;
+		}else{
+			return false;
+		}
+	}
+
+	// Retorna postulacion de Vacante
+	function getVacante($idvac){
+		$this->db->where('idvac',$idvac);
+		$query=$this->db->get('postulacion');
+				
+		if($query->num_rows()>0){
+			return $query;
+		}else{
+			return false;
+		}
+	}
 }

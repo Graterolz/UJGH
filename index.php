@@ -53,10 +53,8 @@
  *
  * NOTE: If you change these, also change the error_reporting() code below
  */
-/*
-	Definiciones de directorios
-*/ 
-	//define('DS','/');	
+ 
+	//Definiciones de directorios
 	define('PATH_BACK', 'resources/sbAdminV2');
 	define('PATH_BACK2', 'resources/imgs');
 	define('PATH_MENU', 'index.php');

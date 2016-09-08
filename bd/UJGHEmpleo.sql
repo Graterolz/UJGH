@@ -21,7 +21,7 @@ CREATE TABLE IF NOT EXISTS `usuario_info` (
 
 INSERT INTO `usuario_info`
 (`idusu`, `idrol`, `email`, `contrasena`, `cedula`, `nombre`, `apellido`, `fechaNacimiento`, `nacionalidad`,  `direccion`, `telefonoCelular`, `telefonoFijo`, `estadoCivil`, `sexo`) VALUES 
-(NULL, 'AMD', 'admin', 'admin', '123456', 'Administrador', 'Sistema', '2016-01-01', 'Venezolano/a', 'Maracaibo', '0261-123456', '0414-123456', 'Soltero/a', 'Masculino'),
+(NULL, 'ADM', 'admin', 'admin', '123456', 'Administrador', 'Sistema', '2016-01-01', 'Venezolano/a', 'Maracaibo', '0261-123456', '0414-123456', 'Soltero/a', 'Masculino'),
 (NULL, 'USR', 'demo', 'demo', '24879654', 'Jose', 'Hernandez', '2016-01-01', 'Venezolano/a', 'Bella vista', '0261-123456', '0414-123456', 'Soltero/a', 'Masculino'),
 (NULL, 'USR', 'maria', 'maria', '9784168', 'Maria', 'Perez', '1985-04-12', 'Venezolano/a', 'San francisco', '0212-123456', '0416-123456', 'Soltero/a', 'Femenino');
 
@@ -90,33 +90,34 @@ INSERT INTO `usuario_adjunto`
 (NULL, '2', 'Titulo Ingenieria','images2.jpg');
 
 -- app_vacante
-DROP TABLE IF EXISTS `app_vacante`;
+DROP TABLE IF EXISTS `vacante`;
 
-CREATE TABLE IF NOT EXISTS `app_vacante` (
+CREATE TABLE IF NOT EXISTS `vacante` (
 	`idvac` int(10) NOT NULL AUTO_INCREMENT,
 	`titulo` varchar(100) NOT NULL,
 	`descripcion` varchar(100) NOT NULL,
 	`beneficios` varchar(200) NOT NULL,
-	`requisitos` varchar(100) NOT NULL,
+	`requisitos` varchar(200) NOT NULL,
 	`salario` varchar(100) NOT NULL,
 	`fechaPublicacion` date NOT NULL,
 	`tipo` varchar(100) NOT NULL, 
 	PRIMARY KEY (`idvac`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
-INSERT INTO `app_vacante` 
+INSERT INTO `vacante` 
 (`idvac`, `titulo`, `descripcion`, `beneficios`, `requisitos`, `salario`, `fechaPublicacion`, `tipo`) VALUES 
-(NULL, 'Profesor de Matematicas', 'Se solicita Profesor de Matematicas', 'Dentro de los beneficios que ofrecemos estan: Seguro H.C.M, L.P.H;Fideicomiso, Utilidades 1 Mes, Aumento Salarial 2/Año, Vacac. Colectivas, Bono Vac. al Año y Cesta Ticket BONUS.', 'Requisitos 1', '9999', '2016-01-01', 'Docente'),
-(NULL, 'Analista de Soporte tecnico', 'Se solicita Analista de Soporte tecnico', 'Dentro de los beneficios que ofrecemos estan: Seguro H.C.M, L.P.H;Fideicomiso, Utilidades 1 Mes, Aumento Salarial 2/Año, Vacac. Colectivas, Bono Vac. al Año y Cesta Ticket BONUS.', 'Requisitos 2', '9999', '2016-01-01', 'Administrativo'),
-(NULL, 'Programador WEB', 'Se solicita Programador WEB', 'Dentro de los beneficios que ofrecemos estan: Seguro H.C.M, L.P.H;Fideicomiso, Utilidades 1 Mes, Aumento Salarial 2/Año, Vacac. Colectivas, Bono Vac. al Año y Cesta Ticket BONUS.', 'Requisitos 3', '9999', '2016-01-01', 'Administrativo'),
-(NULL, 'Analista RRHH', 'Se solicita Analista RRHH', 'Dentro de los beneficios que ofrecemos estan: Seguro H.C.M, L.P.H;Fideicomiso, Utilidades 1 Mes, Aumento Salarial 2/Año, Vacac. Colectivas, Bono Vac. al Año y Cesta Ticket BONUS.', 'Requisitos 4', '9999', '2016-01-01', 'Administrativo'),
-(NULL, 'Profesor de Logica', 'Se solicita Profesor de Logica', 'Dentro de los beneficios que ofrecemos estan: Seguro H.C.M, L.P.H;Fideicomiso, Utilidades 1 Mes, Aumento Salarial 2/Año, Vacac. Colectivas, Bono Vac. al Año y Cesta Ticket BONUS.', 'Requisitos 5', '9999', '2016-01-01', 'Docente'),
-(NULL, 'Profesor de Programacion', 'Se solicita Profesor de Programacion', 'Dentro de los beneficios que ofrecemos estan: Seguro H.C.M, L.P.H;Fideicomiso, Utilidades 1 Mes, Aumento Salarial 2/Año, Vacac. Colectivas, Bono Vac. al Año y Cesta Ticket BONUS.', 'Requisitos 6', '9999', '2016-01-01', 'Docente');
+
+(NULL, 'Profesor de Matematicas', 'Se solicita Profesor de Matematicas', 'Dentro de los beneficios que ofrecemos estan: Seguro H.C.M, L.P.H;Fideicomiso, Utilidades 1 Mes, Aumento Salarial 2/Año, Vacac. Colectivas, Bono Vac. al Año y Cesta Ticket BONUS.', 'Educación Mínima: Universidad, Años de experiencia: 1, Disponibilidad de Viajar: No, Disponibilidad de Cambio de Residencia: No.', 'A Convenir', '2016-01-01', 'Docente'),
+(NULL, 'Analista de Soporte tecnico', 'Se solicita Analista de Soporte tecnico', 'Dentro de los beneficios que ofrecemos estan: Seguro H.C.M, L.P.H;Fideicomiso, Utilidades 1 Mes, Aumento Salarial 2/Año, Vacac. Colectivas, Bono Vac. al Año y Cesta Ticket BONUS.', 'Educación Mínima: Universidad, Años de experiencia: 1, Disponibilidad de Viajar: No, Disponibilidad de Cambio de Residencia: No.', 'A Convenir', '2016-01-01', 'Administrativo'),
+(NULL, 'Programador WEB', 'Se solicita Programador WEB', 'Dentro de los beneficios que ofrecemos estan: Seguro H.C.M, L.P.H;Fideicomiso, Utilidades 1 Mes, Aumento Salarial 2/Año, Vacac. Colectivas, Bono Vac. al Año y Cesta Ticket BONUS.', 'Educación Mínima: Universidad, Años de experiencia: 1, Disponibilidad de Viajar: No, Disponibilidad de Cambio de Residencia: No.', 'A Convenir', '2016-01-01', 'Administrativo'),
+(NULL, 'Analista RRHH', 'Se solicita Analista RRHH', 'Dentro de los beneficios que ofrecemos estan: Seguro H.C.M, L.P.H;Fideicomiso, Utilidades 1 Mes, Aumento Salarial 2/Año, Vacac. Colectivas, Bono Vac. al Año y Cesta Ticket BONUS.', 'Educación Mínima: Universidad, Años de experiencia: 1, Disponibilidad de Viajar: No, Disponibilidad de Cambio de Residencia: No.', 'A Convenir', '2016-01-01', 'Administrativo'),
+(NULL, 'Profesor de Logica', 'Se solicita Profesor de Logica', 'Dentro de los beneficios que ofrecemos estan: Seguro H.C.M, L.P.H;Fideicomiso, Utilidades 1 Mes, Aumento Salarial 2/Año, Vacac. Colectivas, Bono Vac. al Año y Cesta Ticket BONUS.', 'Educación Mínima: Universidad, Años de experiencia: 1, Disponibilidad de Viajar: No, Disponibilidad de Cambio de Residencia: No.', 'A Convenir', '2016-01-01', 'Docente'),
+(NULL, 'Profesor de Programacion', 'Se solicita Profesor de Programacion', 'Dentro de los beneficios que ofrecemos estan: Seguro H.C.M, L.P.H;Fideicomiso, Utilidades 1 Mes, Aumento Salarial 2/Año, Vacac. Colectivas, Bono Vac. al Año y Cesta Ticket BONUS.', 'Educación Mínima: Universidad, Años de experiencia: 1, Disponibilidad de Viajar: No, Disponibilidad de Cambio de Residencia: No.', 'A Convenir', '2016-01-01', 'Docente');
 
 -- app_postulacion
-DROP TABLE IF EXISTS `app_postulacion`;
+DROP TABLE IF EXISTS `postulacion`;
 
-CREATE TABLE IF NOT EXISTS `app_postulacion` (
+CREATE TABLE IF NOT EXISTS `postulacion` (
 	`idpos` int(10) NOT NULL AUTO_INCREMENT,
 	`idvac` int(10) NOT NULL,
 	`idusu` int(10) NOT NULL,
@@ -124,7 +125,7 @@ CREATE TABLE IF NOT EXISTS `app_postulacion` (
 	PRIMARY KEY (`idpos`)	
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
-INSERT INTO `app_postulacion` (`idpos`, `idvac`, `idusu`, `fechaPostulacion`) VALUES 
+INSERT INTO `postulacion` (`idpos`, `idvac`, `idusu`, `fechaPostulacion`) VALUES 
 (NULL, '1', '2', '2016-01-01'),
 (NULL, '2', '2', '2016-01-01'),
 (NULL, '2', '3', '2016-01-01');

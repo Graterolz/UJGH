@@ -8,78 +8,91 @@ class Vacante_model extends CI_Model {
 		$this->load->database();
 	}
 
-	public $rules = array(
+	// Reglas
+	public $vacante_rules = array(
 		'titulo' => array(
-            'field' => 'titulo',
-            'label' => 'titulo',
-            'rules' => 'trim|required',
-            ),
-        'descripcion' => array(
-            'field' => 'descripcion',
-            'label' => 'descripcion',
-            'rules' => 'trim|required',
-            ),
-        'beneficios' => array(
-            'field' => 'beneficios',
-            'label' => 'beneficios',
-            'rules' => 'trim|required',
-            ),
-        'requisitos' => array(
-            'field' => 'requisitos',
-            'label' => 'requisitos',
-            'rules' => 'trim|required',        	
-        	),
+			'field' => 'titulo',
+			'label' => 'Titulo',
+			'rules' => 'trim|required'
+		),
+		'descripcion' => array(
+			'field' => 'descripcion',
+			'label' => 'Descripcion',
+			'rules' => 'trim|required'
+		),
+		'beneficios' => array(
+			'field' => 'beneficios',
+			'label' => 'Beneficios',
+			'rules' => 'trim|required'
+		),
+		'requisitos' => array(
+        	'field' => 'requisitos',
+        	'label' => 'Requisitos',
+        	'rules' => 'trim|required'
+        ),
         'salario' => array(
-            'field' => 'salario',
-            'label' => 'salario',
-            'rules' => 'trim|required',
-        	),
+        	'field' => 'salario',
+        	'label' => 'Salario',
+        	'rules' => 'trim|required'
+        ),
+        'tipo' => array(
+        	'field' => 'tipo',
+        	'label' => 'Tipo de Vacante',
+        	'rules' => 'trim|required'
+        )
 	);
 
-	function getVacantes($idvac,$idusu){
-		return $this->gerVacanteV2($idvac,$idusu,NULL);
-	}
-
-	function getVacantesADM(){
-		return $this->gerVacanteV2(NULL,NULL,'ADM');
-	}
-	
-	//
-
-	function gerVacanteV2($idvac,$idusu,$idrol){
-		$data = NULL;
-		//$sql = NULL;
-
-		if ($idusu!=NULL){
-			$sql = "SELECT * FROM app_vacante WHERE idvac NOT IN (SELECT idvac FROM app_postulacion WHERE idusu = ?)";
-			$data = $idusu;
+	// Retorna vacante con postulaciones
+	function get($idvac){
+		if($idvac!=NULL){
+			$this->db->where('vacante.idvac',$idvac);
 		}
 
-		if ($idvac!=NULL){
-			$sql = "SELECT * FROM app_vacante WHERE idvac = ?";
-			$data = $idvac;
-		}
+		$this->db->select('
+			vacante.idvac, vacante.titulo, vacante.descripcion, vacante.beneficios, vacante.requisitos,
+			vacante.salario, vacante.fechaPublicacion, vacante.tipo, COUNT(postulacion.idvac) postulaciones
+		');
+		$this->db->from('vacante');
+		$this->db->join('postulacion', 'vacante.idvac = postulacion.idvac','LEFT');
+		$this->db->group_by('
+			vacante.idvac, vacante.titulo, vacante.descripcion, vacante.beneficios, vacante.requisitos,
+			vacante.salario, vacante.fechaPublicacion, vacante.tipo
+		');
+		$this->db->order_by('9','DESC');
+		$this->db->order_by('1');
 
-		if($idrol=='ADM'){
-			$sql = "SELECT a.idvac, a.titulo, a.descripcion, COUNT(b.idvac) postulaciones
-					FROM app_vacante a 
-					LEFT JOIN app_postulacion b ON a.idvac = b.idvac
-					GROUP BY a.idvac,a.titulo,a.descripcion
-					ORDER BY 4 DESC, 1";
-		}
-		//echo $sql;
+		$query = $this->db->get();
+		//echo $this->db->last_query();
 
-		$query = $this->db->query($sql,$data);
-		
 		if($query->num_rows()>0){
 			return $query;
 		}else{
 			return false;
 		}
-	}	
-	
-	//
-	function addVacante($data){
+	}
+
+	// Retorna postulados de vacante
+	function getPostulados($idvac){
+		if($idvac!=NULL){
+			$this->db->where('postulacion.idvac',$idvac);
+		}
+		$this->db->select('*');
+		$this->db->from('usuario_info');
+		$this->db->join('postulacion', 'usuario_info.idusu = postulacion.idusu','LEFT');
+		$this->db->order_by('1');
+
+		$query = $this->db->get();
+		//echo $this->db->last_query();
+
+		if($query->num_rows()>0){
+			return $query;
+		}else{
+			return false;
+		}		
+	}
+
+	// Agrega vacante
+	function add($data){
 		$data = array(
 			'idvac' => NULL,
 			'titulo' => $data['titulo'],
@@ -91,10 +104,11 @@ class Vacante_model extends CI_Model {
 			'tipo' => $data['tipo']
 		);
 		
-		$this->db->insert('app_vacante',$data);
+		$this->db->insert('vacante',$data);
 	}
 
-	function editVacante($idvac,$data){
+	// Edita vacante
+	function edit($idvac,$data){
 		$data = array(
 			'titulo' => $data['titulo'],
 			'descripcion' => $data['descripcion'],
@@ -106,11 +120,12 @@ class Vacante_model extends CI_Model {
 		);
 
 		$this->db->where('idvac',$idvac);
-		$this->db->update('app_vacante',$data);
+		$this->db->update('vacante',$data);
 	}
 
-	function delVacante($idvac){
+	// Borra vacante
+	function del($idvac){
 		$this->db->where('idvac', $idvac);
-		$this->db->delete('app_vacante');
+		$this->db->delete('vacante');
 	}
 }
