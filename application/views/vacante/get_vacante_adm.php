@@ -22,7 +22,6 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                     </div>
                 </div>
                 <div class="panel-body">
-
 <?php
 if ($vacante){
     $row_vacante = $vacante->row();

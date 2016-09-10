@@ -13,7 +13,7 @@ class Usuario extends CI_Controller {
 		$this->load->model('Vacante_model');
 	}
 
-	//
+	// Inicio de usuario
 	function index(){
 		if(!$this->session->userdata('idusu')){
 			redirect('usuario/login', 'refresh');
@@ -26,7 +26,7 @@ class Usuario extends CI_Controller {
 		$this->load->view('template/menu',$datasession);
 
 		if ($datasession['idrol']=='USR'){
-			//$datasession['idusu'] = 1212;
+			//$datasession['idusu'] = NULL;
 
 			$data['usuario_info'] = $this->Usuario_info_model->get($datasession['idusu']);
 			$data['usuario_adjunto'] = $this->Usuario_adjunto_model->getUsuario($datasession['idusu']);
@@ -49,7 +49,7 @@ class Usuario extends CI_Controller {
 		$this->load->view('template/footer');
 	}
 
-	//
+	// Obtiene perfil usuario
 	function get($idusu){
 		// Validaciones
 		if(!$this->session->userdata('idusu')){
@@ -68,48 +68,23 @@ class Usuario extends CI_Controller {
 		$this->load->view('template/header');
 		$this->load->view('template/menu',$datasession);
 
-		//if ($datasession['idrol']=='ADM'){
-			$datasession['idusu'] = $idusu;
+		$datasession['idusu'] = $idusu;
 
-			$data['usuario_info'] = $this->Usuario_info_model->get($datasession['idusu']);
-			$data['usuario_adjunto'] = $this->Usuario_adjunto_model->getUsuario($datasession['idusu']);
-			$data['usuario_academico'] = $this->Usuario_academico_model->getUsuario($datasession['idusu']);
-			$data['usuario_laboral'] = $this->Usuario_laboral_model->getUsuario($datasession['idusu']);
+		$data['usuario_info'] = $this->Usuario_info_model->get($datasession['idusu']);
+		$data['usuario_adjunto'] = $this->Usuario_adjunto_model->getUsuario($datasession['idusu']);
+		$data['usuario_academico'] = $this->Usuario_academico_model->getUsuario($datasession['idusu']);
+		$data['usuario_laboral'] = $this->Usuario_laboral_model->getUsuario($datasession['idusu']);
 
-			//Reglas
-			$data['rules_usuario_info'] = $this->Usuario_info_model->usuario_info_rules;
-			$data['rules_usuario_academico'] = $this->Usuario_academico_model->usuario_academico_rules;
-			$data['rules_usuario_adjunto'] = $this->Usuario_adjunto_model->usuario_adjunto_rules;
-			$data['rules_usuario_laboral'] = $this->Usuario_laboral_model->usuario_laboral_rules;
+		//Reglas
+		$data['rules_usuario_info'] = $this->Usuario_info_model->usuario_info_rules;
+		$data['rules_usuario_academico'] = $this->Usuario_academico_model->usuario_academico_rules;
+		$data['rules_usuario_adjunto'] = $this->Usuario_adjunto_model->usuario_adjunto_rules;
+		$data['rules_usuario_laboral'] = $this->Usuario_laboral_model->usuario_laboral_rules;
 
-			$this->load->view('usuario_info/get_usuario_adm',$data);
-		//}else{
-			//redirect('usuario', 'refresh');
-		//}
+		$this->load->view('usuario_info/get_usuario_adm',$data);
 
 		$this->load->view('template/footer');
 	}
-
-	//
-	/*function add(){
-		if(!$this->session->userdata('idusu')){
-			redirect('usuario/login', 'refresh');
-		}		
-	}
-
-	//
-	function edit($idusu){
-		if(!$this->session->userdata('idusu')){
-			redirect('usuario/login', 'refresh');
-		}
-	}
-
-	//
-	function del($idusu){
-		if(!$this->session->userdata('idusu')){
-			redirect('usuario/login', 'refresh');
-		}
-	}*/
 
 	//
 	//

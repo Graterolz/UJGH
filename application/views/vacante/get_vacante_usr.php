@@ -20,7 +20,8 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                             <strong>Detalles de la vacante</strong>
                         </div>
                     </div>                                         
-                </div>                
+                </div>
+                <div class="panel-body">
 <?php
 if ($vacante){
     $row_vacante = $vacante->row();
@@ -46,7 +47,6 @@ if ($vacante){
         )
     );
 ?>
-                <div class="panel-body">
                     <div class="row">
                         <div class="col-lg-12">
                             <div class="row">

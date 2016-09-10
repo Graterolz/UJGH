@@ -18,7 +18,7 @@ class Usuario_adjunto_model extends CI_Model {
 		'url' => array(
 			'field' => 'url',
 			'label' => 'Ruta',
-			'rules' => 'trim|required'
+			'rules' => 'trim'
 		)
 	);	
 

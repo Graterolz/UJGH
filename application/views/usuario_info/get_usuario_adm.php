@@ -144,9 +144,10 @@ if ($usuario_info){
                             <strong>Datos Adjuntos</strong>
                         </div>
                         <div class="col-lg-3">
-                            <!--<center>
-                                <a href="<?= base_url(PATH_MENU)."/usuario_adjunto/add"; ?>" class="btn btn-primary btn-xs"><strong>AGREGAR</strong></a>
-                            </center>-->
+                            <center>
+                                <!--<a href="<?= base_url(PATH_MENU)."/usuario_adjunto/add"; ?>" class="btn btn-primary btn-xs"><strong>AGREGAR</strong></a>-->
+                                <a href="<?= base_url(PATH_MENU)."/usuario"; ?>" class="btn btn-primary btn-xs"><strong>ATRAS</strong></a>
+                            </center>
                         </div>
                     </div>
                 </div>
