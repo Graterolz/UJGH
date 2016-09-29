@@ -121,11 +121,12 @@ CREATE TABLE IF NOT EXISTS `postulacion` (
 	`idpos` int(10) NOT NULL AUTO_INCREMENT,
 	`idvac` int(10) NOT NULL,
 	`idusu` int(10) NOT NULL,
+	`estado` varchar(1000) NOT NULL,
 	`fechaPostulacion` date NOT NULL,	
 	PRIMARY KEY (`idpos`)	
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
-INSERT INTO `postulacion` (`idpos`, `idvac`, `idusu`, `fechaPostulacion`) VALUES 
-(NULL, '1', '2', '2016-01-01'),
-(NULL, '2', '2', '2016-01-01'),
-(NULL, '2', '3', '2016-01-01');
+INSERT INTO `postulacion` (`idpos`, `idvac`, `idusu`, `estado`, `fechaPostulacion`) VALUES 
+(NULL, '1', '2', 'Enviado', '2016-01-01'),
+(NULL, '2', '2', 'Enviado', '2016-01-01'),
+(NULL, '2', '3', 'Enviado', '2016-01-01');

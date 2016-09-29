@@ -41,7 +41,7 @@ class Usuario_info extends CI_Controller {
 	}
 
 	//
-	function edit($idusu){
+	function edit($idusu = NULL){
 		if(!$this->session->userdata('idusu')){
 			redirect('usuario/login', 'refresh');
 		}
@@ -55,7 +55,7 @@ class Usuario_info extends CI_Controller {
 	}
 
 	//
-	function del($idusu){
+	function del($idusu = NULL){
 		if(!$this->session->userdata('idusu')){
 			redirect('usuario/login', 'refresh');
 		}

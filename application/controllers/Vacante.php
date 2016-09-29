@@ -33,7 +33,7 @@ class Vacante extends CI_Controller {
 	}
 
 	// Modulo para obtener informacion de vacante
-	function get($idvac){
+	function get($idvac = '*'){
 		// Validaciones
 		if(!$this->session->userdata('idusu')){
 			redirect('usuario/login', 'refresh');
@@ -102,7 +102,7 @@ class Vacante extends CI_Controller {
 	}
 
 	// Modulo para editar vacante
-	function edit($idvac){
+	function edit($idvac = NULL){
 		// Validaciones
 		if(!$this->session->userdata('idusu')){
 			redirect('usuario/login', 'refresh');
@@ -144,7 +144,7 @@ class Vacante extends CI_Controller {
 	}
 
 	// Modulo para eliminar vacante
-	function del($idvac){
+	function del($idvac = NULL){
 		//Validaciones
 		if(!$this->session->userdata('idusu')){
 			redirect('usuario/login', 'refresh');

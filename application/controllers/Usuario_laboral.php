@@ -65,7 +65,7 @@ class Usuario_laboral extends CI_Controller {
 	}
 
 	//
-	function edit($idlab){
+	function edit($idlab = NULL){
 		if(!$this->session->userdata('idusu')){
 			redirect('usuario/login', 'refresh');
 		}
@@ -116,7 +116,7 @@ class Usuario_laboral extends CI_Controller {
 	}
 
 	//
-	function del($idlab){
+	function del($idlab = NULL){
 		if(!$this->session->userdata('idusu')){
 			redirect('usuario/login', 'refresh');
 		}

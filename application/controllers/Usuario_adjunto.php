@@ -62,12 +62,12 @@ class Usuario_adjunto extends CI_Controller {
 	}
 
 	//
-	function edit($idadj){
+	function edit($idadj = NULL){
 		$this->index();
 	}
 
 	//
-	function del($idadj){
+	function del($idadj = NULL){
 		if(!$this->session->userdata('idusu')){
 			redirect('usuario/login', 'refresh');
 		}

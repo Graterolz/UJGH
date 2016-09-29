@@ -16,16 +16,16 @@ defined('BASEPATH') OR exit('No direct script access allowed');
             <div class="panel panel-info">
                 <div class="panel-heading">
                     <div class="row">
-                        <div class="col-lg-10">
+                        <div class="col-lg-9">
                             <strong>Datos Personales</strong>
                         </div>
 <?php
 if ($usuario_info){
     $row_usuario_info = $usuario_info->row();
 ?>
-                        <div class="col-lg-2">
+                        <div class="col-lg-3">
                             <center>
-                                <a href="<?= base_url(PATH_MENU)."/usuario_info/edit/".$row_usuario_info->idusu; ?>" class="btn btn-primary btn-xs"><strong>EDITAR</strong></a>
+                                <!--<a href="<?= base_url(PATH_MENU)."/usuario_info/edit/".$row_usuario_info->idusu; ?>" class="btn btn-primary btn-xs"><strong>EDITAR</strong></a>-->
                             </center>
                         </div>
 <?php
@@ -197,10 +197,10 @@ if ($usuario_info){
             <div class="panel panel-default">
                 <div class="panel-heading">
                     <div class="row">
-                        <div class="col-lg-10">
+                        <div class="col-lg-9">
                             <strong>Datos Academicos</strong>
                         </div>
-                        <div class="col-lg-2">
+                        <div class="col-lg-3">
                             <center>
                                 <a href="<?= base_url(PATH_MENU)."/usuario_academico/add"; ?>" class="btn btn-primary btn-xs"><strong>AGREGAR</strong></a>
                             </center>
@@ -244,7 +244,7 @@ if ($usuario_info){
             );
 ?>
                             <div class="row">
-                                <div class="col-lg-10">
+                                <div class="col-lg-9">
                                     <h3><?= $rules_form_academico['titulo']['value']; ?>
                                         <small>
                                             <?= $rules_form_academico['mesInicio']['value']." ".$rules_form_academico['anioInicio']['value']; ?>
@@ -254,7 +254,7 @@ if ($usuario_info){
                                         </small>
                                     </h3>
                                 </div>
-                                <div class="col-lg-2"> 
+                                <div class="col-lg-3"> 
                                     <center>
                                         <a href="<?= base_url(PATH_MENU)."/usuario_academico/edit/".$rules_form_academico['idaca']['value']; ?>" class="btn btn-default btn-xs"><strong>EDITAR</strong></a>
                                         <a href="<?= base_url(PATH_MENU)."/usuario_academico/del/".$rules_form_academico['idaca']['value']; ?>" class="btn btn-danger btn-xs"><strong>ELIMINAR</strong></a>
@@ -295,10 +295,10 @@ if ($usuario_info){
             <div class="panel panel-default">
                 <div class="panel-heading">
                     <div class="row">
-                        <div class="col-lg-10">
+                        <div class="col-lg-9">
                             <strong>Datos Laborales</strong>
                         </div>                      
-                        <div class="col-lg-2">
+                        <div class="col-lg-3">
                             <center>
                                 <a href="<?= base_url(PATH_MENU)."/usuario_laboral/add"; ?>" class="btn btn-primary btn-xs"><strong>AGREGAR</strong></a>
                             </center>
@@ -356,7 +356,7 @@ if ($usuario_info){
             ); 
 ?>
                     <div class="row">
-                        <div class="col-lg-10">
+                        <div class="col-lg-9">
                                 <h3><?= $rules_form_laboral['cargo']['value']; ?>
                                     <small>
                                         <?= $rules_form_laboral['mesInicio']['value']." ".$rules_form_laboral['anioInicio']['value']; ?>
@@ -366,7 +366,7 @@ if ($usuario_info){
                                     </small>
                                 </h3>
                         </div>
-                        <div class="col-lg-2"> 
+                        <div class="col-lg-3"> 
                             <center>
                                 <a href="<?= base_url(PATH_MENU)."/usuario_laboral/edit/".$rules_form_laboral['idlab']['value']; ?>" class="btn btn-default btn-xs"><strong>EDITAR</strong></a>
                                 <a href="<?= base_url(PATH_MENU)."/usuario_laboral/del/".$rules_form_laboral['idlab']['value']; ?>" class="btn btn-danger btn-xs"><strong>ELIMINAR</strong></a>

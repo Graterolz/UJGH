@@ -60,7 +60,7 @@ class Usuario_academico extends CI_Controller {
 	}
 
 	//
-	function edit($idaca){
+	function edit($idaca = NULL){
 		// Validaciones
 		if(!$this->session->userdata('idusu')){
 			redirect('usuario/login', 'refresh');
@@ -106,7 +106,7 @@ class Usuario_academico extends CI_Controller {
 	}
 
 	//
-	function del($idaca){
+	function del($idaca = NULL){
 		if(!$this->session->userdata('idusu')){
 			redirect('usuario/login', 'refresh');
 		}

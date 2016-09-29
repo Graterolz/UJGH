@@ -50,7 +50,7 @@ class Usuario extends CI_Controller {
 	}
 
 	// Obtiene perfil usuario
-	function get($idusu){
+	function get($idusu = NULL){
 		// Validaciones
 		if(!$this->session->userdata('idusu')){
 			redirect('usuario/login', 'refresh');

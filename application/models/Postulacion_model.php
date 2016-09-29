@@ -25,6 +25,7 @@ class Postulacion_model extends CI_Model {
 		$data = array(
 			'idvac' => $data['idvac'],
 			'idusu' => $data['idusu'],
+			'estado' => $data['estado'],
 			'fechaPostulacion' => $data['fechaPostulacion']
 		);
 

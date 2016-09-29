@@ -20,8 +20,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                             <strong>Detalles de la vacante</strong>
                         </div>
                     </div>                                         
-                </div>
-                <div class="panel-body">
+                </div>                                
 <?php
 if ($vacante){
     $row_vacante = $vacante->row();
@@ -46,7 +45,15 @@ if ($vacante){
             'value' => $row_vacante->tipo
         )
     );
-?>
+?>                
+<?php
+    $attributes = array(
+        'role' => 'form',
+        'autocomplete' => 'off'
+    );
+?>                
+                <?= form_open('postulacion/add/'.$row_vacante->idvac,$attributes); ?>                
+                <div class="panel-body">    
                     <div class="row">
                         <div class="col-lg-12">
                             <div class="row">
@@ -104,10 +111,11 @@ if ($vacante){
                             <center><a href="<?= base_url(PATH_MENU)."/vacante"; ?>" class="btn btn-primary"><strong>ATRAS</strong></a></center>
                         </div>
                         <div class="col-lg-6">
-                            <center><a href="<?= base_url(PATH_MENU)."/postulacion/add/".$row_vacante->idvac; ?>" class="btn btn-success"><strong>ENVIAR CURRICULUM</strong></a></center>
+                            <center><button type="submit" class="btn btn-success"><strong>ENVIAR CURRICULUM</strong></button></center>
                         </div>
                     </div>
                 </div>
+                <?= form_close(); ?>
             </div>    
 <?php
     }else{
