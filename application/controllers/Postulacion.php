@@ -10,8 +10,26 @@ class Postulacion extends CI_Controller {
 	}
 
 	//
-	function index(){		
+	function index(){
+		if(!$this->session->userdata('idusu')){
+			redirect('usuario/login', 'refresh');
+		}
 
+		$datasession['idusu'] = $this->session->userdata('idusu');
+		$datasession['idrol'] = $this->session->userdata('idrol');
+
+		//$data['vacante'] = $this->Vacante_model->get(NULL);
+
+		$this->load->view('template/header');		
+		$this->load->view('template/menu',$datasession);
+		
+		/*if ($datasession['idrol']=='USR'){
+			$this->load->view('vacante/list_vacante_usr',$data);
+		}else{
+			$this->load->view('vacante/list_vacante_adm',$data);
+		}*/				
+		
+		$this->load->view('template/footer');
 	}
 
 	//

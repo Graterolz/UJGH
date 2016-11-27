@@ -17,11 +17,11 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 <?php
     if($idusu){
 ?>            
-                <!--<li class="dropdown">-->
-                    <!--<a class="dropdown-toggle" data-toggle="dropdown" href="#">
+                <li class="dropdown">
+                    <a class="dropdown-toggle" data-toggle="dropdown" href="#">
                         <i class="fa fa-user fa-fw"></i>  <i class="fa fa-caret-down"></i>
-                    </a>-->
-                    <!--<ul class="dropdown-menu dropdown-user">-->
+                    </a>
+                    <ul class="dropdown-menu dropdown-user">
                         <li>
                             <a href="<?= base_url(PATH_MENU)."/usuario"; ?>"><i class="fa fa-user fa-fw"></i><strong>Inicio</strong></a>
                         </li>
@@ -31,8 +31,9 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                         <li>
                             <a href="<?= base_url(PATH_MENU)."/vacante"; ?>"><i class="fa fa-gear fa-fw"></i><strong>Vacantes</strong></a>
                         </li>
-                        <!--<li><a href="<?= base_url(PATH_MENU)."/postulacion"; ?>"><i class="fa fa-check fa-fw"></i> Postulaciones</a>
-                        </li>                   -->     
+                        <li>
+                            <a href="<?= base_url(PATH_MENU)."/postulacion"; ?>"><i class="fa fa-check fa-fw"></i><strong>Postulaciones</strong></a>
+                        </li>
                         <li class="divider"></li>
 <?php
         }
@@ -40,14 +41,13 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                         <li>
                             <a href="<?= base_url(PATH_MENU)."/usuario/logout"; ?>"><i class="fa fa-sign-out fa-fw"></i><strong>Logout</strong></a>
                         </li>
-                    <!--</ul>-->
+                    </ul>
                     <!-- /.dropdown-user -->
-                <!--</li>-->
+                </li>
                 <!-- /.dropdown -->
-
 <?php
     }
 ?>            
             </ul>
             <!-- /.navbar-top-links -->
-</nav>
+        </nav>
