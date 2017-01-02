@@ -180,8 +180,9 @@ if ($usuario_info){
                 </div>
             </div>
             <!-- /.panel -->
+
             <hr>
-            
+
             <!-- USUARIO_ACADEMICO -->
             <div class="panel panel-primary">
                 <div class="panel-heading">
@@ -285,6 +286,7 @@ if($usuario_academico){
                 <!-- /.panel-body -->
             </div>
             <!-- /.panel -->
+
             <hr>
 
             <!-- USUARIO_LABORAL -->
@@ -307,42 +309,78 @@ if($usuario_academico){
     if($usuario_laboral){
         foreach($usuario_laboral->result() as $usuario_laboral_row){
             $usuario_laboral_form = array(
-                /*TITULO => array(
-                    'value' => $usuario_academico_row->titulo
+                EMPRESA => array(
+                    'value' => $usuario_laboral_row->empresa
                 ),
-                NIVEL_ESTUDIO => array(
-                    'value' => $usuario_academico_row->nivel_estudio  
+                DIRECCION => array(                
+                    'class' => 'form-control',
+                    'name' => DIRECCION,
+                    'value' => $usuario_laboral_row->direccion,
+                    'readonly' => TRUE
                 ),
-                INSTITUCION => array(
-                    'value' => $usuario_academico_row->institucion
+                TELEFONO1 => array(
+                    'class' => 'form-control',
+                    'name' => TELEFONO1,
+                    'value' => $usuario_laboral_row->telefono1,
+                    'readonly' => TRUE
+                ),
+                CARGO => array(
+                    'class' => 'form-control',
+                    'name' => CARGO,
+                    'value' => $usuario_laboral_row->cargo,
+                    'readonly' => TRUE
+                ),
+                LABORES => array(
+                    'class' => 'form-control',
+                    'name' => LABORES,
+                    'value' => $usuario_laboral_row->labores,
+                    'readonly' => TRUE
                 ),
                 MES_INICIO => array(
-                    'value' => $usuario_academico_row->mes_inicio
+                    'value' => $usuario_laboral_row->mes_inicio
                 ),
                 ANIO_INICIO => array(
-                    'value' => $usuario_academico_row->anio_inicio
+                    'value' => $usuario_laboral_row->anio_inicio
                 ),
                 MES_FIN => array(
-                    'value' => $usuario_academico_row->mes_fin
+                    'value' => $usuario_laboral_row->mes_fin
                 ),
                 ANIO_FIN => array(
-                    'value' => $usuario_academico_row->anio_fin
-                )*/
+                    'value' => $usuario_laboral_row->anio_fin
+                ),
+                BENEFICIOS => array(
+                    'class' => 'form-control',
+                    'name' => BENEFICIOS,
+                    'value' => $usuario_laboral_row->beneficios,
+                    'readonly' => TRUE
+                ),
+                SALARIO => array(
+                    'class' => 'form-control',
+                    'name' => SALARIO,
+                    'value' => $usuario_laboral_row->salario,
+                    'readonly' => TRUE
+                ),
+                MOTIVO_RETIRO => array(
+                    'class' => 'form-control',
+                    'name' => MOTIVO_RETIRO,
+                    'value' => $usuario_laboral_row->motivo_retiro,
+                    'readonly' => TRUE
+                )
             );
 ?>
                         <div class="col-lg-12">
                             <div class="well">
                                 <div class="row">
                                     <div class="col-lg-9">
-                                        <h4><?= $usuario_academico_form[EMPRESA]['value'];; ?>
+                                        <h4><?= $usuario_laboral_form[EMPRESA]['value'];; ?>
                                             <small>
-                                                <?= $usuario_laboral_row->mes_inicio.
+                                                <?= $usuario_laboral_form[MES_INICIO]['value'].
                                                     " ".
-                                                    $usuario_laboral_row->anio_inicio.
+                                                    $usuario_laboral_form[ANIO_INICIO]['value'].
                                                     " / ".
-                                                    $usuario_laboral_row->mes_fin.
+                                                    $usuario_laboral_form[MES_FIN]['value'].
                                                     " ".
-                                                    $usuario_laboral_row->anio_fin; 
+                                                    $usuario_laboral_form[ANIO_FIN]['value'];
                                                 ?>
                                                 <br>
                                             </small>
@@ -359,43 +397,43 @@ if($usuario_academico){
                                     <div class="col-lg-4">
                                         <div class="form-group">
                                             <?= form_label($usuario_laboral_rules[DIRECCION]['label'],$usuario_laboral_rules[DIRECCION]['field']); ?>
-                                            <input class="form-control" id="direccion" type="text" value="<?= $usuario_laboral_row->direccion; ?>" readonly>
+                                            <?= form_input($usuario_laboral_form[DIRECCION]); ?>                                            
                                         </div>
                                     </div>
                                     <!-- /.col-lg-4 (nested) -->
                                     <div class="col-lg-4">
                                         <div class="form-group">
                                             <?= form_label($usuario_laboral_rules[TELEFONO1]['label'],$usuario_laboral_rules[TELEFONO1]['field']); ?>
-                                            <input class="form-control" id="telefono1" type="text" value="<?= $usuario_laboral_row->telefono1; ?>" readonly>
+                                            <?= form_input($usuario_laboral_form[TELEFONO1]); ?>
                                         </div>
                                     </div>
                                     <!-- /.col-lg-4 (nested) -->
                                     <div class="col-lg-4">
                                         <div class="form-group">
                                             <?= form_label($usuario_laboral_rules[CARGO]['label'],$usuario_laboral_rules[CARGO]['field']); ?>
-                                            <input class="form-control" id="cargo" type="text" value="<?= $usuario_laboral_row->cargo; ?>" readonly>
+                                            <?= form_input($usuario_laboral_form[CARGO]); ?>                                            
                                         </div>
                                     </div>
                                     <!-- /.col-lg-4 (nested) -->
                                     <div class="col-lg-6">
                                         <div class="form-group">
                                             <?= form_label($usuario_laboral_rules[SALARIO]['label'],$usuario_laboral_rules[SALARIO]['field']); ?>
-                                            <input class="form-control" id="salario" type="text" value="<?= $usuario_laboral_row->salario; ?>" readonly>
+                                            <?= form_input($usuario_laboral_form[SALARIO]); ?>                                            
                                         </div>
                                         <div class="form-group">
                                             <?= form_label($usuario_laboral_rules[LABORES]['label'],$usuario_laboral_rules[LABORES]['field']); ?>
-                                            <input class="form-control" id="labores" type="text" value="<?= $usuario_laboral_row->labores; ?>" readonly>
+                                            <?= form_input($usuario_laboral_form[LABORES]); ?>                                            
                                         </div> 
                                     </div>
                                     <!-- /.col-lg-6 (nested) -->
                                     <div class="col-lg-6">
                                         <div class="form-group">
                                             <?= form_label($usuario_laboral_rules[MOTIVO_RETIRO]['label'],$usuario_laboral_rules[MOTIVO_RETIRO]['field']); ?>
-                                            <input class="form-control" id="disabledInput" type="text" value="<?= $usuario_laboral_row->motivo_retiro; ?>" readonly>
+                                            <?= form_input($usuario_laboral_form[MOTIVO_RETIRO]); ?>
                                         </div>
                                         <div class="form-group">
                                             <?= form_label($usuario_laboral_rules[BENEFICIOS]['label'],$usuario_laboral_rules[BENEFICIOS]['field']); ?>
-                                            <input class="form-control" id="beneficios" type="text" value="<?= $usuario_laboral_row->beneficios; ?>" readonly>
+                                            <?= form_input($usuario_laboral_form[BENEFICIOS]); ?>
                                         </div>
                                     </div>
                                     <!-- /.col-lg-6 (nested) -->
@@ -412,10 +450,9 @@ if($usuario_academico){
                 <!-- /.panel-body -->
             </div>
             <!-- /.panel -->
+
             <hr>
 
-
-            
             <!-- USUARIO_ADJUNTO --
             <div class="panel panel-primary">
                 <div class="panel-heading">
@@ -426,9 +463,9 @@ if($usuario_academico){
                             </div>
                         </div>
                         <div class="col-lg-2">
-                            <a href="<?= base_url(PATH_MENU)."/".USUARIO_ADJUNTO_ADD; ?>" class="btn btn-default"><i class="fa fa-gear fa-fw"></i><strong>NUEVO</strong></a>
+                            <a href="<?= base_url(PATH_MENU)."/".USUARIO_ADJUNTO_ADD; ?>" class="btn btn-default"><i class="fa fa-paperclip fa-fw"></i><strong>NUEVO</strong></a>
                         </div>
-                    </div>                                        
+                    </div>
                 </div>
                 <div class="panel-body">
                     <div class="table-responsive">
@@ -458,7 +495,7 @@ if($usuario_academico){
                             </tbody>
                         </table>
                     </div>
-                    <!-- /.table-responsive -->                        
+                    <!-- /.table-responsive -->
                 </div>
                 <!-- /.panel-body -->
             </div>

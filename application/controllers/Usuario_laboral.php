@@ -6,8 +6,7 @@ class Usuario_laboral extends CI_Controller {
 	function __construct() {
 		parent::__construct();
 		$this->load->model(SYS_MODEL);
-		$this->load->model(USUARIO_LABORAL_MODEL);		
-		//$this->load->model('Usuario_laboral_model');
+		$this->load->model(USUARIO_LABORAL_MODEL);
 	}
 
 	// Index
@@ -15,10 +14,46 @@ class Usuario_laboral extends CI_Controller {
 		redirect(USUARIO_INFO_CONTROLLER, 'refresh');
 	}
 
+	// Agregar informacion laboral de usuario
 	function add(){
-		redirect(USUARIO_INFO_CONTROLLER, 'refresh');
+		if(!$this->session->userdata(IDUSU_SESSION)){
+			redirect(USUARIO_LOGIN, 'refresh');
+		}
+		if($this->session->userdata(IDROL_SESSION)!=USR){
+			redirect(USUARIO_INFO_CONTROLLER, 'refresh');
+		}		
+
+		$rules = $this->Usuario_laboral_model->usuario_laboral_rules;
+		$this->form_validation->set_rules($rules);
+
+		if ($this->form_validation->run() == TRUE) {
+			$data = array(				
+				/*IDUSU => $this->session->userdata(IDUSU_SESSION),
+				TITULO => $this->input->post(TITULO),
+				NIVEL_ESTUDIO => $this->input->post(NIVEL_ESTUDIO),
+				INSTITUCION => $this->input->post(INSTITUCION),
+				MES_INICIO => $this->input->post(MES_INICIO),
+				ANIO_INICIO => $this->input->post(ANIO_INICIO),
+				MES_FIN => $this->input->post(MES_FIN),
+				ANIO_FIN => $this->input->post(ANIO_FIN)*/
+			);
+
+			$this->Usuario_laboral_model->add($data);
+			redirect(USUARIO_INFO_CONTROLLER, 'refresh');
+		}		
+
+		$data['usuario_laboral_rules'] = $this->Usuario_laboral_model->usuario_laboral_rules;		
+		$data['form_attributes'] = $this->Sys_model->form_attributes;
+		$data['meses'] = $this->Sys_model->meses;
+		$data['anios'] = $this->Sys_model->anios;
+
+		$this->load->view(HEADER);
+		$this->load->view(MENU);
+		$this->load->view(ADD_USUARIO_LABORAL,$data);
+		$this->load->view(FOOTER);
 	}
 
+	//
 	function edit(){
 		redirect(USUARIO_INFO_CONTROLLER, 'refresh');
 	}

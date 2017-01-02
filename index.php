@@ -3,7 +3,6 @@
 define ('PATH_MENU' , 'index.php');
 define ('PATH_RESOURCES' , 'resources/startbootstrap-sb-admin-2');
 define ('PATH_RESOURCES2' , 'resources/imgs');
-
 // Modelos
 define ('SYS_MODEL','Sys_model');
 define ('USUARIO_INFO_MODEL','Usuario_info_model');
@@ -61,6 +60,9 @@ define ('GET_USUARIO_ADM','usuario/get_usuario_adm');
 define ('EDIT_USUARIO_INFO','usuario_info/edit_usuario_info');
 define ('ADD_USUARIO_ACADEMICO','usuario_academico/add_usuario_academico');
 define ('EDIT_USUARIO_ACADEMICO','usuario_academico/edit_usuario_academico');
+define ('ADD_USUARIO_LABORAL','usuario_laboral/add_usuario_laboral');
+define ('EDIT_USUARIO_LABORAL','usuario_laboral/edit_usuario_laboral');
+
 define ('LIST_VACANTE_USR','vacante/list_vacante_usr');
 define ('LIST_VACANTE_ADM','vacante/list_vacante_adm');
 define ('LIST_POSTULACION_USR','postulacion/list_postulacion_usr');
