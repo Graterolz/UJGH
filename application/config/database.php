@@ -78,10 +78,7 @@ $db['default'] = array(
 	'hostname' => '127.0.0.1',
 	'username' => 'root',
 	'password' => '',
-
-	//'database' => 'c9',
-	'database' => 'ujghempleo',
-
+	'database' => 'ujghempleo_v2',
 	'dbdriver' => 'mysqli',
 	'dbprefix' => '',
 	'pconnect' => FALSE,

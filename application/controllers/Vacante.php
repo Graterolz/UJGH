@@ -3,36 +3,33 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 
 class Vacante extends CI_Controller {
 
-	function __construct() {
+	function __construct(){
 		parent::__construct();
-		$this->load->model('Vacante_model');
-		$this->load->model('Postulacion_model');
+		$this->load->model(VACANTE_MODEL);
+		$this->load->model(POSTULACION_MODEL);
 	}
 
 	//
 	function index(){
-		if(!$this->session->userdata('idusu')){
-			redirect('usuario/login', 'refresh');
+		if(!$this->session->userdata(IDUSU_SESSION)){
+			redirect(USUARIO_LOGIN, 'refresh');
 		}
 
-		$datasession['idusu'] = $this->session->userdata('idusu');
-		$datasession['idrol'] = $this->session->userdata('idrol');
-
+		$this->load->view(HEADER);
+		$this->load->view(MENU);
+		
 		$data['vacante'] = $this->Vacante_model->get(NULL);
 
-		$this->load->view('template/header');		
-		$this->load->view('template/menu',$datasession);
-		
-		if ($datasession['idrol']=='USR'){
-			$this->load->view('vacante/list_vacante_usr',$data);
+		if ($this->session->userdata(IDROL_SESSION) == USR){
+			$this->load->view(LIST_VACANTE_USR,$data);
 		}else{
-			$this->load->view('vacante/list_vacante_adm',$data);
-		}				
-		
-		$this->load->view('template/footer');
+			$this->load->view(LIST_VACANTE_ADM,$data);
+		}
+
+		$this->load->view(FOOTER);
 	}
 
-	// Modulo para obtener informacion de vacante
+	/*// Modulo para obtener informacion de vacante
 	function get($idvac = '*'){
 		// Validaciones
 		if(!$this->session->userdata('idusu')){
@@ -177,5 +174,5 @@ class Vacante extends CI_Controller {
 		$this->load->view('template/menu',$datasession);
 		$this->load->view('vacante/del_vacante',$data);
 		$this->load->view('template/footer');
-	}	
+	}*/
 }

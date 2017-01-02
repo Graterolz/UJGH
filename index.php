@@ -1,4 +1,149 @@
 <?php
+// URLs
+define ('PATH_MENU' , 'index.php');
+define ('PATH_RESOURCES' , 'resources/startbootstrap-sb-admin-2');
+define ('PATH_RESOURCES2' , 'resources/imgs');
+
+// Modelos
+define ('SYS_MODEL','Sys_model');
+define ('USUARIO_INFO_MODEL','Usuario_info_model');
+define ('USUARIO_ADJUNTO_MODEL','Usuario_adjunto_model');
+define ('USUARIO_ACADEMICO_MODEL','Usuario_academico_model');
+define ('USUARIO_LABORAL_MODEL','Usuario_laboral_model');
+define ('VACANTE_MODEL','Vacante_model');
+define ('POSTULACION_MODEL','Postulacion_model');
+
+// Controlador USUARIO_INFO
+define ('USUARIO_INFO_CONTROLLER','usuario_info');
+define ('USUARIO_LOGIN','usuario_info/login');
+define ('USUARIO_LOGOUT','usuario_info/logout');
+define ('USUARIO_INFO_EDIT','usuario_info/edit');
+
+// Controlador USUARIO_ACADEMICO
+define ('USUARIO_ACADEMICO_CONTROLLER','usuario_academico');
+define ('USUARIO_ACADEMICO_ADD','usuario_academico/add');
+define ('USUARIO_ACADEMICO_EDIT','usuario_academico/edit');
+define ('USUARIO_ACADEMICO_DEL','usuario_academico/del');
+
+// Controlador USUARIO_LABORAL
+define ('USUARIO_LABORAL_CONTROLLER','usuario_laboral');
+define ('USUARIO_LABORAL_ADD','usuario_laboral/add');
+define ('USUARIO_LABORAL_EDIT','usuario_laboral/edit');
+define ('USUARIO_LABORAL_DEL','usuario_laboral/del');
+
+// Controlador USUARIO_ADJUNTO
+define ('USUARIO_ADJUNTO_CONTROLLER','usuario_adjunto');
+define ('USUARIO_ADJUNTO_ADD','usuario_adjunto/add');
+
+//
+define ('VACANTE_CONTROLLER','vacante');
+define ('POSTULACION_CONTROLLER','postulacion');
+
+// Variable de SESSION
+define ('IDUSU_SESSION','idusu_ujghempleo');
+define ('IDROL_SESSION','idrol_ujghempleo');
+
+// Vistas MENU
+define ('HEADER','templates/header');
+define ('MENU','templates/menu');
+define ('FOOTER','templates/footer');
+define ('TITULO_MENU','Empleo UJGH');
+define ('MENU_USUARIO_INFO','Usuario');
+define ('MENU_USUARIO_ACADEMICO','Academico');
+define ('TITULO_VACANTE','Vacantes');
+define ('TITULO_POSTULACION','Postulaciones');
+define ('TITULO_LOGOUT','Logout');
+
+// Vistas
+define ('GET_LOGIN','usuario/get_login');
+define ('GET_USUARIO_USR','usuario/get_usuario_usr');
+define ('GET_USUARIO_ADM','usuario/get_usuario_adm');
+define ('EDIT_USUARIO_INFO','usuario_info/edit_usuario_info');
+define ('ADD_USUARIO_ACADEMICO','usuario_academico/add_usuario_academico');
+define ('EDIT_USUARIO_ACADEMICO','usuario_academico/edit_usuario_academico');
+define ('LIST_VACANTE_USR','vacante/list_vacante_usr');
+define ('LIST_VACANTE_ADM','vacante/list_vacante_adm');
+define ('LIST_POSTULACION_USR','postulacion/list_postulacion_usr');
+define ('LIST_POSTULACION_ADM','postulacion/list_postulacion_adm');
+
+// Tablas
+define ('TABLA_USUARIO_INFO','usuario_info');
+define ('TABLA_USUARIO_ADJUNTO','usuario_adjunto');
+define ('TABLA_USUARIO_ACADEMICO','usuario_academico');
+define ('TABLA_USUARIO_LABORAL','usuario_laboral');
+define ('TABLA_VACANTE','vacante');
+define ('TABLA_POSTULACION','postulacion');
+
+// Campos - TABLA_USUARIO_INFO
+define ('IDUSU','idusu');
+define ('IDROL','idrol');
+define ('CEDULA','cedula');
+define ('NOMBRE','nombre');
+define ('APELLIDO','apellido');
+define ('GENERO','genero');
+define ('FECHA_NACIMIENTO','fecha_nacimiento');
+define ('NACIONALIDAD','nacionalidad');
+define ('ESTADO_CIVIL','estado_civil');
+define ('DIRECCION','direccion');
+define ('TELEFONO1','telefono1');
+define ('TELEFONO2','telefono2');
+define ('EMAIL','email');
+define ('USER','user');
+define ('PASS','pass');
+define ('FECHA_REGISTRO','fecha_registro');
+define ('FECHA_EDICION','fecha_edicion');
+define ('ESTADO_REGISTRO','estado_registro');
+
+// Campos - TABLA_USUARIO_ADJUNTO
+define ('IDADJ','idadj');
+define ('TITULO','titulo');
+define ('URL','url');
+
+// Campos - TABLA_USUARIO_ACADEMICO
+define ('IDACA','idaca');
+define ('NIVEL_ESTUDIO','nivel_estudio');
+define ('INSTITUCION','institucion');
+define ('MES_INICIO','mes_inicio');
+define ('ANIO_INICIO','anio_inicio');
+define ('MES_FIN','mes_fin');
+define ('ANIO_FIN','anio_fin');
+
+// Campos - TABLA_USUARIO_LABORAL
+define ('IDLAB','idlab');
+define ('EMPRESA','empresa');
+define ('CARGO','cargo');
+define ('LABORES','labores');
+define ('BENEFICIOS','beneficios');
+define ('SALARIO','salario');
+define ('MOTIVO_RETIRO','motivo_retiro');
+
+// Campos - TABLA_VACANTE
+define ('IDVAC','idvac');
+define ('DESCRIPCION','descripcion');
+define ('REQUISITOS','requisitos');
+define ('TIPO','tipo');
+
+// Campos - TABLA_POSTULACION
+define ('IDPOS','idpos');
+define ('ESTADO','estado');
+
+// Estado de Registros
+define ('ESTADO_REGISTRO_ELIMINADO','0');
+define ('ESTADO_REGISTRO_ACTIVO','1');
+
+// Roles de Usuario
+define ('USR','USR');
+define ('ADM','ADM');
+
+// Formato fecha
+define ('FORMATO_FECHA','Y-m-d H:i:s');
+
+// Titulos Paneles
+define ('TITULO_USUARIO_INFO','Informacion Personal');
+define ('TITULO_USUARIO_ADJUNTO','Informacion Adjunta');
+define ('TITULO_USUARIO_ACADEMICO','Informacion Academica');
+define ('TITULO_USUARIO_LABORAL','Informacion Laboral');
+
 /**
  * CodeIgniter
  *
@@ -53,15 +198,7 @@
  *
  * NOTE: If you change these, also change the error_reporting() code below
  */
- 
-	//Definiciones de directorios
-	define('PATH_BACK', 'resources/sbAdminV2');
-	define('PATH_BACK2', 'resources/imgs');
-	define('PATH_MENU', 'index.php');
-	//
-
 	define('ENVIRONMENT', isset($_SERVER['CI_ENV']) ? $_SERVER['CI_ENV'] : 'development');
-
 /*
  *---------------------------------------------------------------
  * ERROR REPORTING

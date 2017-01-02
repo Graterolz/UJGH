@@ -24,7 +24,6 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 |
 */
 $config['base_url'] = 'http://localhost/UJGHEmpleo';
-//$config['base_url'] = 'https://ujghempleo-graterolz.c9users.io/';
 
 /*
 |--------------------------------------------------------------------------

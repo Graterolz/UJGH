@@ -1,76 +1,20 @@
 <?php
 defined('BASEPATH') OR exit('No direct script access allowed');
 
-class Usuario_info_model extends CI_Model {
+class Usuario_info_model extends CI_Model{
 
-	public function __construct() {
+	public function __construct(){
 		parent::__construct();
 		$this->load->database();
 	}
 
-	// Reglas
-	public $usuario_info_rules = array(		
-		'email' => array(
-			'field' => 'email',
-			'label' => 'Email',
-			'rules' => 'trim|required'
-		),
-		'cedula' => array(
-			'field' => 'cedula',
-			'label' => 'Cedula',
-			'rules' => 'trim|required'
-		),
-		'nombre' => array(
-			'field' => 'nombre',
-			'label' => 'Nombre',
-			'rules' => 'trim|required'
-		),
-		'apellido' => array(
-			'field' => 'apellido',
-			'label' => 'Apellido',
-			'rules' => 'trim|required'
-		),
-		'fechaNacimiento' => array(
-			'field' => 'fechaNacimiento',
-			'label' => 'Fecha de Nacimiento',
-			'rules' => 'trim|required'
-		),
-		'nacionalidad' => array(
-			'field' => 'nacionalidad',
-			'label' => 'Nacionalidad',
-			'rules' => 'trim|required'
-		),
-		'direccion' => array(
-            'field' => 'direccion',
-            'label' => 'Direccion',
-            'rules' => 'trim|required'
-        ),
-        'telefonoCelular' => array(
-        	'field' => 'telefonoCelular',
-        	'label' => 'Telefono Celular',
-        	'rules' => 'trim|required'
-        ),
-        'telefonoFijo' => array(
-        	'field' => 'telefonoFijo',
-        	'label' => 'Telefono Fijo',
-        	'rules' => 'trim|required'
-        ),
-		'estadoCivil' => array(
-			'field' => 'estadoCivil',
-			'label' => 'Estado Civil',
-			'rules' => 'trim|required'
-		),
-		'sexo' => array(
-			'field' => 'sexo',
-			'label' => 'Sexo',
-			'rules' => 'trim|required'
-		)
-	);
-
-	// Retorna informacion de usuario
+	// Obtener informacion de usuario
 	function get($idusu){
-		$this->db->where('idusu',$idusu);
-		$query=$this->db->get('usuario_info');
+		if($idusu!=NULL){
+			$this->db->where(IDUSU,$idusu);
+		}
+		$this->db->where(ESTADO_REGISTRO,ESTADO_REGISTRO_ACTIVO);
+		$query=$this->db->get(TABLA_USUARIO_INFO);
 
 		if($query->num_rows()>0){
 			return $query;
@@ -78,67 +22,76 @@ class Usuario_info_model extends CI_Model {
 			return false;
 		}
 	}
-
-	// Agrega informacion de usuario
+	
+	// Insertar informacion de usuario
 	function add($data){
-		$data = array(
-			'idusu' => NULL,
-			'idrol' => 'USR',
-			'email' => $data['email'],
-			'contrasena' => $data['contrasena'],
-			'cedula' => $data['cedula'],
-			'nombre' => $data['nombre'],
-			'apellido' => $data['apellido'],
-			'fechaNacimiento' => $data['fechaNacimiento'],
-			'nacionalidad' => $data['nacionalidad'],
-			'direccion' => $data['direccion'],
-			'telefonoCelular' => $data['telefonoCelular'],
-			'telefonoFijo' => $data['telefonoFijo'],
-			'estadoCivil' => $data['estadoCivil'],
-			'sexo' => $data['sexo']
+		$data=array(
+			IDUSU => NULL,
+			IDROL => $data[IDROL],
+			CEDULA => $data[CEDULA],
+			NOMBRE => $data[NOMBRE],
+			APELLIDO => $data[APELLIDO],
+			GENERO => $data[GENERO],
+			FECHA_NACIMIENTO => $data[FECHA_NACIMIENTO],
+			NACIONALIDAD => $data[NACIONALIDAD],
+			ESTADO_CIVIL => $data[ESTADO_CIVIL],
+			DIRECCION => $data[DIRECCION],
+			TELEFONO1 => $data[TELEFONO1],
+			TELEFONO2 => $data[TELEFONO2],
+			EMAIL => $data[EMAIL],
+			USER => $data[USER],
+			PASS => $data[PASS],
+			FECHA_REGISTRO => date(FORMATO_FECHA),
+			FECHA_EDICION => date(FORMATO_FECHA),
+			ESTADO_REGISTRO => ESTADO_REGISTRO_ACTIVO
 		);
 		
-		$this->db->insert('usuario_info',$data);
+		$query=$this->db->insert(TABLA_USUARIO_INFO,$data);
+		return $query;
 	}
 
-	// Edita informacion de usuario
+	// Editar informacion de usuario
 	function edit($idusu,$data){
-		$data = array(
-			'idrol' => 'USR',
-			'email' => $data['email'],
-			'contrasena' => $data['contrasena'],
-			'cedula' => $data['cedula'],
-			'nombre' => $data['nombre'],
-			'apellido' => $data['apellido'],
-			'fechaNacimiento' => $data['fechaNacimiento'],
-			'nacionalidad' => $data['nacionalidad'],
-			'direccion' => $data['direccion'],
-			'telefonoCelular' => $data['telefonoCelular'],
-			'telefonoFijo' => $data['telefonoFijo'],
-			'estadoCivil' => $data['estadoCivil'],
-			'sexo' => $data['sexo']
+		$data=array(
+			CEDULA => $data[CEDULA],
+			NOMBRE => $data[NOMBRE],
+			APELLIDO => $data[APELLIDO],
+			GENERO => $data[GENERO],
+			FECHA_NACIMIENTO => $data[FECHA_NACIMIENTO],
+			NACIONALIDAD => $data[NACIONALIDAD],
+			ESTADO_CIVIL => $data[ESTADO_CIVIL],
+			DIRECCION => $data[DIRECCION],
+			TELEFONO1 => $data[TELEFONO1],
+			TELEFONO2 => $data[TELEFONO2],
+			EMAIL => $data[EMAIL],
+			FECHA_EDICION => date(FORMATO_FECHA)
 		);
 
-		$this->db->where('idusu',$idusu);
-		$this->db->update('usuario_info',$data);
+		$this->db->where(IDUSU,$idusu);
+		$this->db->where(ESTADO_REGISTRO,ESTADO_REGISTRO_ACTIVO);
+		$query=$this->db->update(TABLA_USUARIO_INFO,$data);
+		return $query;
 	}
 
-	// Borra informacion de usuario
+	// Eliminar informacion de usuario
 	function del($idusu){
-		$this->db->where('idusu', $idusu);
-		$this->db->delete('usuario_info');
+		$data=array(
+			ESTADO_REGISTRO => ESTADO_REGISTRO_ELIMINADO
+		);
+
+		$this->db->where(IDUSU,$idusu);
+		$this->db->where(ESTADO_REGISTRO,ESTADO_REGISTRO_ACTIVO);
+		$query=$this->db->update(TABLA_USUARIO_INFO,$data);
+		return $query;
 	}
 
-	//
-	//
-	// Retorna login de usuario
+	// Login de usuario
 	function login($data){
-		$this->db->select('idusu,idrol');
-		$this->db->where('email',$data['user']);
-		$this->db->where('contrasena',$data['pass']);
+		$this->db->where(USER,$data[USER]);
+		$this->db->where(PASS,$data[PASS]);
+		$this->db->where(ESTADO_REGISTRO,ESTADO_REGISTRO_ACTIVO);
 		$this->db->limit(1);
-
-		$query = $this->db->get('usuario_info');
+		$query=$this->db->get(TABLA_USUARIO_INFO);
 
 		if($query->num_rows()>0){
 			return $query;
@@ -146,4 +99,81 @@ class Usuario_info_model extends CI_Model {
 			return false;
 		}		
 	}
+
+	// Reglas para formularios
+	public $usuario_info_rules = array(
+		CEDULA => array(
+			'field' => CEDULA,
+			'for' => CEDULA,
+			'label' => 'Cedula',
+			'rules' => 'trim|required'
+		),
+		NOMBRE => array(
+			'field' => NOMBRE,
+			'for' => NOMBRE,
+			'label' => 'Nombre',
+			'rules' => 'trim|required'
+		),
+		APELLIDO => array(
+			'field' => APELLIDO,
+			'for' => APELLIDO,
+			'label' => 'Apellido',
+			'rules' => 'trim|required'
+		),
+		GENERO => array(
+			'field' => GENERO,
+			'for' => GENERO,
+			'label' => 'Genero',
+			'rules' => 'trim|required'
+		),
+		FECHA_NACIMIENTO => array(
+			'field' => FECHA_NACIMIENTO,
+			'for' => FECHA_NACIMIENTO,
+			'label' => 'Fecha de Nacimiento',
+			'rules' => 'trim|required'
+		),
+		NACIONALIDAD => array(
+			'field' => NACIONALIDAD,
+			'for' => NACIONALIDAD,
+			'label' => 'Nacionalidad',
+			'rules' => 'trim|required'
+		),
+		ESTADO_CIVIL => array(
+			'field' => ESTADO_CIVIL,
+			'for' => ESTADO_CIVIL,
+			'label' => 'Estado Civil',
+			'rules' => 'trim|required'
+		),
+		DIRECCION => array(
+			'field' => DIRECCION,
+			'for' => DIRECCION,
+			'label' => 'Direccion',
+			'rules' => 'trim|required'
+		),
+		TELEFONO1 => array(
+			'field' => TELEFONO1,
+			'for' => TELEFONO1,
+			'label' => 'Telefono Principal',
+			'rules' => 'trim|required'
+		),
+		TELEFONO2 => array(
+			'field' => TELEFONO2,
+			'for' => TELEFONO2,
+			'label' => 'Telefono Alternativo',
+			'rules' => 'trim|required'
+		),
+		EMAIL => array(
+			'field' => EMAIL,
+			'for' => EMAIL,
+			'label' => 'Correo Electronico',
+			'rules' => 'trim|required'
+		),
+		USER => array(
+			'field' => USER,
+			'for' => USER,
+			'label' => 'Usuario',
+			'rules' => 'trim|required'
+		)
+	);
+
 }

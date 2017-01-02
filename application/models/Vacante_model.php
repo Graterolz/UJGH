@@ -1,48 +1,14 @@
 <?php
 defined('BASEPATH') OR exit('No direct script access allowed');
 
-class Vacante_model extends CI_Model {
+class Vacante_model extends CI_Model{
 
-	public function __construct() {
+	public function __construct(){
 		parent::__construct();
 		$this->load->database();
 	}
 
-	// Reglas
-	public $vacante_rules = array(
-		'titulo' => array(
-			'field' => 'titulo',
-			'label' => 'Titulo',
-			'rules' => 'trim|required'
-		),
-		'descripcion' => array(
-			'field' => 'descripcion',
-			'label' => 'Descripcion',
-			'rules' => 'trim|required'
-		),
-		'beneficios' => array(
-			'field' => 'beneficios',
-			'label' => 'Beneficios',
-			'rules' => 'trim|required'
-		),
-		'requisitos' => array(
-        	'field' => 'requisitos',
-        	'label' => 'Requisitos',
-        	'rules' => 'trim|required'
-        ),
-        'salario' => array(
-        	'field' => 'salario',
-        	'label' => 'Salario',
-        	'rules' => 'trim|required'
-        ),
-        'tipo' => array(
-        	'field' => 'tipo',
-        	'label' => 'Tipo de Vacante',
-        	'rules' => 'trim|required'
-        )
-	);
-
-	// Retorna vacante con postulaciones
+	// Obtener informacion de vacante con postulaciones
 	function get($idvac){
 		if($idvac!=NULL){
 			$this->db->where('vacante.idvac',$idvac);
@@ -50,18 +16,19 @@ class Vacante_model extends CI_Model {
 
 		$this->db->select('
 			vacante.idvac, vacante.titulo, vacante.descripcion, vacante.beneficios, vacante.requisitos,
-			vacante.salario, vacante.fechaPublicacion, vacante.tipo, COUNT(postulacion.idvac) postulaciones
-		');
-		$this->db->from('vacante');
-		$this->db->join('postulacion', 'vacante.idvac = postulacion.idvac','LEFT');
+			vacante.salario, vacante.fecha_registro, vacante.tipo, COUNT(postulacion.idvac) postulaciones'
+		);
+		$this->db->from(TABLA_VACANTE);
+		$this->db->join(TABLA_POSTULACION, 'vacante.idvac = postulacion.idvac','LEFT');
 		$this->db->group_by('
 			vacante.idvac, vacante.titulo, vacante.descripcion, vacante.beneficios, vacante.requisitos,
-			vacante.salario, vacante.fechaPublicacion, vacante.tipo
-		');
+			vacante.salario, vacante.fecha_registro, vacante.tipo'
+		);
+		$this->db->where('vacante.'.ESTADO_REGISTRO,ESTADO_REGISTRO_ACTIVO);
 		$this->db->order_by('9','DESC');
 		$this->db->order_by('1');
 
-		$query = $this->db->get();
+		$query=$this->db->get();
 		//echo $this->db->last_query();
 
 		if($query->num_rows()>0){
@@ -71,61 +38,52 @@ class Vacante_model extends CI_Model {
 		}
 	}
 
-	// Retorna postulados de vacante
-	function getPostulados($idvac){
-		if($idvac!=NULL){
-			$this->db->where('postulacion.idvac',$idvac);
-		}
-		$this->db->select('*');
-		$this->db->from('usuario_info');
-		$this->db->join('postulacion', 'usuario_info.idusu = postulacion.idusu','LEFT');
-		$this->db->order_by('1');
-
-		$query = $this->db->get();
-		//echo $this->db->last_query();
-
-		if($query->num_rows()>0){
-			return $query;
-		}else{
-			return false;
-		}		
-	}
-
-	// Agrega vacante
+	// Insertar informacion de vacante
 	function add($data){
-		$data = array(
-			'idvac' => NULL,
-			'titulo' => $data['titulo'],
-			'descripcion' => $data['descripcion'],
-			'beneficios' => $data['beneficios'],
-			'requisitos' => $data['requisitos'],
-			'salario' => $data['salario'],
-			'fechaPublicacion' => $data['fechaPublicacion'],
-			'tipo' => $data['tipo']
+		$data=array(
+			IDVAC => NULL,
+			TITULO => $data[TITULO],
+			DESCRIPCION => $data[DESCRIPCION],
+			BENEFICIOS => $data[BENEFICIOS],
+			REQUISITOS => $data[REQUISITOS],
+			SALARIO => $data[SALARIO],
+			TIPO => $data[TIPO],
+			FECHA_REGISTRO => $data[FECHA_REGISTRO],
+			FECHA_EDICION => $data[FECHA_EDICION],
+			ESTADO_REGISTRO => $data[ESTADO_REGISTRO]
 		);
 		
-		$this->db->insert('vacante',$data);
+		$query=$this->db->insert(TABLA_VACANTE,$data);
+		return $query;
 	}
 
-	// Edita vacante
+	// Editar informacion de vacante
 	function edit($idvac,$data){
-		$data = array(
-			'titulo' => $data['titulo'],
-			'descripcion' => $data['descripcion'],
-			'beneficios' => $data['beneficios'],
-			'requisitos' => $data['requisitos'],
-			'salario' => $data['salario'],
-			'fechaPublicacion' => $data['fechaPublicacion'],
-			'tipo' => $data['tipo']
+		$data=array(
+			//IDVAC => NULL,
+			TITULO => $data[TITULO],
+			DESCRIPCION => $data[DESCRIPCION],
+			BENEFICIOS => $data[BENEFICIOS],
+			REQUISITOS => $data[REQUISITOS],
+			SALARIO => $data[SALARIO],
+			TIPO => $data[TIPO],
+			FECHA_EDICION => date(FORMATO_FECHA)
 		);
 
-		$this->db->where('idvac',$idvac);
-		$this->db->update('vacante',$data);
+		$this->db->where(IDVAC,$idvac);
+		$this->db->where(ESTADO_REGISTRO,ESTADO_REGISTRO_ACTIVO);
+		$query=$this->db->update(TABLA_VACANTE,$data);
+		return $query;
 	}
 
-	// Borra vacante
+	// Eliminar informacion de vacante
 	function del($idvac){
-		$this->db->where('idvac', $idvac);
-		$this->db->delete('vacante');
+		$data=array(
+			ESTADO_REGISTRO => ESTADO_REGISTRO_ELIMINADO
+		);
+
+		$this->db->where(IDVAC,$idvac);
+		$query=$this->db->update(TABLA_VACANTE,$data);
+		return $query;
 	}
 }

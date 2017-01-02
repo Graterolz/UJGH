@@ -1,187 +1,174 @@
 <?php
 defined('BASEPATH') OR exit('No direct script access allowed');
 
-class Usuario_laboral_model extends CI_Model {
+class Usuario_laboral_model extends CI_Model{
 
-	public function __construct() {
+	public function __construct(){
 		parent::__construct();
 		$this->load->database();
 	}
-	
-	// Reglas
+
+	// Obtener informacion laboral
+	function get($idlab){
+		if($idlab!=NULL){
+			$this->db->where(IDLAB,$idlab);
+		}
+		$this->db->where(ESTADO_REGISTRO,ESTADO_REGISTRO_ACTIVO);
+		$query=$this->db->get(TABLA_USUARIO_LABORAL);
+				
+		if($query->num_rows()>0){
+			return $query;
+		}else{
+			return false;
+		}
+	}
+
+	// Insertar informacion laboral
+	function add($data){
+		$data=array(
+			IDLAB => NULL,
+			IDUSU => $data[IDUSU],
+			EMPRESA => $data[EMPRESA],
+			DIRECCION => $data[DIRECCION],
+			TELEFONO1 => $data[TELEFONO1],
+			CARGO => $data[CARGO],
+			LABORES => $data[LABORES],
+			MES_INICIO => $data[MES_INICIO],
+			ANIO_INICIO => $data[ANIO_INICIO],
+			MES_FIN => $data[MES_FIN],
+			ANIO_FIN => $data[ANIO_FIN],
+			BENEFICIOS => $data[BENEFICIOS],
+			SALARIO => $data[SALARIO],
+			MOTIVO_RETIRO => $data[MOTIVO_RETIRO],
+			FECHA_REGISTRO => $data[FECHA_REGISTRO],
+			FECHA_EDICION => $data[FECHA_EDICION],
+			ESTADO_REGISTRO => $data[ESTADO_REGISTRO]
+		);
+
+		$query=$this->db->insert(TABLA_USUARIO_LABORAL,$data);
+		return $query;
+	}
+
+	// Editar informacion laboral
+	function edit($idlab,$data){
+		$data=array(
+			EMPRESA => $data[EMPRESA],
+			DIRECCION => $data[DIRECCION],
+			TELEFONO1 => $data[TELEFONO1],
+			CARGO => $data[CARGO],
+			LABORES => $data[LABORES],
+			MES_INICIO => $data[MES_INICIO],
+			ANIO_INICIO => $data[ANIO_INICIO],
+			MES_FIN => $data[MES_FIN],
+			ANIO_FIN => $data[ANIO_FIN],
+			BENEFICIOS => $data[BENEFICIOS],
+			SALARIO => $data[SALARIO],
+			MOTIVO_RETIRO => $data[MOTIVO_RETIRO],
+			FECHA_EDICION => date(FORMATO_FECHA)
+		);
+
+		$this->db->where(IDLAB,$idlab);
+		$this->db->where(ESTADO_REGISTRO,ESTADO_REGISTRO_ACTIVO);
+		$query=$this->db->update(TABLA_USUARIO_LABORAL,$data);
+		return $query;
+	}
+
+	// Eliminar informacion laboral
+	function del($idlab){
+		$data=array(
+			ESTADO_REGISTRO => ESTADO_REGISTRO_ELIMINADO
+		);
+
+		$this->db->where(IDLAB,$idlab);
+		$query=$this->db->update(TABLA_USUARIO_LABORAL,$data);
+		return $query;
+	}
+
+	//Obtener informacion laboral por usuario
+	function getLaboralByUsuario($idusu){
+		$this->db->where(IDUSU,$idusu);
+		$query=$this->db->get(TABLA_USUARIO_LABORAL);
+				
+		if($query->num_rows()>0){
+			return $query;
+		}else{
+			return false;
+		}
+	}
+
+	// Reglas para formularios
 	public $usuario_laboral_rules = array(
-		'empresa' => array(
-			'field' => 'empresa',
+		EMPRESA => array(
+			'field' => EMPRESA,
+			'for' => EMPRESA,
 			'label' => 'Empresa',
 			'rules' => 'trim|required'
 		),
-		'direccion' => array(
-			'field' => 'direccion',
+		DIRECCION => array(
+			'field' => DIRECCION,
+			'for' => DIRECCION,
 			'label' => 'Direccion',
 			'rules' => 'trim|required'
 		),
-		'telefono' => array(
-			'field' => 'telefono',
-			'label' => 'Telefono',
-			'rules' => 'trim|required'			
+		TELEFONO1 => array(
+			'field' => TELEFONO1,
+			'for' => TELEFONO1,
+			'label' => 'Telefono 1',
+			'rules' => 'trim|required'
 		),
-		'cargo' => array(
-			'field' => 'cargo',
+		CARGO => array(
+			'field' => CARGO,
+			'for' => CARGO,
 			'label' => 'Cargo',
 			'rules' => 'trim|required'
 		),
-		'labores' => array(
-			'field' => 'labores',
+		LABORES => array(
+			'field' => LABORES,
+			'for' => LABORES,
 			'label' => 'Labores',
 			'rules' => 'trim|required'
 		),
-		'mesInicio' => array(
-			'field' => 'mesInicio',
+		MES_INICIO => array(
+			'field' => MES_INICIO,
+			'for' => MES_INICIO,
 			'label' => 'Mes Inicio',
 			'rules' => 'trim|required'
 		),
-		'anioInicio' => array(
-			'field' => 'anioInicio',
-			'label' => 'Año de Inicio',
+		ANIO_INICIO => array(
+			'field' => ANIO_INICIO,
+			'for' => ANIO_INICIO,
+			'label' => 'Año Inicio',
 			'rules' => 'trim|required'
 		),
-		'mesFin' => array(
-			'field' => 'mesFin',
+		MES_FIN => array(
+			'field' => MES_FIN,
+			'for' => MES_FIN,
 			'label' => 'Mes Fin',
 			'rules' => 'trim|required'
 		),
-		'anioFin' => array(
-			'field' => 'anioFin',
-			'label' => 'Año de Fin',
+		ANIO_FIN => array(
+			'field' => ANIO_FIN,
+			'for' => ANIO_FIN,
+			'label' => 'Año Fin',
 			'rules' => 'trim|required'
 		),
-		'beneficios' => array(
-			'field' => 'beneficios',
+		BENEFICIOS => array(
+			'field' => BENEFICIOS,
+			'for' => BENEFICIOS,
 			'label' => 'Beneficios',
 			'rules' => 'trim|required'
 		),
-		'salario' => array(
-			'field' => 'salario',
+		SALARIO => array(
+			'field' => SALARIO,
+			'for' => SALARIO,
 			'label' => 'Salario',
 			'rules' => 'trim|required'
 		),
-		'motivoRetiro' => array(
-			'field' => 'motivoRetiro',
-			'label' => 'Motivo de Retiro',
+		MOTIVO_RETIRO => array(
+			'field' => MOTIVO_RETIRO,
+			'for' => MOTIVO_RETIRO,
+			'label' => 'Motivo del retiro',
 			'rules' => 'trim|required'
 		)
 	);
-
-	public $meses = array(
-        '' => '(None)',
-        'Enero'     => 'Enero',
-        'Febrero'   => 'Febrero',
-        'Marzo'     => 'Marzo',
-        'Abril'    => 'Abril',
-        'Mayo'    => 'Mayo',
-        'Junio'    => 'Junio',
-        'Julio'    => 'Julio',
-        'Agosto'    => 'Agosto',
-        'Septiembre'    => 'Septiembre',
-        'Octubre'    => 'Octubre',
-        'Noviembre'    => 'Noviembre',
-        'Diciembre'    => 'Diciembre'
-    );
-
-    public $anios = array(
-        '' => '(None)',
-        '2000' => '2000',
-        '2001' => '2001',
-        '2002' => '2002',
-        '2003' => '2003',
-        '2004' => '2004',
-        '2005' => '2005',
-        '2006' => '2006',
-        '2007' => '2007',
-        '2008' => '2008',
-        '2009' => '2009',
-        '2010' => '2010',
-        '2011' => '2011',
-        '2012' => '2012',
-        '2013' => '2013',
-        '2014' => '2014',
-        '2015' => '2015',
-        '2016' => '2016'
-    );
-
-
-	// Retorna informacion laboral
-	function get($idlab){
-		$this->db->where('idlab',$idlab);
-		$query = $this->db->get('usuario_laboral');
-				
-		if($query->num_rows()>0){
-			return $query;
-		}else{
-			return false;
-		}
-	}
-
-	// Agrega informacion laboral
-	function add($data){
-		$data = array(
-			'idlab' => NULL,
-			'idusu' => $data['idusu'],
-			'empresa' => $data['empresa'],
-			'direccion' => $data['direccion'],
-			'telefono' => $data['telefono'],
-			'cargo' => $data['cargo'],
-			'labores' => $data['labores'],
-			'mesInicio' => $data['mesInicio'],
-			'anioInicio' => $data['anioInicio'],
-			'mesFin' => $data['mesFin'],
-			'anioFin' => $data['anioFin'],
-			'beneficios' => $data['beneficios'],
-			'salario' => $data['salario'],
-			'motivoRetiro' => $data['motivoRetiro']
-		);
-
-		$this->db->insert('usuario_laboral',$data);
-	}
-
-	// Edita informacion laboral
-	function edit($idlab,$data){
-		$data = array(
-			'empresa' => $data['empresa'],
-			'direccion' => $data['direccion'],
-			'telefono' => $data['telefono'],
-			'cargo' => $data['cargo'],
-			'labores' => $data['labores'],
-			'mesInicio' => $data['mesInicio'],
-			'anioInicio' => $data['anioInicio'],
-			'mesFin' => $data['mesFin'],
-			'anioFin' => $data['anioFin'],
-			'beneficios' => $data['beneficios'],
-			'salario' => $data['salario'],
-			'motivoRetiro' => $data['motivoRetiro']
-		);
-
-		$this->db->where('idlab',$idlab);
-		$this->db->update('usuario_laboral',$data);
-	}
-
-	// Borra informacion laboral
-	function del($idlab){
-		$this->db->where('idlab', $idlab);
-		$this->db->delete('usuario_laboral');
-	}
-
-	//
-	//
-	//Retorna informacion laboral de usuario
-	function getUsuario($idusu){
-		$this->db->where('idusu',$idusu);
-		$query = $this->db->get('usuario_laboral');
-				
-		if($query->num_rows()>0){
-			return $query;
-		}else{
-			return false;
-		}
-	}
 }

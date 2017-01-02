@@ -1,85 +1,63 @@
 <?php
 defined('BASEPATH') OR exit('No direct script access allowed');
-?>
+
+// Titulos Paneles
+define ('TITULO_VACANTES' , 'Vacantes');
+?>        
 <div id="page-wrapper">
     <div class="row">
         <div class="col-lg-12">
-            <div class="page-header">                        
-                <img src="<?php echo base_url(PATH_BACK2)?>/ujgh.png" class="img-thumbnail" alt="imgs" width="100%">
-            </div>
+            <br>
         </div>
         <!-- /.col-lg-12 -->
     </div>
-    <!-- /.row -->
+    <!-- /.row -->            
     <div class="row">
-        <div class="col-lg-12">    
-<?php
-    if ($vacante){
-        foreach($vacante->result() as $row_vacante){
-?>        
-            <div class="panel panel-default">
+        <div class="col-lg-12">
+            <div class="panel panel-info">
                 <div class="panel-heading">
-                    <div class="row">
-                        <div class="col-lg-10">
-                            <strong><?= $row_vacante->titulo; ?></strong>
-                        </div>                            
-                        <div class="col-lg-2">
-                            <a href="<?= base_url(PATH_MENU)."/vacante/get/".$row_vacante->idvac; ?>" class="btn btn-success btn-xs"><strong>VER VACANTE</strong></a>
-                        </div>                        
-                    </div>                    
+                    <i class="fa fa-table fa-fw"></i><strong><?= TITULO_VACANTES; ?></strong>
                 </div>
                 <div class="panel-body">
-                    <div class="row">
-                        <div class="col-lg-6">
-                            <strong>Descripcion</strong>
-                            <p>                                
-                                <?= $row_vacante->descripcion; ?>
-                            </p>
-                        </div>
-                        <div class="col-lg-6">
-                            <strong>Requisitos</strong>
-                            <p>
-                                <?=  $row_vacante->requisitos; ?>
-                            </p>
-                        </div>                            
-                    </div>
-                </div>
-                <div class="panel-footer">
-                    <div class="row">
-                        <div class="col-lg-5">
-                            <strong>Salario: <?= $row_vacante->salario; ?></strong>
-                        </div>
-                        <div class="col-lg-5">
-                            <strong>Tipo de vacante: <?= $row_vacante->tipo; ?></strong>
-                        </div>
-                        <div class="col-lg-2">
-                            <strong>Postulados: <?= $row_vacante->postulaciones; ?></strong>
-                        </div>
-                    </div>
-                </div>
-            </div>
+                    <div class="table-responsive">
+                        <table class="table">
+                            <thead>
+                                <tr>
+                                    <th><?= ucwords(IDADJ); ?></th>
+                                    <th><?= ucwords(TITULO); ?></th>
+                                    <th><?= ucwords(DESCRIPCION); ?></th>
+                                    <th><?= ucwords(BENEFICIOS); ?></th>
+                                    <th><?= ucwords(FECHA_REGISTRO); ?></th>
+                                    <th></th>
+                                </tr>
+                            </thead>
+                            <tbody>
+<?php
+    if($vacante){    
+        foreach($vacante->result() as $vacante_row){
+            //var_dump($vacante_row);
+?>                            
+                                <tr>
+                                    <td><?= $vacante_row->idvac; ?></td>
+                                    <td><?= $vacante_row->titulo; ?></td>
+                                    <td><?= $vacante_row->descripcion; ?></td>
+                                    <td><?= $vacante_row->beneficios; ?></td>
+                                    <td><?= date("d/m/Y", strtotime($vacante_row->fecha_registro)); ?></td>
+                                </tr>
 <?php
         }
-    }else{
+    }
 ?>
-            <div class="panel panel-primary">
-                <div class="panel-heading">
-                </div>
-                <div class="panel-body">
-                    <div class="row">
-                        <div class="col-lg-12">
-                            <center><h3>No tenemos vacantes disponibles actualmente para usted.</h3></center>
-                        </div>
+                            </tbody>
+                        </table>
                     </div>
+                    <!-- /.table-responsive -->                        
                 </div>
-                <div class="panel-footer">
-                </div>
+                <!-- /.panel-body -->
             </div>
-<?php            
-    }        
-?>
+            <!-- /.panel -->
         </div>
-        <!-- /.col-lg-6 -->        
+        <!-- /.col-lg-8 -->
     </div>
     <!-- /.row -->
 </div>

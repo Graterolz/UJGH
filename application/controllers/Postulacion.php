@@ -3,15 +3,35 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 
 class Postulacion extends CI_Controller {
 
-	function __construct() {
+	function __construct(){
 		parent::__construct();
-		$this->load->model('Postulacion_model');
-		$this->load->model('Vacante_model');	
+		$this->load->model(VACANTE_MODEL);
+		$this->load->model(POSTULACION_MODEL);	
 	}
 
 	//
 	function index(){
-		if(!$this->session->userdata('idusu')){
+		if(!$this->session->userdata(IDUSU_SESSION)){
+			redirect(USUARIO_LOGIN, 'refresh');
+		}
+
+		$this->load->view(HEADER);
+		$this->load->view(MENU);
+		
+		$idusu = $this->session->userdata(IDUSU_SESSION);
+		$data['postulacion'] = $this->Postulacion_model->getPostulacionByUsuario($idusu);
+
+		if ($this->session->userdata(IDROL_SESSION) == USR){
+			$this->load->view(LIST_POSTULACION_USR,$data);
+		}else{
+			$this->load->view(LIST_POSTULACION_ADM,$data);
+		}
+
+		$this->load->view(FOOTER);
+
+
+
+		/*if(!$this->session->userdata('idusu')){
 			redirect('usuario/login', 'refresh');
 		}
 
@@ -27,12 +47,12 @@ class Postulacion extends CI_Controller {
 			$this->load->view('vacante/list_vacante_usr',$data);
 		}else{
 			$this->load->view('vacante/list_vacante_adm',$data);
-		}*/				
+		}
 		
-		$this->load->view('template/footer');
+		$this->load->view('template/footer');*/
 	}
 
-	//
+	/*//
 	function get(){
 
 	}
@@ -72,5 +92,5 @@ class Postulacion extends CI_Controller {
 	//
 	function del(){
 
-	}
+	}*/
 }

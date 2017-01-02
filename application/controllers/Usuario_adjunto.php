@@ -5,15 +5,19 @@ class Usuario_adjunto extends CI_Controller {
 
 	function __construct() {
 		parent::__construct();
-		$this->load->model('Usuario_adjunto_model');
-		$this->load->helper('ujgh_helper');
+		//$this->load->model('Usuario_adjunto_model');
+		//$this->load->helper('ujgh_helper');
 	}
 
 	function index(){
-		redirect('usuario', 'refresh');
+		redirect(USUARIO_INFO_CONTROLLER, 'refresh');
 	}
 
-	//
+	function add(){
+		redirect(USUARIO_INFO_CONTROLLER, 'refresh');	
+	}
+
+	/*//
 	function get($idadj){
 		$this->index();
 	}	
@@ -88,5 +92,5 @@ class Usuario_adjunto extends CI_Controller {
 		// Borrado de BD
 		$this->Usuario_adjunto_model->del($idadj);
 		redirect('usuario', 'refresh');
-	}
+	}*/
 }

@@ -3,122 +3,111 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 
 class Usuario_academico extends CI_Controller {
 
-	function __construct() {
+	function __construct(){
 		parent::__construct();
-		$this->load->model('Usuario_academico_model');
+		$this->load->model(SYS_MODEL);
+		$this->load->model(USUARIO_ACADEMICO_MODEL);
 	}
 
+	// Index
 	function index(){
-		redirect('usuario', 'refresh');
+		redirect(USUARIO_INFO_CONTROLLER, 'refresh');
 	}
 
-	//
-	function get($idaca){
-		$this->index();
-	}	
-
-	//
+	// Agregar informacion academica de usuario
 	function add(){
-		// Validaciones
-		if(!$this->session->userdata('idusu')){
-			redirect('usuario/login', 'refresh');
+		if(!$this->session->userdata(IDUSU_SESSION)){
+			redirect(USUARIO_LOGIN, 'refresh');
 		}
-		if($this->session->userdata('idrol')!='USR'){
-			redirect('usuario', 'refresh');	
+		if($this->session->userdata(IDROL_SESSION)!=USR){
+			redirect(USUARIO_INFO_CONTROLLER, 'refresh');
 		}		
 
-		$datasession['idusu'] = $this->session->userdata('idusu');
-		$datasession['idrol'] = $this->session->userdata('idrol');	
-
-		//Reglas
-		$data['rules_usuario_academico'] = $this->Usuario_academico_model->usuario_academico_rules;
-		$data['meses'] = $this->Usuario_academico_model->meses;
-		$data['anios'] = $this->Usuario_academico_model->anios;
-
-		$this->form_validation->set_rules($data['rules_usuario_academico']);
+		$rules = $this->Usuario_academico_model->usuario_academico_rules;
+		$this->form_validation->set_rules($rules);
 
 		if ($this->form_validation->run() == TRUE) {
-			$data = array(
-				'idusu' => $datasession['idusu'],
-				'titulo' => $this->input->post('titulo'),
-				'nivelEstudio' => $this->input->post('nivelEstudio'),
-				'institucion' => $this->input->post('institucion'),
-				'mesInicio' => $this->input->post('mesInicio'),
-				'anioInicio' => $this->input->post('anioInicio'),
-				'mesFin' => $this->input->post('mesFin'),
-				'anioFin' => $this->input->post('anioFin')
+			$data = array(				
+				IDUSU => $this->session->userdata(IDUSU_SESSION),
+				TITULO => $this->input->post(TITULO),
+				NIVEL_ESTUDIO => $this->input->post(NIVEL_ESTUDIO),
+				INSTITUCION => $this->input->post(INSTITUCION),
+				MES_INICIO => $this->input->post(MES_INICIO),
+				ANIO_INICIO => $this->input->post(ANIO_INICIO),
+				MES_FIN => $this->input->post(MES_FIN),
+				ANIO_FIN => $this->input->post(ANIO_FIN)
 			);
-			$this->Usuario_academico_model->add($data);
-			redirect('usuario', 'refresh');
-		}
 
-		//
-		$this->load->view('template/header');
-		$this->load->view('template/menu',$datasession);
-		$this->load->view('usuario_academico/add_usuario_academico',$data);
-		$this->load->view('template/footer');
+			$this->Usuario_academico_model->add($data);
+			redirect(USUARIO_INFO_CONTROLLER, 'refresh');
+		}		
+
+		$data['usuario_academico_rules'] = $this->Usuario_academico_model->usuario_academico_rules;		
+		$data['form_attributes'] = $this->Sys_model->form_attributes;
+		$data['meses'] = $this->Sys_model->meses;
+		$data['anios'] = $this->Sys_model->anios;
+
+		$this->load->view(HEADER);
+		$this->load->view(MENU);
+		$this->load->view(ADD_USUARIO_ACADEMICO,$data);
+		$this->load->view(FOOTER);
 	}
 
-	//
-	function edit($idaca = NULL){
-		// Validaciones
-		if(!$this->session->userdata('idusu')){
-			redirect('usuario/login', 'refresh');
+	// Editar informacion academica de usuario
+	function edit($idaca){
+		if(!$this->session->userdata(IDUSU_SESSION)){
+			redirect(USUARIO_LOGIN, 'refresh');
 		}
-		if($this->session->userdata('idrol')!='USR'){
-			redirect('usuario', 'refresh');	
+		if($this->session->userdata(IDROL_SESSION)!=USR){
+			redirect(USUARIO_INFO_CONTROLLER, 'refresh');
 		}
 		if(!$this->Usuario_academico_model->get($idaca)){
-			redirect('usuario', 'refresh');
-		}		
+			redirect(USUARIO_INFO_CONTROLLER, 'refresh');
+		}
 
-		$datasession['idusu'] = $this->session->userdata('idusu');
-		$datasession['idrol'] = $this->session->userdata('idrol');	
-
-		//Reglas
-		$data['rules_usuario_academico'] = $this->Usuario_academico_model->usuario_academico_rules;
-		$data['meses'] = $this->Usuario_academico_model->meses;
-		$data['anios'] = $this->Usuario_academico_model->anios;
-
-		$this->form_validation->set_rules($data['rules_usuario_academico']);
+		$rules = $this->Usuario_academico_model->usuario_academico_rules;
+		$this->form_validation->set_rules($rules);
 
 		if ($this->form_validation->run() == TRUE) {
 			$data = array(
-				'idusu' => $datasession['idusu'],
-				'titulo' => $this->input->post('titulo'),
-				'nivelEstudio' => $this->input->post('nivelEstudio'),
-				'institucion' => $this->input->post('institucion'),
-				'mesInicio' => $this->input->post('mesInicio'),
-				'anioInicio' => $this->input->post('anioInicio'),
-				'mesFin' => $this->input->post('mesFin'),
-				'anioFin' => $this->input->post('anioFin')
+				TITULO => $this->input->post(TITULO),
+				NIVEL_ESTUDIO => $this->input->post(NIVEL_ESTUDIO),
+				INSTITUCION => $this->input->post(INSTITUCION),
+				MES_INICIO => $this->input->post(MES_INICIO),
+				ANIO_INICIO => $this->input->post(ANIO_INICIO),
+				MES_FIN => $this->input->post(MES_FIN),
+				ANIO_FIN => $this->input->post(ANIO_FIN)
 			);
+
 			$this->Usuario_academico_model->edit($idaca,$data);
-			redirect('usuario', 'refresh');
-		}		
+			redirect(USUARIO_INFO_CONTROLLER, 'refresh');
+		}
 
 		$data['usuario_academico'] = $this->Usuario_academico_model->get($idaca);
-		//
-		$this->load->view('template/header');
-		$this->load->view('template/menu',$datasession);
-		$this->load->view('usuario_academico/edit_usuario_academico',$data);
-		$this->load->view('template/footer');
+		$data['usuario_academico_rules'] = $this->Usuario_academico_model->usuario_academico_rules;		
+		$data['form_attributes'] = $this->Sys_model->form_attributes;
+		$data['meses'] = $this->Sys_model->meses;
+		$data['anios'] = $this->Sys_model->anios;
+
+		$this->load->view(HEADER);
+		$this->load->view(MENU);
+		$this->load->view(EDIT_USUARIO_ACADEMICO,$data);
+		$this->load->view(FOOTER);
 	}
 
-	//
+	// Eliminar informacion academica de usuario
 	function del($idaca = NULL){
-		if(!$this->session->userdata('idusu')){
-			redirect('usuario/login', 'refresh');
+		if(!$this->session->userdata(IDUSU_SESSION)){
+			redirect(USUARIO_LOGIN, 'refresh');
 		}
-		if($this->session->userdata('idrol')!='USR'){
-			redirect('usuario', 'refresh');
+		if($this->session->userdata(IDROL_SESSION)!=USR){
+			redirect(USUARIO_INFO_CONTROLLER, 'refresh');
 		}
 		if(!$this->Usuario_academico_model->get($idaca)){
-			redirect('usuario', 'refresh');
+			redirect(USUARIO_INFO_CONTROLLER, 'refresh');
 		}		
 
-		$this->Usuario_academico_model->del($idaca);
-		redirect('usuario', 'refresh');
+		//$this->Usuario_academico_model->del($idaca);
+		redirect(USUARIO_INFO_CONTROLLER, 'refresh');
 	}
-
 }

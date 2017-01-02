@@ -4,149 +4,135 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 <div id="page-wrapper">
     <div class="row">
         <div class="col-lg-12">
-            <div class="page-header">
-                <img src="<?php echo base_url(PATH_BACK2)?>/ujgh.png" class="img-thumbnail" alt="imgs" width="100%">
-            </div>
+            <br>
         </div>
         <!-- /.col-lg-12 -->
     </div>
     <!-- /.row -->
     <div class="row">
-        <div class="col-lg-12">          
-            <div class="panel panel-info">
+        <div class="col-lg-12">
+<?php
+if ($usuario_academico){
+    $usuario_academico_row = $usuario_academico->row();
+
+    $usuario_academico_form = array(
+        TITULO => array(
+            'class' => 'form-control',
+            'name' => TITULO,
+            'placeholder' => $usuario_academico_rules[TITULO]['label'],
+            'value' => $usuario_academico_row->titulo,
+            'required' => TRUE
+        ),
+		NIVEL_ESTUDIO => array(
+            'class' => 'form-control',
+            'name' => NIVEL_ESTUDIO,
+            'placeholder' => $usuario_academico_rules[NIVEL_ESTUDIO]['label'],
+            'value' => $usuario_academico_row->nivel_estudio,
+            'required' => TRUE
+		),
+		INSTITUCION => array(
+            'class' => 'form-control',
+            'name' => INSTITUCION,
+            'placeholder' => $usuario_academico_rules[INSTITUCION]['label'],
+            'value' => $usuario_academico_row->institucion,
+            'required' => TRUE
+		),
+		MES_INICIO => array(
+            'class' => 'form-control',
+            'name' => MES_INICIO,
+            'value' => $usuario_academico_row->mes_inicio,
+            'required' => TRUE
+		),
+		ANIO_INICIO => array(
+            'class' => 'form-control',
+            'name' => ANIO_INICIO,
+            'value' => $usuario_academico_row->anio_inicio,
+            'required' => TRUE
+		),
+		MES_FIN => array(
+            'class' => 'form-control',
+            'name' => MES_FIN,
+            'value' => $usuario_academico_row->mes_fin,
+            'required' => TRUE
+		),
+		ANIO_FIN => array(
+            'class' => 'form-control',
+            'name' => ANIO_FIN,
+            'value' => $usuario_academico_row->anio_fin,
+            'required' => TRUE
+		)
+	);
+}
+?>
+            <!-- USUARIO_ACADEMICO -->
+            <div class="panel panel-primary">
                 <div class="panel-heading">
                     <div class="row">
                         <div class="col-lg-12">
-                            <strong>Detalles de datos academicos</strong>
+                            <div class="btn btn-default">
+                                <a href="<?= base_url(PATH_MENU)."/".USUARIO_INFO_CONTROLLER; ?>">
+                                    <i class="fa fa-book fa-fw"></i><strong><?= TITULO_USUARIO_ACADEMICO; ?></strong>
+                                </a>
+                            </div>
                         </div>
                     </div>
                 </div>
-                <div class="panel-body">
-                    <div class="row">
-                        <div class="col-lg-12">
-<?php
-if ($usuario_academico){
-    $row_usuario_academico = $usuario_academico->row();
-    //var_dump($rules_usuario_academico);
-    //var_dump($meses);
-    //var_dump($anios);
-
-    $rules_form = array(
-        'titulo' => array(
-            'class' => 'form-control',
-            'name' => 'titulo',
-            'placeholder' => 'Ingrese Titulo',
-            'value' => $row_usuario_academico->titulo,
-            'required' => TRUE
-        ),
-        'nivelEstudio' => array(
-            'class' => 'form-control',
-            'name' => 'nivelEstudio',
-            'placeholder' => 'Ingrese Nivel de Estudios',
-            'value' => $row_usuario_academico->nivelEstudio,
-            'required' => TRUE
-        ),
-        'institucion' => array(
-            'class' => 'form-control',
-            'name' => 'institucion',
-            'placeholder' => 'Ingrese Institucion',
-            'value' => $row_usuario_academico->institucion,
-            'required' => TRUE
-        ),
-        'mesInicio' => array(
-            'class' => 'form-control',
-            'name' => 'mesInicio',
-            'required' => TRUE
-        ),
-        'anioInicio' => array(
-            'class' => 'form-control',
-            'name' => 'anioInicio',
-            'required' => TRUE
-        ),
-        'mesFin' => array(
-            'class' => 'form-control',
-            'name' => 'mesFin',
-            'value' => $row_usuario_academico->mesFin,
-            'required' => TRUE
-        ),
-        'anioFin' => array(
-            'class' => 'form-control',
-            'name' => 'anioFin',
-            'value' => $row_usuario_academico->anioFin,
-            'required' => TRUE
-        )
-    );
-
-    $attributes = array(
-        'role' => 'form',
-        'autocomplete' => 'off'
-    );    
-?> 
-                        <?= form_open('',$attributes); ?>
-                        <div class="form-group">
-                            <div class="row">
-                                <div class="col-lg-6">
-                                    <?= form_label($rules_usuario_academico['titulo']['label'],$rules_usuario_academico['titulo']['field']); ?>
-                                    <?= form_input($rules_form['titulo']) ?>
-                                </div>
-                                <div class="col-lg-3">
-                                    <?= form_label($rules_usuario_academico['mesInicio']['label'],$rules_usuario_academico['mesInicio']['field']);?>
-                                    <strong> / </strong>
-                                    <?= form_label($rules_usuario_academico['anioInicio']['label'],$rules_usuario_academico['anioInicio']['field']); ?>
-                                    <br>
-                                    <?= form_dropdown($rules_form['mesInicio'],$meses,$row_usuario_academico->mesInicio,''); ?>
-                                    <?= form_dropdown($rules_form['anioInicio'],$anios,$row_usuario_academico->anioInicio,''); ?>
-                                </div>
-                                <div class="col-lg-3">
-                                    <?= form_label($rules_usuario_academico['mesFin']['label'],$rules_usuario_academico['mesFin']['field']);?>
-                                    <strong> / </strong>
-                                    <?= form_label($rules_usuario_academico['anioFin']['label'],$rules_usuario_academico['anioFin']['field']); ?>
-                                    <br>
-                                    <?= form_dropdown($rules_form['mesFin'],$meses,$row_usuario_academico->mesFin,''); ?>
-                                    <?= form_dropdown($rules_form['anioFin'],$anios,$row_usuario_academico->anioFin,''); ?>
+                <?= form_open('',$form_attributes);?>
+                    <div class="panel-body">
+                        <div class="row">
+                            <div class="col-lg-12">
+                                <div class="form-group">
+                                	<div class="row">
+                                		<div class="col-lg-6">
+                                			<?= form_label($usuario_academico_rules[TITULO]['label'],$usuario_academico_rules[TITULO]['field']); ?>
+                                			<?= form_input($usuario_academico_form[TITULO]) ?>
+                                		</div>
+                                		<div class="col-lg-3">
+                                			<?= form_label($usuario_academico_rules[MES_INICIO]['label']." / ".$usuario_academico_rules[ANIO_INICIO]['label']); ?>
+                                			<br>
+                                			<?= form_dropdown(MES_INICIO,$meses,$usuario_academico_form[MES_INICIO]['value'],$usuario_academico_form[MES_INICIO]); ?>
+                                			<?= form_dropdown(ANIO_INICIO,$anios,$usuario_academico_form[ANIO_INICIO]['value'],$usuario_academico_form[ANIO_INICIO]); ?>
+                                		</div>
+                                		<div class="col-lg-3">
+                                			<?= form_label($usuario_academico_rules[MES_FIN]['label']." / ".$usuario_academico_rules[ANIO_FIN]['label']); ?>
+                                			<br>
+                                			<?= form_dropdown(MES_FIN,$meses,$usuario_academico_form[MES_FIN]['value'],$usuario_academico_form[MES_FIN]); ?>
+                                			<?= form_dropdown(ANIO_FIN,$anios,$usuario_academico_form[ANIO_FIN]['value'],$usuario_academico_form[ANIO_FIN]); ?>
+                                		</div>
+                                	</div>
                                 </div>
                             </div>
-                        </div>
-                        <div class="form-group">
-                            <div class="row">
-                                <div class="col-lg-12">
-                                    <?= form_label($rules_usuario_academico['nivelEstudio']['label'],$rules_usuario_academico['nivelEstudio']['field']); ?>
-                                    <?= form_input($rules_form['nivelEstudio']) ?>
-                                </div>
-                                <div class="col-lg-12">
-                                    <?= form_label($rules_usuario_academico['institucion']['label'],$rules_usuario_academico['institucion']['field']); ?>
-                                    <?= form_input($rules_form['institucion']) ?>
+                            <!-- /.col-lg-12 (nested) -->
+                            <div class="col-lg-6">
+                            	<div class="form-group">
+                            		<?= form_label($usuario_academico_rules[INSTITUCION]['label'],$usuario_academico_rules[INSTITUCION]['field']); ?>
+                            		<?= form_input($usuario_academico_form[INSTITUCION]) ?>
                                 </div>
                             </div>
-                        </div>
-                        <div class="form-group">
-                            <div class="row">
-                                <div class="col-lg-6">
-                                    <center>
-                                        <a href="<?= base_url(PATH_MENU)."/usuario"; ?>" class="btn btn-primary"><strong>ATRAS</strong></a>
-                                    </center>
-                                </div>
-                                <div class="col-lg-6">
-                                    <center>
-                                        <button type="submit" class="btn btn-success"><strong>EDITAR</strong></button>
-                                    </center>
+                        	<!-- /.col-lg-6 (nested) -->
+                        	<div class="col-lg-6">
+                                <div class="form-group">
+                                    <?= form_label($usuario_academico_rules[NIVEL_ESTUDIO]['label'],$usuario_academico_rules[NIVEL_ESTUDIO]['field']); ?>
+                                    <?= form_input($usuario_academico_form[NIVEL_ESTUDIO]) ?>
                                 </div>
                             </div>
+                            <!-- /.col-lg-6 (nested) -->
                         </div>
-                        <?= form_close(); ?>
-<?php
-    }else{
-?>
-            <center><h2>No existen los datos solicitados.</h2></center>
-<?php            
-    }
-?>                    
-                        </div>
-                        <!-- /.col-lg-6 (nested) -->
+                        <!-- /.row (nested) -->
                     </div>
-                    <!-- /.row (nested) -->
-                </div>
-                <!-- /.panel-body -->
+                    <div class="panel-footer">
+                        <div class="row">
+                            <div class="col-lg-10">
+                            </div>
+                            <div class="col-lg-2">
+                                <div class="form-group">
+                                    <button type="submit" class="btn btn-default"><i class="fa fa-gear fa-fw"></i><strong>EDITAR</strong></button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- /.panel-body -->
+                <?= form_close(); ?>
             </div>
             <!-- /.panel -->
         </div>

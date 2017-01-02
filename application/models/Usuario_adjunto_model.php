@@ -1,31 +1,20 @@
 <?php
 defined('BASEPATH') OR exit('No direct script access allowed');
 
-class Usuario_adjunto_model extends CI_Model {
+class Usuario_adjunto_model extends CI_Model{
 
-	public function __construct() {
+	public function __construct(){
 		parent::__construct();
 		$this->load->database();
 	}
 
-	// Reglas
-	public $usuario_adjunto_rules = array(
-		'titulo' => array(
-			'field' => 'titulo',
-			'label' => 'Titulo',
-			'rules' => 'trim|required'
-		),
-		'url' => array(
-			'field' => 'url',
-			'label' => 'Ruta',
-			'rules' => 'trim'
-		)
-	);	
-
-	// Retorna informacion adjunta
+	// Obtener informacion adjunta
 	function get($idadj){
-		$this->db->where('idadj',$idadj);
-		$query = $this->db->get('usuario_adjunto');
+		if($idadj!=NULL){
+			$this->db->where(IDADJ,$idadj);
+		}
+		$this->db->where(ESTADO_REGISTRO,ESTADO_REGISTRO_ACTIVO);
+		$query=$this->db->get(TABLA_USUARIO_ADJUNTO);
 				
 		if($query->num_rows()>0){
 			return $query;
@@ -34,42 +23,52 @@ class Usuario_adjunto_model extends CI_Model {
 		}
 	}
 
-	// Agrega informacion adjunta
+	// Insertar informacion adjunta
 	function add($data){
-		$data = array(
-			'idadj' => NULL,
-			'idusu' => $data['idusu'],
-			'titulo' => $data['titulo'],
-			'url' => $data['url']
+		$data=array(
+			IDADJ => NULL,
+			IDUSU => $data[IDUSU],
+			TITULO => $data[TITULO],
+			URL => $data[URL],
+			FECHA_REGISTRO => date(FORMATO_FECHA),
+			FECHA_EDICION => date(FORMATO_FECHA),
+			ESTADO_REGISTRO => ESTADO_REGISTRO_ACTIVO
 		);
 		
-		$this->db->insert('usuario_adjunto',$data);
+		$query=$this->db->insert(TABLA_USUARIO_ADJUNTO,$data);
+		return $query;
 	}
 
-	// Edita informacion adjunta
+	// Editar informacion adjunta
 	function edit($idadj,$data){
-		$data = array(
-			'idusu' => $data['idusu'],
-			'titulo' => $data['titulo'],
-			'url' => $data['url']
+		$data=array(
+			TITULO => $data[TITULO],
+			FECHA_EDICION => date(FORMATO_FECHA)
 		);
 		
-		$this->db->where('idadj', $idadj);
-		$this->db->update('usuario_adjunto',$data);
-	}
+		$this->db->where(IDADJ,$idadj);
+		$this->db->where(ESTADO_REGISTRO,ESTADO_REGISTRO_ACTIVO);
+		$query=$this->db->update(TABLA_USUARIO_ADJUNTO,$data);
+		return $query;
+	}	
 
-	// Borra informacion adjunta
+	// Eliminar informacion adjunta
 	function del($idadj){
-		$this->db->where('idadj', $idadj);
-		$this->db->delete('usuario_adjunto');
-	}
+		$data=array(
+			ESTADO_REGISTRO => ESTADO_REGISTRO_ELIMINADO
+		);
 
-	//
-	//
-	// Retorna informacion adjunta de usuario
-	function getUsuario($idusu){
-		$this->db->where('idusu',$idusu);
-		$query = $this->db->get('usuario_adjunto');
+		$this->db->where(IDADJ,$idadj);
+		$this->db->where(ESTADO_REGISTRO,ESTADO_REGISTRO_ACTIVO);
+		$query=$this->db->update(TABLA_USUARIO_ADJUNTO,$data);
+		return $query;
+	}	
+
+	// Obtener informacion adjunta por usuario
+	function getAdjutosByUsuario($idusu){
+		$this->db->where(IDUSU,$idusu);
+		$this->db->where(ESTADO_REGISTRO,ESTADO_REGISTRO_ACTIVO);
+		$query=$this->db->get(TABLA_USUARIO_ADJUNTO);
 				
 		if($query->num_rows()>0){
 			return $query;
@@ -77,4 +76,9 @@ class Usuario_adjunto_model extends CI_Model {
 			return false;
 		}
 	}
+
+	//
+	public $usuario_adjunto_rules = array(
+	
+	);
 }

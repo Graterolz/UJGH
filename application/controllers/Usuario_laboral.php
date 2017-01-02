@@ -5,14 +5,40 @@ class Usuario_laboral extends CI_Controller {
 
 	function __construct() {
 		parent::__construct();
-		$this->load->model('Usuario_laboral_model');
+		$this->load->model(SYS_MODEL);
+		$this->load->model(USUARIO_LABORAL_MODEL);		
+		//$this->load->model('Usuario_laboral_model');
 	}
 
+	// Index
 	function index(){
-		redirect('usuario', 'refresh');
+		redirect(USUARIO_INFO_CONTROLLER, 'refresh');
 	}
 
-	//
+	function add(){
+		redirect(USUARIO_INFO_CONTROLLER, 'refresh');
+	}
+
+	function edit(){
+		redirect(USUARIO_INFO_CONTROLLER, 'refresh');
+	}
+
+	function del($idlab = NULL){
+		if(!$this->session->userdata(IDUSU_SESSION)){
+			redirect(USUARIO_LOGIN, 'refresh');
+		}
+		if($this->session->userdata(IDROL_SESSION)!=USR){
+			redirect(USUARIO_INFO_CONTROLLER, 'refresh');
+		}
+		if(!$this->Usuario_laboral_model->get($idlab)){
+			redirect(USUARIO_INFO_CONTROLLER, 'refresh');
+		}		
+
+		//$this->Usuario_laboral_model->del($idaca);
+		redirect(USUARIO_INFO_CONTROLLER, 'refresh');
+	}
+
+	/*//
 	function get($idlab){
 		$this->index();
 	}	
@@ -129,5 +155,5 @@ class Usuario_laboral extends CI_Controller {
 
 		$this->Usuario_laboral_model->del($idlab);
 		redirect('usuario', 'refresh');
-	}	
+	}*/	
 }
