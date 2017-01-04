@@ -54,7 +54,7 @@ class Usuario_academico extends CI_Controller {
 	}
 
 	// Editar informacion academica de usuario
-	function edit($idaca){
+	function edit($idaca = NULL){
 		if(!$this->session->userdata(IDUSU_SESSION)){
 			redirect(USUARIO_LOGIN, 'refresh');
 		}

@@ -1,1 +1,3 @@
-edit_usuario_laboral
+<?php
+defined('BASEPATH') OR exit('No direct script access allowed');
+?>

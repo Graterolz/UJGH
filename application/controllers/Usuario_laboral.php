@@ -53,9 +53,16 @@ class Usuario_laboral extends CI_Controller {
 		$this->load->view(FOOTER);
 	}
 
-	//
-	function edit(){
-		redirect(USUARIO_INFO_CONTROLLER, 'refresh');
+	// Editar informacion laboral de usuario
+	function edit($idlab = NULL){
+		$data['form_attributes'] = $this->Sys_model->form_attributes;
+		$data['meses'] = $this->Sys_model->meses;
+		$data['anios'] = $this->Sys_model->anios;
+		
+		$this->load->view(HEADER);
+		$this->load->view(MENU);
+		$this->load->view(EDIT_USUARIO_LABORAL,$data);
+		$this->load->view(FOOTER);
 	}
 
 	function del($idlab = NULL){

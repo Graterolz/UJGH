@@ -6,9 +6,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
         <div class="col-lg-12">
             <br>
         </div>
-        <!-- /.col-lg-12 -->
     </div>
-    <!-- /.row -->
     <div class="row">
         <div class="col-lg-12">
 <?php
@@ -64,7 +62,7 @@ if ($usuario_academico){
 	);
 }
 ?>
-            <!-- USUARIO_ACADEMICO -->
+            <?= form_open('',$form_attributes);?>
             <div class="panel panel-primary">
                 <div class="panel-heading">
                     <div class="row">
@@ -77,63 +75,53 @@ if ($usuario_academico){
                         </div>
                     </div>
                 </div>
-                <?= form_open('',$form_attributes);?>
-                    <div class="panel-body">
+                <div class="panel-body">
+                    <div class="well">
                         <div class="row">
                             <div class="col-lg-12">
                                 <div class="form-group">
-                                	<div class="row">
-                                		<div class="col-lg-6">
-                                			<?= form_label($usuario_academico_rules[TITULO]['label'],$usuario_academico_rules[TITULO]['field']); ?>
-                                			<?= form_input($usuario_academico_form[TITULO]) ?>
-                                		</div>
-                                		<div class="col-lg-3">
-                                			<?= form_label($usuario_academico_rules[MES_INICIO]['label']." / ".$usuario_academico_rules[ANIO_INICIO]['label']); ?>
-                                			<br>
-                                			<?= form_dropdown(MES_INICIO,$meses,$usuario_academico_form[MES_INICIO]['value'],$usuario_academico_form[MES_INICIO]); ?>
-                                			<?= form_dropdown(ANIO_INICIO,$anios,$usuario_academico_form[ANIO_INICIO]['value'],$usuario_academico_form[ANIO_INICIO]); ?>
-                                		</div>
-                                		<div class="col-lg-3">
-                                			<?= form_label($usuario_academico_rules[MES_FIN]['label']." / ".$usuario_academico_rules[ANIO_FIN]['label']); ?>
-                                			<br>
-                                			<?= form_dropdown(MES_FIN,$meses,$usuario_academico_form[MES_FIN]['value'],$usuario_academico_form[MES_FIN]); ?>
-                                			<?= form_dropdown(ANIO_FIN,$anios,$usuario_academico_form[ANIO_FIN]['value'],$usuario_academico_form[ANIO_FIN]); ?>
-                                		</div>
-                                	</div>
+                                    <div class="row">
+                                        <div class="col-lg-4">
+                                            <?= form_label($usuario_academico_rules[TITULO]['label'],$usuario_academico_rules[TITULO]['field']); ?>
+                                            <?= form_input($usuario_academico_form[TITULO]) ?>
+                                        </div>
+                                        <div class="col-lg-3">
+                                            <?= form_label($usuario_academico_rules[MES_INICIO]['label']." / ".$usuario_academico_rules[ANIO_INICIO]['label']); ?>
+                                            <br>
+                                            <?= form_dropdown(NULL,$meses,$usuario_academico_form[MES_INICIO]['value'],$usuario_academico_form[MES_INICIO]); ?>
+                                            <?= form_dropdown(NULL,$anios,$usuario_academico_form[ANIO_INICIO]['value'],$usuario_academico_form[ANIO_INICIO]); ?>
+                                        </div>
+                                        <div class="col-lg-3">
+                                            <?= form_label($usuario_academico_rules[MES_FIN]['label']." / ".$usuario_academico_rules[ANIO_FIN]['label']); ?>
+                                            <br>
+                                            <?= form_dropdown(NULL,$meses,$usuario_academico_form[MES_FIN]['value'],$usuario_academico_form[MES_FIN]); ?>
+                                            <?= form_dropdown(NULL,$anios,$usuario_academico_form[ANIO_FIN]['value'],$usuario_academico_form[ANIO_FIN]); ?>
+                                        </div>
+                                        <div class="col-lg-2">
+                                            <center>
+                                                <button type="submit" class="btn btn-success "><i class="fa fa-gear fa-fw"></i><strong>EDITAR</strong></button>
+                                            </center>
+                                        </div>
+                                    </div>
                                 </div>
                             </div>
-                            <!-- /.col-lg-12 (nested) -->
                             <div class="col-lg-6">
-                            	<div class="form-group">
-                            		<?= form_label($usuario_academico_rules[INSTITUCION]['label'],$usuario_academico_rules[INSTITUCION]['field']); ?>
-                            		<?= form_input($usuario_academico_form[INSTITUCION]) ?>
+                                <div class="form-group">
+                                    <?= form_label($usuario_academico_rules[INSTITUCION]['label'],$usuario_academico_rules[INSTITUCION]['field']); ?>
+                                    <?= form_input($usuario_academico_form[INSTITUCION]) ?>
                                 </div>
                             </div>
-                        	<!-- /.col-lg-6 (nested) -->
-                        	<div class="col-lg-6">
+                            <div class="col-lg-6">
                                 <div class="form-group">
                                     <?= form_label($usuario_academico_rules[NIVEL_ESTUDIO]['label'],$usuario_academico_rules[NIVEL_ESTUDIO]['field']); ?>
                                     <?= form_input($usuario_academico_form[NIVEL_ESTUDIO]) ?>
                                 </div>
                             </div>
-                            <!-- /.col-lg-6 (nested) -->
-                        </div>
-                        <!-- /.row (nested) -->
-                    </div>
-                    <div class="panel-footer">
-                        <div class="row">
-                            <div class="col-lg-10">
-                            </div>
-                            <div class="col-lg-2">
-                                <div class="form-group">
-                                    <button type="submit" class="btn btn-default"><i class="fa fa-gear fa-fw"></i><strong>EDITAR</strong></button>
-                                </div>
-                            </div>
                         </div>
                     </div>
-                    <!-- /.panel-body -->
-                <?= form_close(); ?>
+                </div>                
             </div>
+            <?= form_close(); ?>
             <!-- /.panel -->
         </div>
         <!-- /.col-lg-12 -->

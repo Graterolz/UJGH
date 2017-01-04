@@ -95,10 +95,13 @@ if ($usuario_info){
             <div class="panel panel-primary">
                 <div class="panel-heading">
                     <div class="row">
-                        <div class="col-lg-12">
+                        <div class="col-lg-10">
                             <div class="btn btn-default">
                                 <i class="fa fa-user fa-fw"></i><strong><?= TITULO_USUARIO_INFO; ?></strong>
                             </div>
+                        </div>
+                        <div class="col-lg-2">
+
                         </div>
                     </div>
                 </div>
@@ -121,7 +124,7 @@ if ($usuario_info){
                                     </div>
                                     <div class="col-lg-2"> 
                                         <center>
-                                            <a href="<?= base_url(PATH_MENU)."/".USUARIO_INFO_EDIT."/".$usuario_info_row->idusu; ?>" class="btn btn-success btn-xs"><i class="fa fa-gear fa-fw"></i><strong>EDITAR</strong></a>
+                                            <a href="<?= base_url(PATH_MENU)."/".USUARIO_INFO_EDIT."/".$usuario_info_row->idusu; ?>" class="btn btn-success"><i class="fa fa-gear fa-fw"></i><strong>EDITAR</strong></a>
                                         </center>
                                     </div>
                                 </div>
@@ -391,7 +394,7 @@ if($usuario_academico){
                                             <a href="<?= base_url(PATH_MENU)."/".USUARIO_LABORAL_EDIT."/".$usuario_laboral_row->idlab; ?>" class="btn btn-success btn-xs"><i class="fa fa-gear fa-fw"></i><strong>EDITAR</strong></a>
                                             <a href="<?= base_url(PATH_MENU)."/".USUARIO_LABORAL_DEL."/".$usuario_laboral_row->idlab; ?>" class="btn btn-danger btn-xs"><i class="fa fa-trash-o fa-fw"></i><strong>ELIMINAR</strong></a>
                                         </center>
-                                    </div>                                    
+                                    </div>
                                 </div>
                                 <div class="row">
                                     <div class="col-lg-4">
