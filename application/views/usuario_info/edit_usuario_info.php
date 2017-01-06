@@ -121,15 +121,15 @@ if ($usuario_info){
                             <div class="col-lg-12">
                                 <div class="form-group">
                                     <div class="row">
-                                        <div class="col-lg-2">
+                                        <div class="col-lg-4">
                                             <?= form_label($usuario_info_rules[CEDULA]['label'],$usuario_info_rules[CEDULA]['field']); ?>
                                             <?= form_input($usuario_info_form[CEDULA]) ?>
                                         </div>
-                                        <div class="col-lg-4">
+                                        <div class="col-lg-3">
                                             <?= form_label($usuario_info_rules[NOMBRE]['label'],$usuario_info_rules[NOMBRE]['field']); ?>
                                             <?= form_input($usuario_info_form[NOMBRE]) ?>
                                         </div>
-                                        <div class="col-lg-4">
+                                        <div class="col-lg-3">
                                             <?= form_label($usuario_info_rules[APELLIDO]['label'],$usuario_info_rules[APELLIDO]['field']); ?>
                                             <?= form_input($usuario_info_form[APELLIDO]) ?>
                                         </div>
@@ -144,11 +144,11 @@ if ($usuario_info){
                             <div class="col-lg-4">
                                 <div class="form-group">
                                     <?= form_label($usuario_info_rules[GENERO]['label'],$usuario_info_rules[GENERO]['field']); ?>
-                                    <?= form_input($usuario_info_form[GENERO]) ?>
+                                    <?= form_dropdown(NULL,$generos,$usuario_info_form[GENERO]['value'],$usuario_info_form[GENERO]); ?>
                                 </div>
                                 <div class="form-group">
                                     <?= form_label($usuario_info_rules[ESTADO_CIVIL]['label'],$usuario_info_rules[ESTADO_CIVIL]['field']); ?>
-                                    <?= form_dropdown(ESTADO_CIVIL,$estado_civil,$usuario_info_form[ESTADO_CIVIL]['value'],$usuario_info_form[ESTADO_CIVIL]); ?>
+                                    <?= form_dropdown(NULL,$estado_civil,$usuario_info_form[ESTADO_CIVIL]['value'],$usuario_info_form[ESTADO_CIVIL]); ?>
                                 </div>
                                 <div class="form-group">
                                     <?= form_label($usuario_info_rules[TELEFONO2]['label'],$usuario_info_rules[TELEFONO2]['field']); ?>
@@ -172,7 +172,7 @@ if ($usuario_info){
                             <div class="col-lg-4">
                                 <div class="form-group">
                                     <?= form_label($usuario_info_rules[NACIONALIDAD]['label'],$usuario_info_rules[NACIONALIDAD]['field']); ?>
-                                    <?= form_dropdown(NACIONALIDAD,$nacionalidad,$usuario_info_form[NACIONALIDAD]['value'],$usuario_info_form[NACIONALIDAD]); ?>
+                                    <?= form_dropdown(NULL,$nacionalidad,$usuario_info_form[NACIONALIDAD]['value'],$usuario_info_form[NACIONALIDAD]); ?>
                                 </div>
                                 <div class="form-group">
                                     <?= form_label($usuario_info_rules[TELEFONO1]['label'],$usuario_info_rules[TELEFONO1]['field']); ?>

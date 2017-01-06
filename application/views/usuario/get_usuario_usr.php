@@ -38,7 +38,7 @@ if ($usuario_info){
             'class' => 'form-control',
             'name' => GENERO,
             'value' => $usuario_info_row->genero,
-            'readonly' => TRUE
+            'disabled' => TRUE
         ),
         FECHA_NACIMIENTO => array(
             'class' => 'form-control',
@@ -132,11 +132,11 @@ if ($usuario_info){
                                     <div class="col-lg-4">
                                         <div class="form-group">
                                             <?= form_label($usuario_info_rules[GENERO]['label'],$usuario_info_rules[GENERO]['field']); ?>
-                                            <?= form_input($usuario_info_form[GENERO]); ?>
+                                            <?= form_dropdown(NULL,$generos,$usuario_info_form[GENERO]['value'],$usuario_info_form[GENERO]); ?>
                                         </div> 
                                         <div class="form-group">
                                             <?= form_label($usuario_info_rules[ESTADO_CIVIL]['label'],$usuario_info_rules[ESTADO_CIVIL]['field']); ?>
-                                            <?= form_dropdown(ESTADO_CIVIL,$estado_civil,$usuario_info_form[ESTADO_CIVIL]['value'],$usuario_info_form[ESTADO_CIVIL]); ?>
+                                            <?= form_dropdown(NULL,$estado_civil,$usuario_info_form[ESTADO_CIVIL]['value'],$usuario_info_form[ESTADO_CIVIL]); ?>
                                         </div>
                                         <div class="form-group">
                                             <?= form_label($usuario_info_rules[TELEFONO2]['label'],$usuario_info_rules[TELEFONO2]['field']); ?>
@@ -162,7 +162,7 @@ if ($usuario_info){
                                     <div class="col-lg-4">
                                         <div class="form-group">
                                             <?= form_label($usuario_info_rules[NACIONALIDAD]['label'],$usuario_info_rules[NACIONALIDAD]['field']); ?>
-                                            <?= form_dropdown(NACIONALIDAD,$nacionalidad,$usuario_info_form[NACIONALIDAD]['value'],$usuario_info_form[NACIONALIDAD]); ?>
+                                            <?= form_dropdown(NULL,$nacionalidad,$usuario_info_form[NACIONALIDAD]['value'],$usuario_info_form[NACIONALIDAD]); ?>
                                         </div>
                                         <div class="form-group">
                                             <?= form_label($usuario_info_rules[TELEFONO1]['label'],$usuario_info_rules[TELEFONO1]['field']); ?>
