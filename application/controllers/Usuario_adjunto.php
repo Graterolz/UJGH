@@ -9,19 +9,21 @@ class Usuario_adjunto extends CI_Controller {
 		//$this->load->helper('ujgh_helper');
 	}
 
-	function index(){
+	//
+	function add(){
 		redirect(USUARIO_INFO_CONTROLLER, 'refresh');
 	}
 
-	function add(){
+	function edit(){
 		redirect(USUARIO_INFO_CONTROLLER, 'refresh');	
 	}
 
-	/*//
-	function get($idadj){
-		$this->index();
+	//
+	function del(){
+		redirect(USUARIO_INFO_CONTROLLER, 'refresh');
 	}	
 
+	/*
 	//
 	function add(){
 		// Validaciones

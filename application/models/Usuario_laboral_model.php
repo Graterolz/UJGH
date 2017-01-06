@@ -40,9 +40,9 @@ class Usuario_laboral_model extends CI_Model{
 			BENEFICIOS => $data[BENEFICIOS],
 			SALARIO => $data[SALARIO],
 			MOTIVO_RETIRO => $data[MOTIVO_RETIRO],
-			FECHA_REGISTRO => $data[FECHA_REGISTRO],
-			FECHA_EDICION => $data[FECHA_EDICION],
-			ESTADO_REGISTRO => $data[ESTADO_REGISTRO]
+			FECHA_REGISTRO => date(FORMATO_FECHA),
+			FECHA_EDICION => date(FORMATO_FECHA),
+			ESTADO_REGISTRO => ESTADO_REGISTRO_ACTIVO
 		);
 
 		$query=$this->db->insert(TABLA_USUARIO_LABORAL,$data);

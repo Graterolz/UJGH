@@ -456,7 +456,7 @@ if($usuario_academico){
 
             <hr>
 
-            <!-- USUARIO_ADJUNTO --
+            <!-- USUARIO_ADJUNTO -->
             <div class="panel panel-primary">
                 <div class="panel-heading">
                     <div class="row">
@@ -475,10 +475,10 @@ if($usuario_academico){
                         <table class="table">
                             <thead>
                                 <tr>
-                                    <th><?= ucwords(IDADJ); ?></th>
-                                    <th><?= ucwords(TITULO); ?></th>
-                                    <th><?= ucwords(FECHA_REGISTRO); ?></th>
-                                    <th></th>
+                                    <th><?= $usuario_adjunto_rules[IDADJ]['label'];; ?></th>
+                                    <th><?= $usuario_adjunto_rules[TITULO]['label']; ?></th>
+                                    <th><?= $usuario_adjunto_rules[FECHA_REGISTRO]['label']; ?></th>
+                                    <th colspan="3"></th>
                                 </tr>
                             </thead>
                             <tbody>
@@ -490,6 +490,12 @@ if($usuario_academico){
                                     <td><?= $usuario_adjunto_row->idadj; ?></td>
                                     <td><?= $usuario_adjunto_row->titulo; ?></td>
                                     <td><?= date("d/m/Y", strtotime($usuario_adjunto_row->fecha_registro)); ?></td>
+                                    <!--<td><a href="<?= base_url()."uploads/".$usuario_adjunto_row->url; ?>" target="_blank"><strong>VER</strong></a></td>-->
+                                    <td><a href="<?= base_url()."uploads/".$usuario_adjunto_row->url; ?>" target="_blank" class="btn btn-default btn-xs"><i class="fa fa-search fa-fw"></i><strong>VER</strong></a></td>
+
+                                    <td><a href="<?= base_url(PATH_MENU)."/".USUARIO_ADJUNTO_EDIT."/".$usuario_adjunto_row->idadj; ?>" class="btn btn-success btn-xs"><i class="fa fa-gear fa-fw"></i><strong>EDITAR</strong></a></td>
+                                    <td><a href="<?= base_url(PATH_MENU)."/".USUARIO_ADJUNTO_DEL."/".$usuario_adjunto_row->idadj; ?>" class="btn btn-danger btn-xs"><i class="fa fa-trash-o fa-fw"></i><strong>ELIMINAR</strong></a></td>
+
                                 </tr>
 <?php
         }

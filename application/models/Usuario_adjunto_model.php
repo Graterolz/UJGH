@@ -79,6 +79,23 @@ class Usuario_adjunto_model extends CI_Model{
 
 	//
 	public $usuario_adjunto_rules = array(
-	
+		IDADJ => array(
+			'label' => 'ID'
+		),
+		TITULO => array(
+			'field' => TITULO,
+			'for' => TITULO,
+			'label' => 'Titulo',
+			'rules' => 'trim|required'
+		),
+		URL => array(
+			'field' => URL,
+			'for' => URL,
+			'label' => 'Ruta',
+			'rules' => 'trim|required'
+		),
+		FECHA_REGISTRO => array(
+			'label' => 'Fecha de Registro'
+		),
 	);
 }

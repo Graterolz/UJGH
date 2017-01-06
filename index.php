@@ -33,6 +33,8 @@ define ('USUARIO_LABORAL_DEL','usuario_laboral/del');
 // Controlador USUARIO_ADJUNTO
 define ('USUARIO_ADJUNTO_CONTROLLER','usuario_adjunto');
 define ('USUARIO_ADJUNTO_ADD','usuario_adjunto/add');
+define ('USUARIO_ADJUNTO_EDIT','usuario_adjunto/edit');
+define ('USUARIO_ADJUNTO_DEL','usuario_adjunto/del');
 
 //
 define ('VACANTE_CONTROLLER','vacante');
@@ -46,7 +48,7 @@ define ('IDROL_SESSION','idrol_ujghempleo');
 define ('HEADER','templates/header');
 define ('MENU','templates/menu');
 define ('FOOTER','templates/footer');
-define ('TITULO_MENU','Empleo UJGH');
+define ('TITULO_MENU','UJGH Empleo');
 define ('MENU_USUARIO_INFO','Usuario');
 define ('MENU_USUARIO_ACADEMICO','Academico');
 define ('TITULO_VACANTE','Vacantes');
