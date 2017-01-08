@@ -86,4 +86,50 @@ class Vacante_model extends CI_Model{
 		$query=$this->db->update(TABLA_VACANTE,$data);
 		return $query;
 	}
+
+	//
+	public $vacante_rules = array(
+		IDVAC => array(
+			'label' => 'ID'
+		),
+		TITULO => array(
+			'field' => TITULO,
+			'for' => TITULO,
+			'label' => 'Titulo',
+			'rules' => 'trim|required'
+		),
+		DESCRIPCION => array(
+			'field' => DESCRIPCION,
+			'for' => DESCRIPCION,
+			'label' => 'Descripcion',
+			'rules' => 'trim|required'
+		),
+		BENEFICIOS => array(
+			'field' => BENEFICIOS,
+			'for' => BENEFICIOS,
+			'label' => 'Beneficios',
+			'rules' => 'trim|required'
+		),
+		REQUISITOS => array(
+			'field' => REQUISITOS,
+			'for' => REQUISITOS,
+			'label' => 'Requisitos',
+			'rules' => 'trim|required'
+		),
+		SALARIO => array(
+			'field' => SALARIO,
+			'for' => SALARIO,
+			'label' => 'Salario',
+			'rules' => 'trim|required'
+		),
+		TIPO => array(
+			'field' => TIPO,
+			'for' => TIPO,
+			'label' => 'Tipo de Vacante',
+			'rules' => 'trim|required'
+		),
+		FECHA_REGISTRO => array(
+			'label' => 'Fecha de Registro'
+		)
+	);	
 }

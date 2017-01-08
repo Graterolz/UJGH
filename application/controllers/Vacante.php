@@ -18,6 +18,7 @@ class Vacante extends CI_Controller {
 		$this->load->view(HEADER);
 		$this->load->view(MENU);
 		
+		$data['vacante_rules'] = $this->Vacante_model->vacante_rules;
 		$data['vacante'] = $this->Vacante_model->get(NULL);
 
 		if ($this->session->userdata(IDROL_SESSION) == USR){
@@ -28,6 +29,23 @@ class Vacante extends CI_Controller {
 
 		$this->load->view(FOOTER);
 	}
+
+	// Obtener informacion de vacante
+	function get($idvac = NULL){
+		redirect(VACANTE_CONTROLLER, 'refresh');
+	}
+
+	// Agregar informacion de vacante
+	function add(){
+		redirect(VACANTE_CONTROLLER, 'refresh');
+	}
+
+	// Editar informacion de vacante
+	function edit($idvac = NULL){
+		redirect(VACANTE_CONTROLLER, 'refresh');
+	}
+
+
 
 	/*// Modulo para obtener informacion de vacante
 	function get($idvac = '*'){

@@ -3,6 +3,9 @@
 define ('PATH_MENU' , 'index.php');
 define ('PATH_RESOURCES' , 'resources/startbootstrap-sb-admin-2');
 define ('PATH_RESOURCES2' , 'resources/imgs');
+
+// Helpers
+define ('SYS_HELPER','Sys_helper');
 // Modelos
 define ('SYS_MODEL','Sys_model');
 define ('USUARIO_INFO_MODEL','Usuario_info_model');
@@ -36,8 +39,14 @@ define ('USUARIO_ADJUNTO_ADD','usuario_adjunto/add');
 define ('USUARIO_ADJUNTO_EDIT','usuario_adjunto/edit');
 define ('USUARIO_ADJUNTO_DEL','usuario_adjunto/del');
 
-//
+// Controlador VACANTE
 define ('VACANTE_CONTROLLER','vacante');
+define ('VACANTE_GET','vacante/get');
+define ('VACANTE_ADD','vacante/add');
+define ('VACANTE_EDIT','vacante/edit');
+define ('VACANTE_DEL','vacante/del');
+
+// Controlador POSTULACION
 define ('POSTULACION_CONTROLLER','postulacion');
 
 // Variable de SESSION
@@ -64,6 +73,7 @@ define ('ADD_USUARIO_ACADEMICO','usuario_academico/add_usuario_academico');
 define ('EDIT_USUARIO_ACADEMICO','usuario_academico/edit_usuario_academico');
 define ('ADD_USUARIO_LABORAL','usuario_laboral/add_usuario_laboral');
 define ('EDIT_USUARIO_LABORAL','usuario_laboral/edit_usuario_laboral');
+define ('ADD_USUARIO_ADJUNTO','usuario_adjunto/add_usuario_adjunto');
 
 define ('LIST_VACANTE_USR','vacante/list_vacante_usr');
 define ('LIST_VACANTE_ADM','vacante/list_vacante_adm');

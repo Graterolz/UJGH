@@ -108,6 +108,8 @@ class Usuario_laboral extends CI_Controller {
 
 	// Eliminar informacion laboral de usuario
 	function del($idlab = NULL){
+		redirect(USUARIO_INFO_CONTROLLER, 'refresh');
+		
 		if(!$this->session->userdata(IDUSU_SESSION)){
 			redirect(USUARIO_LOGIN, 'refresh');
 		}
@@ -118,7 +120,7 @@ class Usuario_laboral extends CI_Controller {
 			redirect(USUARIO_INFO_CONTROLLER, 'refresh');
 		}		
 
-		//$this->Usuario_laboral_model->del($idaca);
+		$this->Usuario_laboral_model->del($idlab);
 		redirect(USUARIO_INFO_CONTROLLER, 'refresh');
 	}
 }

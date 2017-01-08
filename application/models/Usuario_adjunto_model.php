@@ -92,10 +92,10 @@ class Usuario_adjunto_model extends CI_Model{
 			'field' => URL,
 			'for' => URL,
 			'label' => 'Ruta',
-			'rules' => 'trim|required'
+			'rules' => NULL
 		),
 		FECHA_REGISTRO => array(
 			'label' => 'Fecha de Registro'
-		),
+		)
 	);
 }

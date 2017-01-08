@@ -42,7 +42,7 @@ class Usuario_academico extends CI_Controller {
 			redirect(USUARIO_INFO_CONTROLLER, 'refresh');
 		}		
 
-		$data['usuario_academico_rules'] = $this->Usuario_academico_model->usuario_academico_rules;		
+		$data['usuario_academico_rules'] = $this->Usuario_academico_model->usuario_academico_rules;
 		$data['form_attributes'] = $this->Sys_model->form_attributes;
 		$data['meses'] = $this->Sys_model->meses;
 		$data['anios'] = $this->Sys_model->anios;
@@ -97,6 +97,8 @@ class Usuario_academico extends CI_Controller {
 
 	// Eliminar informacion academica de usuario
 	function del($idaca = NULL){
+		redirect(USUARIO_INFO_CONTROLLER, 'refresh');
+		
 		if(!$this->session->userdata(IDUSU_SESSION)){
 			redirect(USUARIO_LOGIN, 'refresh');
 		}
@@ -107,7 +109,7 @@ class Usuario_academico extends CI_Controller {
 			redirect(USUARIO_INFO_CONTROLLER, 'refresh');
 		}		
 
-		//$this->Usuario_academico_model->del($idaca);
+		$this->Usuario_academico_model->del($idaca);
 		redirect(USUARIO_INFO_CONTROLLER, 'refresh');
 	}
 }
