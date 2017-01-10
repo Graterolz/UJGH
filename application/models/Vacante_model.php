@@ -129,7 +129,9 @@ class Vacante_model extends CI_Model{
 			'rules' => 'trim|required'
 		),
 		FECHA_REGISTRO => array(
+			'field' => FECHA_REGISTRO,
+			'for' => FECHA_REGISTRO,			
 			'label' => 'Fecha de Registro'
 		)
-	);	
+	);
 }

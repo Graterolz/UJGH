@@ -26,18 +26,14 @@ class Usuario_info extends CI_Controller {
 		if ($this->session->userdata(IDROL_SESSION) == USR){
 			$idusu = $this->session->userdata(IDUSU_SESSION);
 
-			//Datos
 			$data['usuario_info'] = $this->Usuario_info_model->get($idusu);
 			$data['usuario_academico'] = $this->Usuario_academico_model->getAcademicoByUsuario($idusu);
 			$data['usuario_laboral'] = $this->Usuario_laboral_model->getLaboralByUsuario($idusu);
 			$data['usuario_adjunto'] = $this->Usuario_adjunto_model->getAdjutosByUsuario($idusu);
-
-			//Reglas
 			$data['usuario_info_rules'] = $this->Usuario_info_model->usuario_info_rules;
 			$data['usuario_academico_rules'] = $this->Usuario_academico_model->usuario_academico_rules;
 			$data['usuario_laboral_rules'] = $this->Usuario_laboral_model->usuario_laboral_rules;
 			$data['usuario_adjunto_rules'] = $this->Usuario_adjunto_model->usuario_adjunto_rules;
-
 			$data['generos'] = $this->Sys_model->generos;
 			$data['estado_civil'] = $this->Sys_model->estado_civil;
 			$data['nacionalidad'] = $this->Sys_model->nacionalidad;			

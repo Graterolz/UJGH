@@ -23,14 +23,14 @@ $idrol = $this->session->userdata(IDROL_SESSION);
                             <a href="<?= base_url(PATH_MENU)."/".USUARIO_INFO_CONTROLLER; ?>"><i class="fa fa-user fa-fw"></i><?= MENU_USUARIO_INFO; ?></a>
                         </li>
                         <li>
-                            <a href="<?= base_url(PATH_MENU)."/".VACANTE_CONTROLLER; ?>"><i class="fa fa-table fa-fw"></i><?= TITULO_VACANTE; ?></a>
+                            <a href="<?= base_url(PATH_MENU)."/".VACANTE_CONTROLLER; ?>"><i class="fa fa-table fa-fw"></i><?= MENU_VACANTE; ?></a>
                         </li>
-                        <!--<li>
-                            <a href="<?= base_url(PATH_MENU)."/".POSTULACION_CONTROLLER; ?>"><i class="fa fa-edit fa-fw"></i><?= TITULO_POSTULACION; ?></a>
-                        </li>-->
                         <li>
-                            <a href="<?= base_url(PATH_MENU)."/".USUARIO_LOGOUT; ?>"><i class="fa fa-sign-out fa-fw"></i><?= TITULO_LOGOUT; ?></a>
-                        </li>                        
+                            <a href="<?= base_url(PATH_MENU)."/".POSTULACION_CONTROLLER; ?>"><i class="fa fa-edit fa-fw"></i><?= MENU_POSTULACION; ?></a>
+                        </li>
+                        <li>
+                            <a href="<?= base_url(PATH_MENU)."/".USUARIO_LOGOUT; ?>"><i class="fa fa-sign-out fa-fw"></i><?= MENU_LOGOUT; ?></a>
+                        </li>
                     </ul>
                 </div>
                 <!-- /.sidebar-collapse -->

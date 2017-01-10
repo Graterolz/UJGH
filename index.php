@@ -6,6 +6,11 @@ define ('PATH_RESOURCES2' , 'resources/imgs');
 
 // Helpers
 define ('SYS_HELPER','Sys_helper');
+
+// Variables de SESSION
+define ('IDUSU_SESSION','idusu_ujghempleo');
+define ('IDROL_SESSION','idrol_ujghempleo');
+
 // Modelos
 define ('SYS_MODEL','Sys_model');
 define ('USUARIO_INFO_MODEL','Usuario_info_model');
@@ -17,9 +22,9 @@ define ('POSTULACION_MODEL','Postulacion_model');
 
 // Controlador USUARIO_INFO
 define ('USUARIO_INFO_CONTROLLER','usuario_info');
+define ('USUARIO_INFO_EDIT','usuario_info/edit');
 define ('USUARIO_LOGIN','usuario_info/login');
 define ('USUARIO_LOGOUT','usuario_info/logout');
-define ('USUARIO_INFO_EDIT','usuario_info/edit');
 
 // Controlador USUARIO_ACADEMICO
 define ('USUARIO_ACADEMICO_CONTROLLER','usuario_academico');
@@ -48,35 +53,33 @@ define ('VACANTE_DEL','vacante/del');
 
 // Controlador POSTULACION
 define ('POSTULACION_CONTROLLER','postulacion');
+define ('POSTULACION_ADD','postulacion/add');
 
-// Variable de SESSION
-define ('IDUSU_SESSION','idusu_ujghempleo');
-define ('IDROL_SESSION','idrol_ujghempleo');
-
-// Vistas MENU
-define ('HEADER','templates/header');
-define ('MENU','templates/menu');
-define ('FOOTER','templates/footer');
-define ('TITULO_MENU','UJGH Empleo');
-define ('MENU_USUARIO_INFO','Usuario');
-define ('MENU_USUARIO_ACADEMICO','Academico');
-define ('TITULO_VACANTE','Vacantes');
-define ('TITULO_POSTULACION','Postulaciones');
-define ('TITULO_LOGOUT','Logout');
-
-// Vistas
+// Vistas USUARIO_INFO
 define ('GET_LOGIN','usuario/get_login');
 define ('GET_USUARIO_USR','usuario/get_usuario_usr');
 define ('GET_USUARIO_ADM','usuario/get_usuario_adm');
 define ('EDIT_USUARIO_INFO','usuario_info/edit_usuario_info');
+
+// Vistas USUARIO_ACADEMICO
 define ('ADD_USUARIO_ACADEMICO','usuario_academico/add_usuario_academico');
 define ('EDIT_USUARIO_ACADEMICO','usuario_academico/edit_usuario_academico');
+
+// Vistas USUARIO_LABORAL
 define ('ADD_USUARIO_LABORAL','usuario_laboral/add_usuario_laboral');
 define ('EDIT_USUARIO_LABORAL','usuario_laboral/edit_usuario_laboral');
+
+// Vistas USUARIO_ADJUNTO
 define ('ADD_USUARIO_ADJUNTO','usuario_adjunto/add_usuario_adjunto');
 
+// Vistas VACANTE
 define ('LIST_VACANTE_USR','vacante/list_vacante_usr');
 define ('LIST_VACANTE_ADM','vacante/list_vacante_adm');
+define ('GET_VACANTE','vacante/get_vacante');
+define ('ADD_VACANTE','vacante/add_vacante');
+define ('EDIT_VACANTE','vacante/edit_vacante');
+
+// Vistas POSTULACION
 define ('LIST_POSTULACION_USR','postulacion/list_postulacion_usr');
 define ('LIST_POSTULACION_ADM','postulacion/list_postulacion_adm');
 
@@ -152,11 +155,24 @@ define ('ADM','ADM');
 // Formato fecha
 define ('FORMATO_FECHA','Y-m-d H:i:s');
 
+// Vistas MENU
+define ('HEADER','templates/header');
+define ('MENU','templates/menu');
+define ('FOOTER','templates/footer');
+define ('TITULO_MENU','UJGH Empleo');
+define ('MENU_USUARIO_INFO','Usuario');
+define ('MENU_USUARIO_ACADEMICO','Academico');
+define ('MENU_VACANTE','Vacantes');
+define ('MENU_POSTULACION','Postulaciones');
+define ('MENU_LOGOUT','Logout');
+
 // Titulos Paneles
 define ('TITULO_USUARIO_INFO','Informacion Personal');
 define ('TITULO_USUARIO_ADJUNTO','Informacion Adjunta');
 define ('TITULO_USUARIO_ACADEMICO','Informacion Academica');
 define ('TITULO_USUARIO_LABORAL','Informacion Laboral');
+define ('TITULO_VACANTE','Vacantes');
+define ('TITULO_POSTULACION','Postulaciones');
 
 /**
  * CodeIgniter

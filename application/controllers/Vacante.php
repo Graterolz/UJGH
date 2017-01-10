@@ -5,11 +5,12 @@ class Vacante extends CI_Controller {
 
 	function __construct(){
 		parent::__construct();
+		$this->load->model(SYS_MODEL);
 		$this->load->model(VACANTE_MODEL);
 		$this->load->model(POSTULACION_MODEL);
 	}
 
-	//
+	// Index
 	function index(){
 		if(!$this->session->userdata(IDUSU_SESSION)){
 			redirect(USUARIO_LOGIN, 'refresh');
@@ -32,7 +33,22 @@ class Vacante extends CI_Controller {
 
 	// Obtener informacion de vacante
 	function get($idvac = NULL){
-		redirect(VACANTE_CONTROLLER, 'refresh');
+		if(!$this->session->userdata(IDUSU_SESSION)){
+			redirect(USUARIO_LOGIN, 'refresh');
+		}
+		if(!$this->Vacante_model->get($idvac)){
+			redirect(VACANTE_CONTROLLER, 'refresh');
+		}	
+
+		$data['vacante'] = $this->Vacante_model->get($idvac);
+		$data['vacante_rules'] = $this->Vacante_model->vacante_rules;
+		$data['form_attributes'] = $this->Sys_model->form_attributes;
+		$data['tipo_vacante'] = $this->Sys_model->tipo_vacante;
+
+		$this->load->view(HEADER);
+		$this->load->view(MENU);
+		$this->load->view(GET_VACANTE,$data);
+		$this->load->view(FOOTER);
 	}
 
 	// Agregar informacion de vacante
@@ -48,35 +64,7 @@ class Vacante extends CI_Controller {
 
 
 	/*// Modulo para obtener informacion de vacante
-	function get($idvac = '*'){
-		// Validaciones
-		if(!$this->session->userdata('idusu')){
-			redirect('usuario/login', 'refresh');
-		}
-		if(!$this->Vacante_model->get($idvac)){
-			redirect('usuario', 'refresh');
-		}
 
-		$datasession['idusu'] = $this->session->userdata('idusu');
-		$datasession['idrol'] = $this->session->userdata('idrol');
-
-		$data['vacante'] = $this->Vacante_model->get($idvac);
-		$data['postulacion_vacante'] = $this->Vacante_model->getPostulados($idvac);
-
-		//Reglas
-		$data['rules_vacante'] =$this->Vacante_model->vacante_rules;
-
-		$this->load->view('template/header');		
-		$this->load->view('template/menu',$datasession);
-		
-		if ($datasession['idrol']=='USR'){
-			$this->load->view('vacante/get_vacante_usr',$data);
-		}else{
-			$this->load->view('vacante/get_vacante_adm',$data);
-		}
-		
-		$this->load->view('template/footer');		
-	}
 
 	// Modulo para agregar vacante
 	function add(){

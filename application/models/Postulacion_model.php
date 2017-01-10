@@ -83,4 +83,8 @@ class Postulacion_model extends CI_Model{
 			return false;
 		}
 	}
+
+	//
+	public $postulacion_rules = array();
+
 }

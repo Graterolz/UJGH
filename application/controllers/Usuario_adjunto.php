@@ -3,7 +3,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 
 class Usuario_adjunto extends CI_Controller {
 
-	function __construct() {		
+	function __construct(){		
 		parent::__construct();
 		$this->load->model(SYS_MODEL);
 		$this->load->model(USUARIO_ADJUNTO_MODEL);

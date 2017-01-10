@@ -1,17 +1,12 @@
 <?php
 defined('BASEPATH') OR exit('No direct script access allowed');
-
-// Titulos Paneles
-define ('TITULO_VACANTES' , 'Vacantes');
-?>        
+?>
 <div id="page-wrapper">
     <div class="row">
         <div class="col-lg-12">
             <br>
         </div>
-        <!-- /.col-lg-12 -->
-    </div>
-    <!-- /.row -->            
+    </div>           
     <div class="row">
         <div class="col-lg-12">
             <div class="panel panel-primary">
@@ -19,11 +14,11 @@ define ('TITULO_VACANTES' , 'Vacantes');
                     <div class="row">
                         <div class="col-lg-10">
                             <div class="btn btn-default">
-                                <i class="fa fa-table fa-fw"></i><strong><?= TITULO_VACANTES; ?></strong>
+                                <i class="fa fa-table fa-fw"></i><strong><?= TITULO_VACANTE; ?></strong>
                             </div>
                         </div>
                         <div class="col-lg-2">
-                            <a href="<?= base_url(PATH_MENU)."/".VACANTE_ADD; ?>" class="btn btn-default"><i class="fa fa-table fa-fw"></i><strong>NUEVO</strong></a>
+                            <!--<a href="<?= base_url(PATH_MENU)."/".VACANTE_ADD; ?>" class="btn btn-default"><i class="fa fa-table fa-fw"></i><strong>NUEVO</strong></a>-->
                         </div>
                     </div>
                 </div>

@@ -13,6 +13,12 @@ class Sys_model extends CI_Model{
         'autocomplete' => 'off'
     );
 
+    public $tipo_vacante = array(
+        '' => '(None)',
+        'Administrativo' => 'Administrativo',
+        'Docente' => 'Docente'
+    );
+
     public $generos = array(
         '' => '(None)',
         'Masculino' => 'Masculino',
