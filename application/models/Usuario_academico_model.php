@@ -129,7 +129,7 @@ class Usuario_academico_model extends CI_Model{
 			'field' => ANIO_FIN,
 			'for' => ANIO_FIN,
 			'label' => 'Año Fin',
-			'rules' => 'trim|required'			
+			'rules' => 'trim|required'
 		)
 	);
 }

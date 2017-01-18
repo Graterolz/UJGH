@@ -6,27 +6,31 @@ defined('BASEPATH') OR exit('No direct script access allowed');
         <div class="col-lg-12">
             <br>
         </div>
-        <!-- /.col-lg-12 -->
     </div>
-    <!-- /.row -->
     <div class="row">
         <div class="col-lg-12">
             <div class="panel panel-primary">
                 <div class="panel-heading">
-                    <i class="fa fa-edit fa-fw"></i><strong><?= TITULO_POSTULACION; ?></strong>
+                    <div class="row">
+                        <div class="col-lg-12">
+                            <div class="btn btn-default">
+                                <i class="fa fa-edit fa-fw"></i><strong><?= TITULO_POSTULACION; ?></strong>
+                            </div>
+                        </div>
+                    </div>
                 </div>
                 <div class="panel-body">
                     <div class="table-responsive">
                         <table class="table">
                             <thead>
-                                <tr>
-                                    <th><?= ucwords(IDPOS); ?></th>
-                                    <th><?= ucwords(TITULO); ?></th>
-                                    <th><?= ucwords(DESCRIPCION); ?></th>
-                                    <th><?= ucwords(BENEFICIOS); ?></th>
-                                    <th><?= ucwords(TIPO); ?></th>
-                                    <th><?= ucwords(ESTADO); ?></th>
-                                    <th><?= ucwords(FECHA_REGISTRO); ?></th>
+                                <tr>                                                                        
+                                    <th><?= $postulacion_rules[IDPOS]['label']; ?></th>
+                                    <th><?= $vacante_rules[TITULO]['label']; ?></th>
+                                    <th><?= $vacante_rules[DESCRIPCION]['label']; ?></th>
+                                    <th><?= $vacante_rules[BENEFICIOS]['label']; ?></th>
+                                    <th><?= $vacante_rules[TIPO]['label']; ?></th>
+                                    <th><?= $postulacion_rules[ESTADO]['label']; ?></th>
+                                    <th><?= $vacante_rules[FECHA_REGISTRO]['label']; ?></th>
                                 </tr>
                             </thead>
                             <tbody>

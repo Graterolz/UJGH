@@ -29,10 +29,10 @@ class Postulacion_model extends CI_Model{
 			IDPOS => NULL,
 			IDVAC => $data[IDVAC],
 			IDUSU => $data[IDUSU],
-			ESTADO => $data[ESTADO],
-			FECHA_REGISTRO => $data[FECHA_REGISTRO],
-			FECHA_EDICION => $data[FECHA_EDICION],
-			ESTADO_REGISTRO => $data[ESTADO_REGISTRO]
+			ESTADO => 'Enviado',
+			FECHA_REGISTRO => date(FORMATO_FECHA),
+			FECHA_EDICION => date(FORMATO_FECHA),
+			ESTADO_REGISTRO => ESTADO_REGISTRO_ACTIVO
 		);
 
 		$query=$this->db->insert(TABLA_POSTULACION,$data);
@@ -84,7 +84,28 @@ class Postulacion_model extends CI_Model{
 		}
 	}
 
+	// Obtener informacion de postulacion por vacante y usuario
+	function getPostulacionByVacanteUsuario($idvac,$idusu){
+		$this->db->where(IDVAC,$idvac);
+		$this->db->where(IDUSU,$idusu);
+		$this->db->where(ESTADO_REGISTRO,ESTADO_REGISTRO_ACTIVO);
+		$query=$this->db->get(TABLA_POSTULACION);
+
+		if($query->num_rows()>0){
+			return $query;
+		}else{
+			return false;
+		}
+	}
+
 	//
-	public $postulacion_rules = array();
+	public $postulacion_rules = array(
+		IDPOS => array(
+			'label' => 'ID'
+		),
+		ESTADO => array(
+			'label' => 'Estado del Registro'
+		)
+	);
 
 }

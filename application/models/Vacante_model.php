@@ -25,8 +25,8 @@ class Vacante_model extends CI_Model{
 			vacante.salario, vacante.fecha_registro, vacante.tipo'
 		);
 		$this->db->where('vacante.'.ESTADO_REGISTRO,ESTADO_REGISTRO_ACTIVO);
-		$this->db->order_by('9','DESC');
-		$this->db->order_by('1');
+		//$this->db->order_by('9','DESC');
+		$this->db->order_by('1','DESC');
 
 		$query=$this->db->get();
 		//echo $this->db->last_query();
@@ -48,9 +48,9 @@ class Vacante_model extends CI_Model{
 			REQUISITOS => $data[REQUISITOS],
 			SALARIO => $data[SALARIO],
 			TIPO => $data[TIPO],
-			FECHA_REGISTRO => $data[FECHA_REGISTRO],
-			FECHA_EDICION => $data[FECHA_EDICION],
-			ESTADO_REGISTRO => $data[ESTADO_REGISTRO]
+			FECHA_REGISTRO => date(FORMATO_FECHA),
+			FECHA_EDICION => date(FORMATO_FECHA),
+			ESTADO_REGISTRO => ESTADO_REGISTRO_ACTIVO
 		);
 		
 		$query=$this->db->insert(TABLA_VACANTE,$data);
@@ -130,7 +130,7 @@ class Vacante_model extends CI_Model{
 		),
 		FECHA_REGISTRO => array(
 			'field' => FECHA_REGISTRO,
-			'for' => FECHA_REGISTRO,			
+			'for' => FECHA_REGISTRO,
 			'label' => 'Fecha de Registro'
 		)
 	);

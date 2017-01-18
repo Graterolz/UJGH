@@ -38,7 +38,7 @@ class Vacante extends CI_Controller {
 		}
 		if(!$this->Vacante_model->get($idvac)){
 			redirect(VACANTE_CONTROLLER, 'refresh');
-		}	
+		}
 
 		$data['vacante'] = $this->Vacante_model->get($idvac);
 		$data['vacante_rules'] = $this->Vacante_model->vacante_rules;

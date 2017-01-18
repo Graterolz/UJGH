@@ -19,6 +19,8 @@ class Postulacion extends CI_Controller {
 		$this->load->view(MENU);
 		
 		$idusu = $this->session->userdata(IDUSU_SESSION);
+		$data['vacante_rules'] = $this->Vacante_model->vacante_rules;
+		$data['postulacion_rules'] = $this->Postulacion_model->postulacion_rules;
 		$data['postulacion'] = $this->Postulacion_model->getPostulacionByUsuario($idusu);
 
 		if ($this->session->userdata(IDROL_SESSION) == USR){
@@ -32,50 +34,25 @@ class Postulacion extends CI_Controller {
 
 	// Envia informacion de postulacion
 	function add($idvac = NULL){
-		$this->load->view(HEADER);
-		$this->load->view(MENU);
-		$this->load->view(FOOTER);
-	}
-
-	/*//
-	function get(){
-
-	}
-
-	//
-	function add($idvac = NULL){
-		// Validaciones
-		if(!$this->session->userdata('idusu')){
-			redirect('usuario/login', 'refresh');
+		if(!$this->session->userdata(IDUSU_SESSION)){
+			redirect(USUARIO_LOGIN, 'refresh');
 		}
 		if(!$this->Vacante_model->get($idvac)){
-			redirect('usuario', 'refresh');
+			redirect(VACANTE_CONTROLLER, 'refresh');
 		}
 
-		$datasession['idusu'] = $this->session->userdata('idusu');
-		$datasession['idrol'] = $this->session->userdata('idrol');
+		$idusu = $this->session->userdata(IDUSU_SESSION);
+
+		if($this->Postulacion_model->getPostulacionByVacanteUsuario($idvac,$idusu)){
+			redirect(VACANTE_CONTROLLER, 'refresh');
+		}
 
 		$data = array(
-			'idvac' => $idvac,
-			'idusu' => $datasession['idusu'],
-			'estado' => 'Enviado',
-			'fechaPostulacion' => date("Y/m/d")
+			IDVAC => $idvac,
+			IDUSU => $idusu
 		);
 
-		if(!$this->Postulacion_model->getUsuario($data['idusu'],$data['idvac'])){
-			$this->Postulacion_model->add($data);
-		}
-
-		redirect('vacante', 'refresh');
+		$this->Postulacion_model->add($data);
+		redirect(POSTULACION_CONTROLLER, 'refresh');
 	}
-
-	//
-	function edit(){
-
-	}
-
-	//
-	function del(){
-
-	}*/
 }

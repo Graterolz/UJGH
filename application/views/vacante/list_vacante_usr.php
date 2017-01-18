@@ -12,17 +12,13 @@ defined('BASEPATH') OR exit('No direct script access allowed');
             <div class="panel panel-primary">
                 <div class="panel-heading">
                     <div class="row">
-                        <div class="col-lg-10">
+                        <div class="col-lg-12">
                             <div class="btn btn-default">
                                 <i class="fa fa-table fa-fw"></i><strong><?= TITULO_VACANTE; ?></strong>
                             </div>
                         </div>
-                        <div class="col-lg-2">
-                            <!--<a href="<?= base_url(PATH_MENU)."/".VACANTE_ADD; ?>" class="btn btn-default"><i class="fa fa-table fa-fw"></i><strong>NUEVO</strong></a>-->
-                        </div>
                     </div>
                 </div>
-
                 <div class="panel-body">
                     <div class="table-responsive">
                         <table class="table">

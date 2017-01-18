@@ -128,7 +128,6 @@ if ($vacante){
                                         	<br>
                                         	<center>
                                                 <a href="<?= base_url(PATH_MENU)."/".POSTULACION_ADD."/".$vacante_row->idvac; ?>" class="btn btn-success"><i class="fa fa-check fa-fw"></i><strong>ENVIAR CURRICULUM</strong></a>
-                                                <!--<a href="<?= base_url(PATH_MENU)."/".USUARIO_INFO_EDIT."/".$usuario_info_row->idusu; ?>" class="btn btn-success"><i class="fa fa-gear fa-fw"></i><strong>EDITAR</strong></a>-->
                                             </center>
                                         </div>
                                     </div>
