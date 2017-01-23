@@ -75,7 +75,8 @@ define ('ADD_USUARIO_ADJUNTO','usuario_adjunto/add_usuario_adjunto');
 // Vistas VACANTE
 define ('LIST_VACANTE_USR','vacante/list_vacante_usr');
 define ('LIST_VACANTE_ADM','vacante/list_vacante_adm');
-define ('GET_VACANTE','vacante/get_vacante');
+define ('GET_VACANTE_USR','vacante/get_vacante_usr');
+define ('GET_VACANTE_ADM','vacante/get_vacante_adm');
 define ('ADD_VACANTE','vacante/add_vacante');
 define ('EDIT_VACANTE','vacante/edit_vacante');
 

@@ -51,7 +51,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                             </tbody>
                         </table>
                     </div>
-                    <!-- /.table-responsive -->                        
+                    <!-- /.table-responsive -->
                 </div>
                 <!-- /.panel-body -->
             </div>

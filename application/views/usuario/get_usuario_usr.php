@@ -256,7 +256,7 @@ if($usuario_academico){
                                     <div class="col-lg-3"> 
                                         <center>
                                             <a href="<?= base_url(PATH_MENU)."/".USUARIO_ACADEMICO_EDIT."/".$usuario_academico_row->idaca; ?>" class="btn btn-success btn-xs"><i class="fa fa-gear fa-fw"></i><strong>EDITAR</strong></a>
-                                            <a href="<?= base_url(PATH_MENU)."/".USUARIO_ACADEMICO_DEL."/".$usuario_academico_row->idaca; ?>" class="btn btn-danger btn-xs"><i class="fa fa-trash-o fa-fw"></i><strong>ELIMINAR</strong></a>
+                                            <a href="<?= base_url(PATH_MENU)."/".USUARIO_ACADEMICO_DEL."/".$usuario_academico_row->idaca; ?>" class="btn btn-danger btn-xs"><i class="fa fa-trash fa-fw"></i><strong>ELIMINAR</strong></a>
                                         </center>
                                     </div>
                                 </div>
@@ -392,7 +392,7 @@ if($usuario_academico){
                                     <div class="col-lg-3"> 
                                         <center>
                                             <a href="<?= base_url(PATH_MENU)."/".USUARIO_LABORAL_EDIT."/".$usuario_laboral_row->idlab; ?>" class="btn btn-success btn-xs"><i class="fa fa-gear fa-fw"></i><strong>EDITAR</strong></a>
-                                            <a href="<?= base_url(PATH_MENU)."/".USUARIO_LABORAL_DEL."/".$usuario_laboral_row->idlab; ?>" class="btn btn-danger btn-xs"><i class="fa fa-trash-o fa-fw"></i><strong>ELIMINAR</strong></a>
+                                            <a href="<?= base_url(PATH_MENU)."/".USUARIO_LABORAL_DEL."/".$usuario_laboral_row->idlab; ?>" class="btn btn-danger btn-xs"><i class="fa fa-trash fa-fw"></i><strong>ELIMINAR</strong></a>
                                         </center>
                                     </div>
                                 </div>
@@ -491,8 +491,7 @@ if($usuario_academico){
                                     <td><?= $usuario_adjunto_row->titulo; ?></td>
                                     <td><?= date("d/m/Y", strtotime($usuario_adjunto_row->fecha_registro)); ?></td>                                    
                                     <td><a href="<?= base_url()."uploads/".$usuario_adjunto_row->url; ?>" target="_blank" class="btn btn-success btn-xs"><i class="fa fa-search fa-fw"></i><strong>VER</strong></a></td>
-                                    <!--<td><a href="<?= base_url(PATH_MENU)."/".USUARIO_ADJUNTO_EDIT."/".$usuario_adjunto_row->idadj; ?>" class="btn btn-success btn-xs"><i class="fa fa-gear fa-fw"></i><strong>EDITAR</strong></a></td>-->
-                                    <td><a href="<?= base_url(PATH_MENU)."/".USUARIO_ADJUNTO_DEL."/".$usuario_adjunto_row->idadj; ?>" class="btn btn-danger btn-xs"><i class="fa fa-trash-o fa-fw"></i><strong>ELIMINAR</strong></a></td>
+                                    <td><a href="<?= base_url(PATH_MENU)."/".USUARIO_ADJUNTO_DEL."/".$usuario_adjunto_row->idadj; ?>" class="btn btn-danger btn-xs"><i class="fa fa-trash fa-fw"></i><strong>ELIMINAR</strong></a></td>
 
                                 </tr>
 <?php

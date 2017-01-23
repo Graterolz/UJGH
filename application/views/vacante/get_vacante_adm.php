@@ -10,62 +10,70 @@ defined('BASEPATH') OR exit('No direct script access allowed');
     <div class="row">
         <div class="col-lg-12">
 <?php
+if ($vacante){
+    $vacante_row = $vacante->row();
+
     $vacante_form = array(
     	TITULO => array(
 			'class' => 'form-control',
 			'name' => TITULO,
-			'placeholder' => $vacante_rules[TITULO]['label'],
-			'required' => TRUE
+			'value' => $vacante_row->titulo,
+			'readonly' => TRUE
     	),
     	DESCRIPCION => array(
 			'class' => 'form-control',
 			'name' => DESCRIPCION,
-			'placeholder' => $vacante_rules[DESCRIPCION]['label'],
-			'required' => TRUE
+			'value' => $vacante_row->descripcion,
+			'readonly' => TRUE
     	),
     	BENEFICIOS => array(
 			'class' => 'form-control',
 			'name' => BENEFICIOS,
 			'rows' => 3,
 			'style' => 'resize:none',
-			'placeholder' => $vacante_rules[BENEFICIOS]['label'],
-			'required' => TRUE
+			'value' => $vacante_row->beneficios,
+			'readonly' => TRUE
     	),
     	REQUISITOS => array(
 			'class' => 'form-control',
 			'name' => REQUISITOS,
 			'rows' => 3,
 			'style' => 'resize:none',
-			'placeholder' => $vacante_rules[REQUISITOS]['label'],
-			'required' => TRUE
+			'value' => $vacante_row->requisitos,
+			'readonly' => TRUE
     	),
     	SALARIO => array(
 			'class' => 'form-control',
 			'name' => SALARIO,
-			'placeholder' => $vacante_rules[SALARIO]['label'],
-			'required' => TRUE
+			'value' => $vacante_row->salario,
+			'readonly' => TRUE
     	),
     	TIPO => array(
 			'class' => 'form-control',
 			'name' => TIPO,
-            'required' => TRUE
+			'value' => $vacante_row->tipo,
+			'disabled' => TRUE
+    	),
+    	FECHA_REGISTRO => array(
+			'class' => 'form-control',
+			'name' => FECHA_REGISTRO,
+			'value' => date("d/m/Y", strtotime($vacante_row->fecha_registro)),
+			'readonly' => TRUE
     	)
     );
+}
 ?>
             <?= form_open('',$form_attributes);?>
             <div class="panel panel-primary">
                 <div class="panel-heading">
                     <div class="row">
-                        <div class="col-lg-10">
+                        <div class="col-lg-12">
                             <div class="btn btn-default">
                                 <a href="<?= base_url(PATH_MENU)."/".VACANTE_CONTROLLER; ?>">
                                     <i class="fa fa-table fa-fw"></i><strong><?= TITULO_VACANTE; ?></strong>
                                 </a>
                             </div>
                         </div>
-                        <div class="col-lg-2">
-                            <button type="submit" class="btn btn-default"><i class="fa fa-table fa-fw"></i><strong>NUEVO</strong></button>
-                        </div>                        
                     </div>
                 </div>
                 <div class="panel-body">
@@ -110,7 +118,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                                         </div>
                                         <div class="col-lg-6">
                                             <?= form_label($vacante_rules[TIPO]['label'],$vacante_rules[TIPO]['field']); ?>
-                                            <?= form_dropdown(NULL,$tipo_vacante,NULL,$vacante_form[TIPO]); ?>
+                                            <?= form_dropdown(NULL,$tipo_vacante,$vacante_form[TIPO]['value'],$vacante_form[TIPO]); ?>
                                         </div>
                                     </div>
                                 </div>

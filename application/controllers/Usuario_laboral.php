@@ -45,7 +45,7 @@ class Usuario_laboral extends CI_Controller {
 
 			$this->Usuario_laboral_model->add($data);
 			redirect(USUARIO_INFO_CONTROLLER, 'refresh');
-		}		
+		}
 
 		$data['usuario_laboral_rules'] = $this->Usuario_laboral_model->usuario_laboral_rules;		
 		$data['form_attributes'] = $this->Sys_model->form_attributes;

@@ -19,15 +19,27 @@ $idrol = $this->session->userdata(IDROL_SESSION);
             <div class="navbar-default sidebar" role="navigation">
                 <div class="sidebar-nav navbar-collapse">
                     <ul class="nav" id="side-menu">
+<?php
+    if($idrol=='USR'){
+?> 
                         <li>                            
                             <a href="<?= base_url(PATH_MENU)."/".USUARIO_INFO_CONTROLLER; ?>"><i class="fa fa-user fa-fw"></i><?= MENU_USUARIO_INFO; ?></a>
                         </li>
+<?php
+}
+?>                        
                         <li>
                             <a href="<?= base_url(PATH_MENU)."/".VACANTE_CONTROLLER; ?>"><i class="fa fa-table fa-fw"></i><?= MENU_VACANTE; ?></a>
                         </li>
+<?php
+    if($idrol=='USR'){
+?>                         
                         <li>
                             <a href="<?= base_url(PATH_MENU)."/".POSTULACION_CONTROLLER; ?>"><i class="fa fa-edit fa-fw"></i><?= MENU_POSTULACION; ?></a>
                         </li>
+<?php
+}
+?>                         
                         <li>
                             <a href="<?= base_url(PATH_MENU)."/".USUARIO_LOGOUT; ?>"><i class="fa fa-sign-out fa-fw"></i><?= MENU_LOGOUT; ?></a>
                         </li>

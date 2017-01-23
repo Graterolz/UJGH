@@ -47,138 +47,108 @@ class Vacante extends CI_Controller {
 
 		$this->load->view(HEADER);
 		$this->load->view(MENU);
-		$this->load->view(GET_VACANTE,$data);
+
+		if ($this->session->userdata(IDROL_SESSION) == USR){
+			$this->load->view(GET_VACANTE_USR,$data);
+		}else{
+			$this->load->view(GET_VACANTE_ADM,$data);
+		}
+
 		$this->load->view(FOOTER);
 	}
 
 	// Agregar informacion de vacante
 	function add(){
-		redirect(VACANTE_CONTROLLER, 'refresh');
+		if(!$this->session->userdata(IDUSU_SESSION)){
+			redirect(USUARIO_LOGIN, 'refresh');
+		}
+		if($this->session->userdata(IDROL_SESSION)!=ADM){
+			redirect(USUARIO_INFO_CONTROLLER, 'refresh');
+		}
+
+		$rules = $this->Vacante_model->vacante_rules;
+		$this->form_validation->set_rules($rules);
+
+		if ($this->form_validation->run() == TRUE) {
+			$data = array(
+				TITULO => $this->input->post(TITULO),
+				DESCRIPCION => $this->input->post(DESCRIPCION),
+				BENEFICIOS => $this->input->post(BENEFICIOS),
+				REQUISITOS => $this->input->post(REQUISITOS),
+				SALARIO => $this->input->post(SALARIO),
+				TIPO => $this->input->post(TIPO)
+			);
+
+			$this->Vacante_model->add($data);
+			redirect(VACANTE_CONTROLLER, 'refresh');
+		}
+
+		$data['vacante_rules'] = $this->Vacante_model->vacante_rules;
+		$data['form_attributes'] = $this->Sys_model->form_attributes;
+		$data['tipo_vacante'] = $this->Sys_model->tipo_vacante;
+
+		$this->load->view(HEADER);
+		$this->load->view(MENU);
+		$this->load->view(ADD_VACANTE,$data);
+		$this->load->view(FOOTER);
 	}
 
 	// Editar informacion de vacante
 	function edit($idvac = NULL){
+		if(!$this->session->userdata(IDUSU_SESSION)){
+			redirect(USUARIO_LOGIN, 'refresh');
+		}		
+		if($this->session->userdata(IDROL_SESSION)!=ADM){
+			redirect(USUARIO_INFO_CONTROLLER, 'refresh');
+		}
+		if(!$this->Vacante_model->get($idvac)){
+			redirect(VACANTE_CONTROLLER, 'refresh');
+		}		
+
+		$rules = $this->Vacante_model->vacante_rules;
+		$this->form_validation->set_rules($rules);
+
+		if ($this->form_validation->run() == TRUE) {
+			$data = array(
+				TITULO => $this->input->post(TITULO),
+				DESCRIPCION => $this->input->post(DESCRIPCION),
+				BENEFICIOS => $this->input->post(BENEFICIOS),
+				REQUISITOS => $this->input->post(REQUISITOS),
+				SALARIO => $this->input->post(SALARIO),
+				TIPO => $this->input->post(TIPO)
+			);
+
+			$this->Vacante_model->edit($idvac,$data);
+			redirect(VACANTE_CONTROLLER, 'refresh');
+		}
+
+		$data['vacante'] = $this->Vacante_model->get($idvac);
+		$data['vacante_rules'] = $this->Vacante_model->vacante_rules;
+		$data['form_attributes'] = $this->Sys_model->form_attributes;
+		$data['tipo_vacante'] = $this->Sys_model->tipo_vacante;
+
+		$this->load->view(HEADER);
+		$this->load->view(MENU);
+		$this->load->view(EDIT_VACANTE,$data);
+		$this->load->view(FOOTER);
+	}
+
+	// Eliminar informacion de vacante
+	function del($idvac = NULL){
+		redirect(VACANTE_CONTROLLER, 'refresh');
+
+		if(!$this->session->userdata(IDUSU_SESSION)){
+			redirect(USUARIO_LOGIN, 'refresh');
+		}
+		if($this->session->userdata(IDROL_SESSION)!=ADM){
+			redirect(USUARIO_INFO_CONTROLLER, 'refresh');
+		}
+		if(!$this->Vacante_model->get($idvac)){
+			redirect(VACANTE_CONTROLLER, 'refresh');
+		}
+
+		$this->Vacante_model->del($idvac);
+		$this->Postulacion_model->del($idvac);
 		redirect(VACANTE_CONTROLLER, 'refresh');
 	}
-
-
-
-	/*// Modulo para obtener informacion de vacante
-
-
-	// Modulo para agregar vacante
-	function add(){
-		// Validaciones
-		if(!$this->session->userdata('idusu')){
-			redirect('usuario/login', 'refresh');
-		}
-		if($this->session->userdata('idrol')!='ADM'){
-			redirect('usuario', 'refresh');	
-		}
-
-		$datasession['idusu'] = $this->session->userdata('idusu');
-		$datasession['idrol'] = $this->session->userdata('idrol');
-
-		//Reglas
-		$data['rules_vacante'] = $this->Vacante_model->vacante_rules;
-		$this->form_validation->set_rules($data['rules_vacante']);
-
-		if ($this->form_validation->run() == TRUE) {
-			$data = array(
-				'titulo' => $this->input->post('titulo'),
-				'descripcion' => $this->input->post('descripcion'),
-				'beneficios' => $this->input->post('beneficios'),
-				'requisitos' => $this->input->post('requisitos'),
-				'salario' => $this->input->post('salario'),
-				'fechaPublicacion' => date("Y/m/d"),
-				'tipo' => $this->input->post('tipo')
-			);
-			$this->Vacante_model->add($data);
-			redirect('usuario', 'refresh');
-		}
-
-		//
-		$this->load->view('template/header');		
-		$this->load->view('template/menu',$datasession);
-		$this->load->view('vacante/add_vacante',$data);
-		$this->load->view('template/footer');
-	}
-
-	// Modulo para editar vacante
-	function edit($idvac = '*'){
-		// Validaciones
-		if(!$this->session->userdata('idusu')){
-			redirect('usuario/login', 'refresh');
-		}
-		if($this->session->userdata('idrol')!='ADM'){
-			redirect('usuario', 'refresh');	
-		}
-		if(!$this->Vacante_model->get($idvac)){
-			redirect('usuario', 'refresh');
-		}		
-		
-		$datasession['idusu'] = $this->session->userdata('idusu');
-		$datasession['idrol'] = $this->session->userdata('idrol');
-
-		//Reglas
-		$data['rules_vacante'] = $this->Vacante_model->vacante_rules;
-		$this->form_validation->set_rules($data['rules_vacante']);
-
-		if ($this->form_validation->run() == TRUE) {
-			$data = array(
-				'titulo' => $this->input->post('titulo'),
-				'descripcion' => $this->input->post('descripcion'),
-				'beneficios' => $this->input->post('beneficios'),
-				'requisitos' => $this->input->post('requisitos'),
-				'salario' => $this->input->post('salario'),
-				'fechaPublicacion' => date("Y/m/d"),
-				'tipo' => $this->input->post('tipo')
-			);
-			$this->Vacante_model->edit($idvac,$data);
-			redirect('usuario', 'refresh');
-		}		
-
-		$data['vacante'] = $this->Vacante_model->get($idvac);
-		//
-		$this->load->view('template/header');		
-		$this->load->view('template/menu',$datasession);
-		$this->load->view('vacante/edit_vacante',$data);
-		$this->load->view('template/footer');
-	}
-
-	// Modulo para eliminar vacante
-	function del($idvac = '*'){
-		//Validaciones
-		if(!$this->session->userdata('idusu')){
-			redirect('usuario/login', 'refresh');
-		}
-		if($this->session->userdata('idrol')!='ADM'){
-			redirect('usuario', 'refresh');	
-		}
-		if(!$this->Vacante_model->get($idvac)){
-			redirect('usuario', 'refresh');
-		}		
-
-		$datasession['idusu'] = $this->session->userdata('idusu');
-		$datasession['idrol'] = $this->session->userdata('idrol');
-
-		//Reglas
-		$data['rules_vacante'] = $this->Vacante_model->vacante_rules;
-		$this->form_validation->set_rules('idvac','idvac','trim|required|integer');
-		
-		if ($this->form_validation->run() == TRUE) {
-			//
-			$this->Vacante_model->del($idvac);
-			$this->Postulacion_model->del($idvac);
-
-			redirect('usuario', 'refresh');
-		}
-		
-		$data['vacante'] = $this->Vacante_model->get($idvac);
-		//
-		$this->load->view('template/header');		
-		$this->load->view('template/menu',$datasession);
-		$this->load->view('vacante/del_vacante',$data);
-		$this->load->view('template/footer');
-	}*/
 }

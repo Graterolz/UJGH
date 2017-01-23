@@ -40,8 +40,7 @@ class Usuario_info extends CI_Controller {
 
 			$this->load->view(GET_USUARIO_USR,$data);
 		}else{
-			$data['vacante'] = $this->Vacante_model->get(NULL);
-			$this->load->view(LIST_VACANTE_ADM,$data);
+			redirect(VACANTE_CONTROLLER, 'refresh');
 		}
 
 		$this->load->view(FOOTER);
