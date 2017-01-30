@@ -6,6 +6,7 @@ class Vacante extends CI_Controller {
 	function __construct(){
 		parent::__construct();
 		$this->load->model(SYS_MODEL);
+		$this->load->model(USUARIO_INFO_MODEL);
 		$this->load->model(VACANTE_MODEL);
 		$this->load->model(POSTULACION_MODEL);
 	}
@@ -51,6 +52,8 @@ class Vacante extends CI_Controller {
 		if ($this->session->userdata(IDROL_SESSION) == USR){
 			$this->load->view(GET_VACANTE_USR,$data);
 		}else{
+			$data['usuario_info_rules'] = $this->Usuario_info_model->usuario_info_rules;
+			$data['usuario_info'] = $this->Usuario_info_model->getUsuariosByVacante($idvac);
 			$this->load->view(GET_VACANTE_ADM,$data);
 		}
 

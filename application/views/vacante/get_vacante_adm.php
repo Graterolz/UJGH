@@ -131,6 +131,62 @@ if ($vacante){
             <?= form_close(); ?>
             <!-- /.row (nested) -->
         </div>
+
+        <div class="col-lg-12">
+            <?= form_open('',$form_attributes);?>
+            <div class="panel panel-primary">
+                <div class="panel-heading">
+                    <div class="row">
+                        <div class="col-lg-12">
+                            <div class="btn btn-default">
+                                <a href="<?= base_url(PATH_MENU)."/".VACANTE_CONTROLLER; ?>">
+                                    <i class="fa fa-table fa-fw"></i><strong><?= TITULO_VACANTE; ?></strong>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="panel-body">
+                    <div class="table-responsive">
+                        <table class="table">
+                            <thead>
+                                <tr>
+                                    <th><?= $usuario_info_rules[IDUSU]['label']; ?></th>
+                                    <th><?= $usuario_info_rules[NOMBRE]['label']; ?></th>
+                                    <th><?= $usuario_info_rules[APELLIDO]['label']; ?></th>
+                                    <th><?= $usuario_info_rules[CEDULA]['label']; ?></th>
+                                    <th><?= $usuario_info_rules[EMAIL]['label']; ?></th>
+                                    <th colspan="1"></th>
+                                </tr>
+                            </thead>
+                            <tbody>
+<?php
+    if($usuario_info){    
+        foreach($usuario_info->result() as $usuario_info_row){
+            //var_dump($usuario_info);
+?>                            
+                                <tr>
+                                    <td><?= $usuario_info_row->idusu; ?></td>
+                                    <td><?= $usuario_info_row->nombre; ?></td>
+                                    <td><?= $usuario_info_row->apellido; ?></td>
+                                    <td><?= $usuario_info_row->cedula; ?></td>
+                                    <td><?= $usuario_info_row->email; ?></td>
+                                    <td><a href="<?= base_url(PATH_MENU)."/".USUARIO_INFO_GET."/".$usuario_info_row->idusu; ?>" class="btn btn-default btn-xs"><i class="fa fa-search fa-fw"></i><strong>VER</strong></a></td>
+                                </tr>
+<?php
+        }
+    }
+?>
+                            </tbody>
+                        </table>
+                    </div>
+                    <!-- /.table-responsive -->
+                </div>
+                <!-- /.col-lg-12 (nested) -->
+            </div>
+            <?= form_close(); ?>
+            <!-- /.row (nested) -->
+        </div>            
     </div>
     <!-- /.row -->
 </div>

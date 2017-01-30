@@ -22,6 +22,7 @@ define ('POSTULACION_MODEL','Postulacion_model');
 
 // Controlador USUARIO_INFO
 define ('USUARIO_INFO_CONTROLLER','usuario_info');
+define ('USUARIO_INFO_GET','usuario_info/get');
 define ('USUARIO_INFO_EDIT','usuario_info/edit');
 define ('USUARIO_LOGIN','usuario_info/login');
 define ('USUARIO_LOGOUT','usuario_info/logout');
@@ -140,6 +141,7 @@ define ('IDVAC','idvac');
 define ('DESCRIPCION','descripcion');
 define ('REQUISITOS','requisitos');
 define ('TIPO','tipo');
+define ('POSTULACIONES','postulaciones');
 
 // Campos - TABLA_POSTULACION
 define ('IDPOS','idpos');

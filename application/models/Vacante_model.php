@@ -26,7 +26,7 @@ class Vacante_model extends CI_Model{
 		);
 		$this->db->where('vacante.'.ESTADO_REGISTRO,ESTADO_REGISTRO_ACTIVO);
 		//$this->db->order_by('9','DESC');
-		$this->db->order_by('1','DESC');
+		$this->db->order_by('1','ASC');
 
 		$query=$this->db->get();
 		//echo $this->db->last_query();
@@ -132,6 +132,9 @@ class Vacante_model extends CI_Model{
 			'field' => FECHA_REGISTRO,
 			'for' => FECHA_REGISTRO,
 			'label' => 'Fecha de Registro'
+		),
+		POSTULACIONES => array(
+			'label' => 'Postulaciones'
 		)
 	);
 }

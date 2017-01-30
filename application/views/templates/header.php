@@ -10,7 +10,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
     <meta name="description" content="">
     <meta name="author" content="">
 
-    <title>Empleo UJGH</title>
+    <title><?= TITULO_MENU; ?></title>
 
     <!-- Bootstrap Core CSS -->
     <link href="<?= base_url(PATH_RESOURCES)?>/bower_components/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet">

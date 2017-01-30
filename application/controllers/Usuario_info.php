@@ -20,29 +20,44 @@ class Usuario_info extends CI_Controller {
 			redirect(USUARIO_LOGIN, 'refresh');
 		}
 
-		$this->load->view(HEADER);
-		$this->load->view(MENU);
-
 		if ($this->session->userdata(IDROL_SESSION) == USR){
 			$idusu = $this->session->userdata(IDUSU_SESSION);
-
-			$data['usuario_info'] = $this->Usuario_info_model->get($idusu);
-			$data['usuario_academico'] = $this->Usuario_academico_model->getAcademicoByUsuario($idusu);
-			$data['usuario_laboral'] = $this->Usuario_laboral_model->getLaboralByUsuario($idusu);
-			$data['usuario_adjunto'] = $this->Usuario_adjunto_model->getAdjutosByUsuario($idusu);
-			$data['usuario_info_rules'] = $this->Usuario_info_model->usuario_info_rules;
-			$data['usuario_academico_rules'] = $this->Usuario_academico_model->usuario_academico_rules;
-			$data['usuario_laboral_rules'] = $this->Usuario_laboral_model->usuario_laboral_rules;
-			$data['usuario_adjunto_rules'] = $this->Usuario_adjunto_model->usuario_adjunto_rules;
-			$data['generos'] = $this->Sys_model->generos;
-			$data['estado_civil'] = $this->Sys_model->estado_civil;
-			$data['nacionalidad'] = $this->Sys_model->nacionalidad;			
-
-			$this->load->view(GET_USUARIO_USR,$data);
+			$this->get($idusu);
 		}else{
 			redirect(VACANTE_CONTROLLER, 'refresh');
 		}
+	}
 
+	// Obtener informacion de usuario
+	function get($idusu){
+		if(!$this->session->userdata(IDUSU_SESSION)){
+			redirect(USUARIO_LOGIN, 'refresh');
+		}
+		if(!$this->Usuario_info_model->get($idusu)){
+			redirect(USUARIO_INFO_CONTROLLER, 'refresh');
+		}		
+
+		$this->load->view(HEADER);
+		$this->load->view(MENU);
+
+		$data['usuario_info'] = $this->Usuario_info_model->get($idusu);
+		$data['usuario_academico'] = $this->Usuario_academico_model->getAcademicoByUsuario($idusu);
+		$data['usuario_laboral'] = $this->Usuario_laboral_model->getLaboralByUsuario($idusu);
+		$data['usuario_adjunto'] = $this->Usuario_adjunto_model->getAdjutosByUsuario($idusu);
+		$data['usuario_info_rules'] = $this->Usuario_info_model->usuario_info_rules;
+		$data['usuario_academico_rules'] = $this->Usuario_academico_model->usuario_academico_rules;
+		$data['usuario_laboral_rules'] = $this->Usuario_laboral_model->usuario_laboral_rules;
+		$data['usuario_adjunto_rules'] = $this->Usuario_adjunto_model->usuario_adjunto_rules;
+		$data['generos'] = $this->Sys_model->generos;
+		$data['estado_civil'] = $this->Sys_model->estado_civil;
+		$data['nacionalidad'] = $this->Sys_model->nacionalidad;
+
+		if ($this->session->userdata(IDROL_SESSION) == USR){
+			$this->load->view(GET_USUARIO_USR,$data);
+		}else{
+			$this->load->view(GET_USUARIO_ADM,$data);
+		}
+		
 		$this->load->view(FOOTER);
 	}
 
@@ -125,42 +140,3 @@ class Usuario_info extends CI_Controller {
 		redirect(USUARIO_INFO_CONTROLLER, 'refresh');
 	} 
 }
-
-/*
-	// Obtiene perfil usuario
-	function get($idusu = NULL){
-		// Validaciones
-		if(!$this->session->userdata('idusu')){
-			redirect('usuario/login', 'refresh');
-		}
-		if($this->session->userdata('idrol')!='ADM'){
-			redirect('usuario', 'refresh');
-		}
-		if(!$this->Usuario_info_model->get($idusu)){
-			redirect('usuario', 'refresh');
-		}		
-
-		$datasession['idusu'] = $this->session->userdata('idusu');
-		$datasession['idrol'] = $this->session->userdata('idrol');	
-
-		$this->load->view('template/header');
-		$this->load->view('template/menu',$datasession);
-
-		$datasession['idusu'] = $idusu;
-
-		$data['usuario_info'] = $this->Usuario_info_model->get($datasession['idusu']);
-		$data['usuario_adjunto'] = $this->Usuario_adjunto_model->getUsuario($datasession['idusu']);
-		$data['usuario_academico'] = $this->Usuario_academico_model->getUsuario($datasession['idusu']);
-		$data['usuario_laboral'] = $this->Usuario_laboral_model->getUsuario($datasession['idusu']);
-
-		//Reglas
-		$data['rules_usuario_info'] = $this->Usuario_info_model->usuario_info_rules;
-		$data['rules_usuario_academico'] = $this->Usuario_academico_model->usuario_academico_rules;
-		$data['rules_usuario_adjunto'] = $this->Usuario_adjunto_model->usuario_adjunto_rules;
-		$data['rules_usuario_laboral'] = $this->Usuario_laboral_model->usuario_laboral_rules;
-
-		$this->load->view('usuario_info/get_usuario_adm',$data);
-
-		$this->load->view('template/footer');
-	}
-*/

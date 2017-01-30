@@ -15,7 +15,7 @@ CREATE TABLE IF NOT EXISTS `usuario_info` (
 	`telefono1` varchar(15) NOT NULL,
 	`telefono2` varchar(15) NOT NULL,
 	`email` varchar(50) NOT NULL,
-	`user` varchar(15) NOT NULL,	
+	`user` varchar(15) NOT NULL,
 	`pass` varchar(15) NOT NULL,
 	`fecha_registro` date NOT NULL,
 	`fecha_edicion` date NOT NULL,
@@ -35,7 +35,7 @@ DROP TABLE IF EXISTS `usuario_academico`;
 
 CREATE TABLE IF NOT EXISTS `usuario_academico` (
 	`idaca` int(10) NOT NULL AUTO_INCREMENT,
-	`idusu` int(10) NOT NULL,	
+	`idusu` int(10) NOT NULL,
 	`titulo` varchar(50) NOT NULL,
 	`nivel_estudio` varchar(50) NOT NULL,
 	`institucion` varchar(50) NOT NULL,	
@@ -147,6 +147,8 @@ CREATE TABLE IF NOT EXISTS `postulacion` (
 INSERT INTO `postulacion` (`idpos`, `idvac`, `idusu`, `estado`, `fecha_registro`, `fecha_edicion`, `estado_registro`) VALUES 
 (NULL, '1', '2', 'Enviado', NOW(), NOW(), '1'),
 (NULL, '2', '2', 'Enviado', NOW(), NOW(), '1'),
-(NULL, '2', '2', 'Enviado', NOW(), NOW(), '1'),
+(NULL, '2', '4', 'Enviado', NOW(), NOW(), '1'),
 (NULL, '3', '3', 'Enviado', NOW(), NOW(), '1'),
-(NULL, '4', '3', 'Enviado', NOW(), NOW(), '1');
+(NULL, '4', '3', 'Enviado', NOW(), NOW(), '1'),
+(NULL, '1', '5', 'Enviado', NOW(), NOW(), '1'),
+(NULL, '2', '3', 'Enviado', NOW(), NOW(), '1');

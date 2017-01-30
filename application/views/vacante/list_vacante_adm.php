@@ -31,6 +31,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                                     <th><?= $vacante_rules[TITULO]['label']; ?></th>
                                     <th><?= $vacante_rules[DESCRIPCION]['label']; ?></th>
                                     <th><?= $vacante_rules[FECHA_REGISTRO]['label']; ?></th>
+                                    <th><?= $vacante_rules[POSTULACIONES]['label']; ?></th>
                                     <th colspan="3"></th>
                                 </tr>
                             </thead>
@@ -45,6 +46,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                                     <td><?= $vacante_row->titulo; ?></td>
                                     <td><?= $vacante_row->descripcion; ?></td>
                                     <td><?= date("d/m/Y", strtotime($vacante_row->fecha_registro)); ?></td>
+                                    <td><center><?= $vacante_row->postulaciones; ?></center></td>
                                     <td><a href="<?= base_url(PATH_MENU)."/".VACANTE_GET."/".$vacante_row->idvac; ?>" class="btn btn-default btn-xs"><i class="fa fa-search fa-fw"></i><strong>VER</strong></a></td>
                                     <td><a href="<?= base_url(PATH_MENU)."/".VACANTE_EDIT."/".$vacante_row->idvac; ?>" class="btn btn-success btn-xs"><i class="fa fa-gear fa-fw"></i><strong>EDITAR</strong></a></td>
                                     <td><a href="<?= base_url(PATH_MENU)."/".VACANTE_DEL."/".$vacante_row->idvac; ?>" class="btn btn-danger btn-xs"><i class="fa fa-trash fa-fw"></i><strong>ELIMINAR</strong></a></td>
