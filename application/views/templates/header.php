@@ -12,6 +12,9 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 
     <title><?= TITULO_MENU; ?></title>
 
+    <!-- LOGO -->
+    <link rel="icon" type="image/png" href="<?= base_url(PATH_RESOURCES2)?>/application.png" />
+
     <!-- Bootstrap Core CSS -->
     <link href="<?= base_url(PATH_RESOURCES)?>/bower_components/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet">
 
