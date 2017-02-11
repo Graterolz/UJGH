@@ -119,10 +119,10 @@ INSERT INTO `usuario_adjunto` (`idadj`, `idusu`, `titulo`, `url`, `fecha_registr
 CREATE TABLE `usuario_info` (
   `idusu` int(10) NOT NULL,
   `idrol` varchar(3) NOT NULL,
-  `cedula` int(10) NOT NULL,
+  `cedula` int(15) NOT NULL,
   `nombre` varchar(50) NOT NULL,
   `apellido` varchar(50) NOT NULL,
-  `genero` varchar(50) NOT NULL,
+  `genero` varchar(15) NOT NULL,
   `fecha_nacimiento` date NOT NULL,
   `nacionalidad` varchar(20) NOT NULL,
   `estado_civil` varchar(15) NOT NULL,
