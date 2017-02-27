@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 31-01-2017 a las 19:54:38
+-- Tiempo de generación: 27-02-2017 a las 04:54:24
 -- Versión del servidor: 10.1.13-MariaDB
 -- Versión de PHP: 5.6.21
 
@@ -30,12 +30,12 @@ USE `ujghempleo`;
 
 CREATE TABLE `postulacion` (
   `idpos` int(10) NOT NULL,
-  `idvac` int(10) NOT NULL,
-  `idusu` int(10) NOT NULL,
-  `estado` varchar(15) NOT NULL,
-  `fecha_registro` date NOT NULL,
-  `fecha_edicion` date NOT NULL,
-  `estado_registro` int(1) NOT NULL
+  `idvac` int(10) NOT NULL COMMENT 'Identificador de vacante.',
+  `idusu` int(10) NOT NULL COMMENT 'Identificador del usuario.',
+  `estado` varchar(15) NOT NULL COMMENT 'Estado de la postulación.',
+  `fecha_registro` date NOT NULL COMMENT 'Fecha de creacion del registro.',
+  `fecha_edicion` date NOT NULL COMMENT 'Fecha de ultima edicion del registro.',
+  `estado_registro` int(1) NOT NULL COMMENT 'Codigo del estado del registro.'
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
@@ -62,17 +62,17 @@ INSERT INTO `postulacion` (`idpos`, `idvac`, `idusu`, `estado`, `fecha_registro`
 
 CREATE TABLE `usuario_academico` (
   `idaca` int(10) NOT NULL,
-  `idusu` int(10) NOT NULL,
-  `titulo` varchar(50) NOT NULL,
-  `nivel_estudio` varchar(50) NOT NULL,
-  `institucion` varchar(50) NOT NULL,
-  `mes_inicio` varchar(15) NOT NULL,
-  `anio_inicio` varchar(5) NOT NULL,
-  `mes_fin` varchar(15) NOT NULL,
-  `anio_fin` varchar(5) NOT NULL,
-  `fecha_registro` date NOT NULL,
-  `fecha_edicion` date NOT NULL,
-  `estado_registro` int(1) NOT NULL
+  `idusu` int(10) NOT NULL COMMENT 'Identificador del usuario.',
+  `titulo` varchar(50) NOT NULL COMMENT 'Descripción del titulo académico.',
+  `nivel_estudio` varchar(50) NOT NULL COMMENT 'Descripción del nivel de estudio.',
+  `institucion` varchar(50) NOT NULL COMMENT 'Nombre de la institución educativa.',
+  `mes_inicio` varchar(15) NOT NULL COMMENT 'Mes inicio de periodo académico.',
+  `anio_inicio` varchar(5) NOT NULL COMMENT 'Año inicio de periodo académico.',
+  `mes_fin` varchar(15) NOT NULL COMMENT 'Mes fin de periodo académico.',
+  `anio_fin` varchar(5) NOT NULL COMMENT 'Año fin de periodo académico.',
+  `fecha_registro` date NOT NULL COMMENT 'Fecha de creacion del registro.',
+  `fecha_edicion` date NOT NULL COMMENT 'Fecha de ultima edicion del registro.',
+  `estado_registro` int(1) NOT NULL COMMENT 'Codigo del estado del registro.'
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
@@ -94,12 +94,12 @@ INSERT INTO `usuario_academico` (`idaca`, `idusu`, `titulo`, `nivel_estudio`, `i
 
 CREATE TABLE `usuario_adjunto` (
   `idadj` int(10) NOT NULL,
-  `idusu` int(10) NOT NULL,
-  `titulo` varchar(50) NOT NULL,
-  `url` varchar(200) NOT NULL,
-  `fecha_registro` date NOT NULL,
-  `fecha_edicion` date NOT NULL,
-  `estado_registro` int(1) NOT NULL
+  `idusu` int(10) NOT NULL COMMENT 'Identificador del usuario.',
+  `titulo` varchar(50) NOT NULL COMMENT 'Titulo del archivo adjunto.',
+  `url` varchar(200) NOT NULL COMMENT 'Ruta de ubicación del archivo adjunto.',
+  `fecha_registro` date NOT NULL COMMENT 'Fecha de creacion del registro.',
+  `fecha_edicion` date NOT NULL COMMENT 'Fecha de ultima edicion del registro.',
+  `estado_registro` int(1) NOT NULL COMMENT 'Codigo del estado del registro.'
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
@@ -118,23 +118,23 @@ INSERT INTO `usuario_adjunto` (`idadj`, `idusu`, `titulo`, `url`, `fecha_registr
 
 CREATE TABLE `usuario_info` (
   `idusu` int(10) NOT NULL,
-  `idrol` varchar(3) NOT NULL,
-  `cedula` int(15) NOT NULL,
-  `nombre` varchar(50) NOT NULL,
-  `apellido` varchar(50) NOT NULL,
-  `genero` varchar(15) NOT NULL,
-  `fecha_nacimiento` date NOT NULL,
-  `nacionalidad` varchar(20) NOT NULL,
-  `estado_civil` varchar(15) NOT NULL,
-  `direccion` varchar(50) NOT NULL,
-  `telefono1` varchar(15) NOT NULL,
-  `telefono2` varchar(15) NOT NULL,
-  `email` varchar(50) NOT NULL,
-  `user` varchar(15) NOT NULL,
-  `pass` varchar(15) NOT NULL,
-  `fecha_registro` date NOT NULL,
-  `fecha_edicion` date NOT NULL,
-  `estado_registro` int(1) NOT NULL
+  `idrol` varchar(3) NOT NULL COMMENT 'Identificador de rol de usuario.',
+  `cedula` int(15) NOT NULL COMMENT 'Numero de cedula de identidad del usuario.',
+  `nombre` varchar(50) NOT NULL COMMENT 'Nombres del usuario.',
+  `apellido` varchar(50) NOT NULL COMMENT 'Apellidos del usuario.',
+  `genero` varchar(15) NOT NULL COMMENT 'Genero del usuario.',
+  `fecha_nacimiento` date NOT NULL COMMENT 'Fecha de nacimiento del usuario.',
+  `nacionalidad` varchar(20) NOT NULL COMMENT 'Nacionalidad del usuario.',
+  `estado_civil` varchar(15) NOT NULL COMMENT 'Estado civil del usuario.',
+  `direccion` varchar(50) NOT NULL COMMENT 'Dirección de residencia del usuario.',
+  `telefono1` varchar(15) NOT NULL COMMENT 'Teléfono de contacto 1.',
+  `telefono2` varchar(15) NOT NULL COMMENT 'Teléfono de contacto 2.',
+  `email` varchar(50) NOT NULL COMMENT 'Correo electrónico del usuario.',
+  `user` varchar(15) NOT NULL COMMENT 'Nombre del usuario en la aplicación.',
+  `pass` varchar(15) NOT NULL COMMENT 'Contraseña del usuario.',
+  `fecha_registro` date NOT NULL COMMENT 'Fecha de creacion del registro.',
+  `fecha_edicion` date NOT NULL COMMENT 'Fecha del ultimo ingreso del usuario.',
+  `estado_registro` int(1) NOT NULL COMMENT 'Codigo del estado del registro.'
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
@@ -156,22 +156,22 @@ INSERT INTO `usuario_info` (`idusu`, `idrol`, `cedula`, `nombre`, `apellido`, `g
 
 CREATE TABLE `usuario_laboral` (
   `idlab` int(10) NOT NULL,
-  `idusu` int(10) NOT NULL,
-  `empresa` varchar(50) NOT NULL,
-  `direccion` varchar(50) NOT NULL,
-  `telefono1` varchar(15) NOT NULL,
-  `cargo` varchar(50) NOT NULL,
-  `labores` varchar(100) NOT NULL,
-  `mes_inicio` varchar(15) NOT NULL,
-  `anio_inicio` varchar(5) NOT NULL,
-  `mes_fin` varchar(15) NOT NULL,
-  `anio_fin` varchar(5) NOT NULL,
-  `beneficios` varchar(100) NOT NULL,
-  `salario` varchar(15) NOT NULL,
-  `motivo_retiro` varchar(100) NOT NULL,
-  `fecha_registro` date NOT NULL,
-  `fecha_edicion` date NOT NULL,
-  `estado_registro` int(1) NOT NULL
+  `idusu` int(10) NOT NULL COMMENT 'Identificador del usuario.',
+  `empresa` varchar(50) NOT NULL COMMENT 'Nombre de la empresa.',
+  `direccion` varchar(50) NOT NULL COMMENT 'Dirección de la empresa.',
+  `telefono1` varchar(15) NOT NULL COMMENT 'Teléfono de contacto de la empresa.',
+  `cargo` varchar(50) NOT NULL COMMENT 'Cargo asignado al usuario.',
+  `labores` varchar(100) NOT NULL COMMENT 'Labores realizadas por el usuario.',
+  `mes_inicio` varchar(15) NOT NULL COMMENT 'Mes inicio del periodo laboral.',
+  `anio_inicio` varchar(5) NOT NULL COMMENT 'Año inicio del periodo laboral.',
+  `mes_fin` varchar(15) NOT NULL COMMENT 'Mes fin del periodo laboral.',
+  `anio_fin` varchar(5) NOT NULL COMMENT 'Año fin del periodo laboral.',
+  `beneficios` varchar(100) NOT NULL COMMENT 'Beneficios otorgados en la empresa.',
+  `salario` varchar(15) NOT NULL COMMENT 'Salario asignado por la empresa.',
+  `motivo_retiro` varchar(100) NOT NULL COMMENT 'Motivo del retiro de la empresa.',
+  `fecha_registro` date NOT NULL COMMENT 'Fecha de creacion del registro.',
+  `fecha_edicion` date NOT NULL COMMENT 'Fecha de ultima edicion del registro.',
+  `estado_registro` int(1) NOT NULL COMMENT 'Codigo del estado del registro.'
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
@@ -193,15 +193,15 @@ INSERT INTO `usuario_laboral` (`idlab`, `idusu`, `empresa`, `direccion`, `telefo
 
 CREATE TABLE `vacante` (
   `idvac` int(10) NOT NULL,
-  `titulo` varchar(50) NOT NULL,
-  `descripcion` varchar(200) NOT NULL,
-  `beneficios` varchar(200) NOT NULL,
-  `requisitos` varchar(200) NOT NULL,
-  `salario` varchar(15) NOT NULL,
-  `tipo` varchar(15) NOT NULL,
-  `fecha_registro` date NOT NULL,
-  `fecha_edicion` date NOT NULL,
-  `estado_registro` int(1) NOT NULL
+  `titulo` varchar(50) NOT NULL COMMENT 'Titulo de la vacante.',
+  `descripcion` varchar(200) NOT NULL COMMENT 'Descripción de la vacante.',
+  `beneficios` varchar(200) NOT NULL COMMENT 'Beneficios de la vacante.',
+  `requisitos` varchar(200) NOT NULL COMMENT 'Requisitos de la vacante.',
+  `salario` varchar(15) NOT NULL COMMENT 'Salario de la vacante.',
+  `tipo` varchar(15) NOT NULL COMMENT 'Tipo de vacante.',
+  `fecha_registro` date NOT NULL COMMENT 'Fecha de creacion del registro.',
+  `fecha_edicion` date NOT NULL COMMENT 'Fecha de ultima edicion del registro.',
+  `estado_registro` int(1) NOT NULL COMMENT 'Codigo del estado del registro.'
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
