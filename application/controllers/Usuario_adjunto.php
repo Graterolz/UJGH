@@ -40,7 +40,6 @@ class Usuario_adjunto extends CI_Controller {
 			}else{
 				redirect(USUARIO_INFO_CONTROLLER, 'refresh');
 			}
-			//var_dump($imagen);//var_dump($data);
 
 			$this->Usuario_adjunto_model->add($data);
 			redirect(USUARIO_INFO_CONTROLLER, 'refresh');
