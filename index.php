@@ -60,7 +60,7 @@ define ('POSTULACION_ADD','postulacion/add');
 define ('GET_LOGIN','usuario/get_login');
 define ('GET_USUARIO_USR','usuario/get_usuario_usr');
 define ('GET_USUARIO_ADM','usuario/get_usuario_adm');
-define ('EDIT_USUARIO_INFO','usuario_info/edit_usuario_info');
+define ('EDIT_USUARIO_INFO','usuario/edit_usuario_info');
 
 // Vistas USUARIO_ACADEMICO
 define ('ADD_USUARIO_ACADEMICO','usuario_academico/add_usuario_academico');

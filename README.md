@@ -35,10 +35,10 @@ Website for job opportunities in the UJGH.
 * usuario -> get_login
 * usuario -> get_usuario_adm
 * usuario -> get_usuario_usr
+* usuario -> edit_usuario_info
 * usuario_academico -> add_usuario_academico
 * usuario_academico -> edit_usuario_academico
 * usuario_adjunto -> add_usuario_adjunto
-* usuario_info -> edit_usuario_info
 * usuario_laboral -> add_usuario_laboral
 * usuario_laboral -> edit_usuario_laboral
 * vacante -> add_vacante

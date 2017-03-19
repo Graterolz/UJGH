@@ -54,7 +54,6 @@ class Usuario_adjunto extends CI_Controller {
 		$this->load->view(FOOTER);
 	}
 
-
 	// Editar informacion adjunta de usuario
 	function edit($idadj = NULL){
 		redirect(USUARIO_INFO_CONTROLLER, 'refresh');
