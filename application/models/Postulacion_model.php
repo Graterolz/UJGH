@@ -66,7 +66,7 @@ class Postulacion_model extends CI_Model{
 	function getPostulacionByUsuario($idusu){
 		$this->db->where(IDUSU,$idusu);
 		$this->db->select('
-			postulacion.idpos, vacante.titulo, vacante.descripcion, vacante.beneficios, 
+			postulacion.idpos, vacante.titulo, vacante.descripcion, vacante.beneficios,
 			vacante.tipo, postulacion.estado, postulacion.fecha_registro
 		');
 		$this->db->from(TABLA_VACANTE);

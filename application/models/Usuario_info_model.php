@@ -193,5 +193,4 @@ class Usuario_info_model extends CI_Model{
 			'rules' => 'trim|required'
 		)
 	);
-
 }

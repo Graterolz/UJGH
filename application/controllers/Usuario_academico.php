@@ -21,7 +21,7 @@ class Usuario_academico extends CI_Controller {
 		}
 		if($this->session->userdata(IDROL_SESSION)!=USR){
 			redirect(USUARIO_INFO_CONTROLLER, 'refresh');
-		}		
+		}
 
 		$rules = $this->Usuario_academico_model->usuario_academico_rules;
 		$this->form_validation->set_rules($rules);
@@ -84,7 +84,7 @@ class Usuario_academico extends CI_Controller {
 		}
 
 		$data['usuario_academico'] = $this->Usuario_academico_model->get($idaca);
-		$data['usuario_academico_rules'] = $this->Usuario_academico_model->usuario_academico_rules;		
+		$data['usuario_academico_rules'] = $this->Usuario_academico_model->usuario_academico_rules;
 		$data['form_attributes'] = $this->Sys_model->form_attributes;
 		$data['meses'] = $this->Sys_model->meses;
 		$data['anios'] = $this->Sys_model->anios;

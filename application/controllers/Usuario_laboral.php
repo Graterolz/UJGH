@@ -47,7 +47,7 @@ class Usuario_laboral extends CI_Controller {
 			redirect(USUARIO_INFO_CONTROLLER, 'refresh');
 		}
 
-		$data['usuario_laboral_rules'] = $this->Usuario_laboral_model->usuario_laboral_rules;		
+		$data['usuario_laboral_rules'] = $this->Usuario_laboral_model->usuario_laboral_rules;
 		$data['form_attributes'] = $this->Sys_model->form_attributes;
 		$data['meses'] = $this->Sys_model->meses;
 		$data['anios'] = $this->Sys_model->anios;
@@ -87,7 +87,7 @@ class Usuario_laboral extends CI_Controller {
 				ANIO_FIN => $this->input->post(ANIO_FIN),
 				BENEFICIOS => $this->input->post(BENEFICIOS),
 				SALARIO => $this->input->post(SALARIO),
-				MOTIVO_RETIRO => $this->input->post(MOTIVO_RETIRO)			
+				MOTIVO_RETIRO => $this->input->post(MOTIVO_RETIRO)
 			);
 
 			$this->Usuario_laboral_model->edit($idlab,$data);
@@ -95,7 +95,7 @@ class Usuario_laboral extends CI_Controller {
 		}
 
 		$data['usuario_laboral'] = $this->Usuario_laboral_model->get($idlab);
-		$data['usuario_laboral_rules'] = $this->Usuario_laboral_model->usuario_laboral_rules;		
+		$data['usuario_laboral_rules'] = $this->Usuario_laboral_model->usuario_laboral_rules;
 		$data['form_attributes'] = $this->Sys_model->form_attributes;
 		$data['meses'] = $this->Sys_model->meses;
 		$data['anios'] = $this->Sys_model->anios;
