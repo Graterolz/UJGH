@@ -93,7 +93,7 @@ class Usuario_info extends CI_Controller {
 		}	
 
 		$data['usuario_info'] = $this->Usuario_info_model->get($idusu);
-		$data['usuario_info_rules'] = $this->Usuario_info_model->usuario_info_rules;
+		$data['usuario_info_rules'] = $rules;
 		$data['form_attributes'] = $this->Sys_model->form_attributes;
 		$data['generos'] = $this->Sys_model->generos;
 		$data['estado_civil'] = $this->Sys_model->estado_civil;

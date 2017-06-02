@@ -42,7 +42,7 @@ class Usuario_academico extends CI_Controller {
 			redirect(USUARIO_INFO_CONTROLLER, 'refresh');
 		}		
 
-		$data['usuario_academico_rules'] = $this->Usuario_academico_model->usuario_academico_rules;
+		$data['usuario_academico_rules'] = $rules;
 		$data['form_attributes'] = $this->Sys_model->form_attributes;
 		$data['meses'] = $this->Sys_model->meses;
 		$data['anios'] = $this->Sys_model->anios;
@@ -84,7 +84,7 @@ class Usuario_academico extends CI_Controller {
 		}
 
 		$data['usuario_academico'] = $this->Usuario_academico_model->get($idaca);
-		$data['usuario_academico_rules'] = $this->Usuario_academico_model->usuario_academico_rules;
+		$data['usuario_academico_rules'] = $rules;
 		$data['form_attributes'] = $this->Sys_model->form_attributes;
 		$data['meses'] = $this->Sys_model->meses;
 		$data['anios'] = $this->Sys_model->anios;

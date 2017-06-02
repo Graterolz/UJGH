@@ -86,7 +86,7 @@ class Vacante extends CI_Controller {
 			redirect(VACANTE_CONTROLLER, 'refresh');
 		}
 
-		$data['vacante_rules'] = $this->Vacante_model->vacante_rules;
+		$data['vacante_rules'] = $rules;
 		$data['form_attributes'] = $this->Sys_model->form_attributes;
 		$data['tipo_vacante'] = $this->Sys_model->tipo_vacante;
 
@@ -126,7 +126,7 @@ class Vacante extends CI_Controller {
 		}
 
 		$data['vacante'] = $this->Vacante_model->get($idvac);
-		$data['vacante_rules'] = $this->Vacante_model->vacante_rules;
+		$data['vacante_rules'] = $rules;
 		$data['form_attributes'] = $this->Sys_model->form_attributes;
 		$data['tipo_vacante'] = $this->Sys_model->tipo_vacante;
 

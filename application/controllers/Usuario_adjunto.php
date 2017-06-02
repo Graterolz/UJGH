@@ -45,7 +45,7 @@ class Usuario_adjunto extends CI_Controller {
 			redirect(USUARIO_INFO_CONTROLLER, 'refresh');
 		}
 
-		$data['usuario_adjunto_rules'] = $this->Usuario_adjunto_model->usuario_adjunto_rules;
+		$data['usuario_adjunto_rules'] = $rules;
 		$data['form_attributes'] = $this->Sys_model->form_attributes;
 
 		$this->load->view(HEADER);
