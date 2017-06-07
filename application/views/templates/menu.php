@@ -16,6 +16,16 @@ $idrol = $this->session->userdata(IDROL_SESSION);
 			</div>
 			<!-- /.navbar-header -->
 
+			<ul class="nav navbar-top-links navbar-right">
+				<li class="dropdown">
+					<a class="dropdown-toggle" data-toggle="dropdown">
+						<i class="fa fa-user fa-fw"></i><strong><?= $idrol; ?></strong>
+					</a>
+				</li>
+				<!-- /.dropdown -->
+			</ul>
+			<!-- /.navbar-top-links -->			
+
 			<div class="navbar-default sidebar" role="navigation">
 				<div class="sidebar-nav navbar-collapse">
 					<ul class="nav" id="side-menu">
