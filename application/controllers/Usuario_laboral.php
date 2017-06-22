@@ -48,9 +48,9 @@ class Usuario_laboral extends CI_Controller {
 		}
 
 		$data['usuario_laboral_rules'] = $rules;
-		$data['form_attributes'] = $this->sys_model->form_attributes;
-		$data['meses'] = $this->sys_model->meses;
-		$data['anios'] = $this->sys_model->anios;
+		$data['form_attributes'] = $this->Sys_model->form_attributes;
+		$data['meses'] = $this->Sys_model->meses;
+		$data['anios'] = $this->Sys_model->anios;
 
 		$this->load->view(HEADER);
 		$this->load->view(MENU);
@@ -96,9 +96,9 @@ class Usuario_laboral extends CI_Controller {
 
 		$data['usuario_laboral'] = $this->Usuario_laboral_model->get($idlab);
 		$data['usuario_laboral_rules'] = $rules;
-		$data['form_attributes'] = $this->sys_model->form_attributes;
-		$data['meses'] = $this->sys_model->meses;
-		$data['anios'] = $this->sys_model->anios;
+		$data['form_attributes'] = $this->Sys_model->form_attributes;
+		$data['meses'] = $this->Sys_model->meses;
+		$data['anios'] = $this->Sys_model->anios;
 		
 		$this->load->view(HEADER);
 		$this->load->view(MENU);

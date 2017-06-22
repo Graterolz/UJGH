@@ -43,9 +43,9 @@ class Usuario_academico extends CI_Controller {
 		}		
 
 		$data['usuario_academico_rules'] = $rules;
-		$data['form_attributes'] = $this->sys_model->form_attributes;
-		$data['meses'] = $this->sys_model->meses;
-		$data['anios'] = $this->sys_model->anios;
+		$data['form_attributes'] = $this->Sys_model->form_attributes;
+		$data['meses'] = $this->Sys_model->meses;
+		$data['anios'] = $this->Sys_model->anios;
 
 		$this->load->view(HEADER);
 		$this->load->view(MENU);
@@ -85,9 +85,9 @@ class Usuario_academico extends CI_Controller {
 
 		$data['usuario_academico'] = $this->Usuario_academico_model->get($idaca);
 		$data['usuario_academico_rules'] = $rules;
-		$data['form_attributes'] = $this->sys_model->form_attributes;
-		$data['meses'] = $this->sys_model->meses;
-		$data['anios'] = $this->sys_model->anios;
+		$data['form_attributes'] = $this->Sys_model->form_attributes;
+		$data['meses'] = $this->Sys_model->meses;
+		$data['anios'] = $this->Sys_model->anios;
 
 		$this->load->view(HEADER);
 		$this->load->view(MENU);

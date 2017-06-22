@@ -41,16 +41,16 @@ class Usuario_info extends CI_Controller {
 		$this->load->view(MENU);
 
 		$data['usuario_info'] = $this->Usuario_info_model->get($idusu);
-		$data['usuario_academico'] = $this->sys_model->getAcademicoByUsuario($idusu);
-		$data['usuario_laboral'] = $this->sys_model->getLaboralByUsuario($idusu);
-		$data['usuario_adjunto'] = $this->sys_model->getAdjutosByUsuario($idusu);
+		$data['usuario_academico'] = $this->Sys_model->getAcademicoByUsuario($idusu);
+		$data['usuario_laboral'] = $this->Sys_model->getLaboralByUsuario($idusu);
+		$data['usuario_adjunto'] = $this->Sys_model->getAdjutosByUsuario($idusu);
 		$data['usuario_info_rules'] = $this->Usuario_info_model->usuario_info_rules;
 		$data['usuario_academico_rules'] = $this->Usuario_academico_model->usuario_academico_rules;
 		$data['usuario_laboral_rules'] = $this->Usuario_laboral_model->usuario_laboral_rules;
 		$data['usuario_adjunto_rules'] = $this->Usuario_adjunto_model->usuario_adjunto_rules;
-		$data['generos'] = $this->sys_model->generos;
-		$data['estado_civil'] = $this->sys_model->estado_civil;
-		$data['nacionalidad'] = $this->sys_model->nacionalidad;
+		$data['generos'] = $this->Sys_model->generos;
+		$data['estado_civil'] = $this->Sys_model->estado_civil;
+		$data['nacionalidad'] = $this->Sys_model->nacionalidad;
 
 		if ($this->session->userdata(IDROL_SESSION) == USR){
 			$this->load->view(GET_USUARIO_USR,$data);
@@ -94,10 +94,10 @@ class Usuario_info extends CI_Controller {
 
 		$data['usuario_info'] = $this->Usuario_info_model->get($idusu);
 		$data['usuario_info_rules'] = $rules;
-		$data['form_attributes'] = $this->sys_model->form_attributes;
-		$data['generos'] = $this->sys_model->generos;
-		$data['estado_civil'] = $this->sys_model->estado_civil;
-		$data['nacionalidad'] = $this->sys_model->nacionalidad;
+		$data['form_attributes'] = $this->Sys_model->form_attributes;
+		$data['generos'] = $this->Sys_model->generos;
+		$data['estado_civil'] = $this->Sys_model->estado_civil;
+		$data['nacionalidad'] = $this->Sys_model->nacionalidad;
 
 		$this->load->view(HEADER);
 		$this->load->view(MENU);
@@ -113,8 +113,8 @@ class Usuario_info extends CI_Controller {
 				PASS => $this->input->post(PASS)
 			);
 			
-			if($this->sys_model->login($data)){
-				$data['info'] = $this->sys_model->login($data);
+			if($this->Sys_model->login($data)){
+				$data['info'] = $this->Sys_model->login($data);
 
 				$datasession  = array(
 					IDUSU_SESSION => $data['info']->result()[0]->idusu,

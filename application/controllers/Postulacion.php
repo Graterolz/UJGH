@@ -22,7 +22,7 @@ class Postulacion extends CI_Controller {
 		$idusu = $this->session->userdata(IDUSU_SESSION);
 		$data['vacante_rules'] = $this->Vacante_model->vacante_rules;
 		$data['postulacion_rules'] = $this->Postulacion_model->postulacion_rules;
-		$data['postulacion'] = $this->sys_model->getPostulacionByUsuario($idusu);
+		$data['postulacion'] = $this->Sys_model->getPostulacionByUsuario($idusu);
 
 		if ($this->session->userdata(IDROL_SESSION) == USR){
 			$this->load->view(LIST_POSTULACION_USR,$data);
@@ -44,7 +44,7 @@ class Postulacion extends CI_Controller {
 
 		$idusu = $this->session->userdata(IDUSU_SESSION);
 
-		if($this->sys_model->getPostulacionByVacanteUsuario($idvac,$idusu)){
+		if($this->Sys_model->getPostulacionByVacanteUsuario($idvac,$idusu)){
 			redirect(VACANTE_CONTROLLER, 'refresh');
 		}
 

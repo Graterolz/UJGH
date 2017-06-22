@@ -12,7 +12,7 @@ define ('IDUSU_SESSION','idusu_ujghempleo');
 define ('IDROL_SESSION','idrol_ujghempleo');
 
 // Modelos
-define ('SYS_MODEL','sys_model');
+define ('SYS_MODEL','Sys_model');
 define ('USUARIO_INFO_MODEL','Usuario_info_model');
 define ('USUARIO_ADJUNTO_MODEL','Usuario_adjunto_model');
 define ('USUARIO_ACADEMICO_MODEL','Usuario_academico_model');
