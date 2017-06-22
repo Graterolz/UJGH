@@ -43,8 +43,8 @@ class Vacante extends CI_Controller {
 
 		$data['vacante'] = $this->Vacante_model->get($idvac);
 		$data['vacante_rules'] = $this->Vacante_model->vacante_rules;
-		$data['form_attributes'] = $this->Sys_model->form_attributes;
-		$data['tipo_vacante'] = $this->Sys_model->tipo_vacante;
+		$data['form_attributes'] = $this->sys_model->form_attributes;
+		$data['tipo_vacante'] = $this->sys_model->tipo_vacante;
 
 		$this->load->view(HEADER);
 		$this->load->view(MENU);
@@ -87,8 +87,8 @@ class Vacante extends CI_Controller {
 		}
 
 		$data['vacante_rules'] = $rules;
-		$data['form_attributes'] = $this->Sys_model->form_attributes;
-		$data['tipo_vacante'] = $this->Sys_model->tipo_vacante;
+		$data['form_attributes'] = $this->sys_model->form_attributes;
+		$data['tipo_vacante'] = $this->sys_model->tipo_vacante;
 
 		$this->load->view(HEADER);
 		$this->load->view(MENU);
@@ -127,8 +127,8 @@ class Vacante extends CI_Controller {
 
 		$data['vacante'] = $this->Vacante_model->get($idvac);
 		$data['vacante_rules'] = $rules;
-		$data['form_attributes'] = $this->Sys_model->form_attributes;
-		$data['tipo_vacante'] = $this->Sys_model->tipo_vacante;
+		$data['form_attributes'] = $this->sys_model->form_attributes;
+		$data['tipo_vacante'] = $this->sys_model->tipo_vacante;
 
 		$this->load->view(HEADER);
 		$this->load->view(MENU);
