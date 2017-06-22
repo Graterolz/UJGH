@@ -74,19 +74,6 @@ class Usuario_academico_model extends CI_Model{
 		return $query;
 	}
 
-	// Obtener informacion academica por usuario
-	function getAcademicoByUsuario($idusu){
-		$this->db->where(IDUSU,$idusu);
-		$this->db->where(ESTADO_REGISTRO,ESTADO_REGISTRO_ACTIVO);
-		$query=$this->db->get(TABLA_USUARIO_ACADEMICO);
-				
-		if($query->num_rows()>0){
-			return $query;
-		}else{
-			return false;
-		}
-	}
-
 	// Reglas para formularios
 	public $usuario_academico_rules = array(
 		TITULO => array(

@@ -62,43 +62,7 @@ class Postulacion_model extends CI_Model{
 		return $query;
 	}
 
-	// Obtener informacion de postulacion por usuario
-	function getPostulacionByUsuario($idusu){
-		$this->db->where(IDUSU,$idusu);
-		$this->db->select('
-			postulacion.idpos, vacante.titulo, vacante.descripcion, vacante.beneficios,
-			vacante.tipo, postulacion.estado, postulacion.fecha_registro
-		');
-		$this->db->from(TABLA_VACANTE);
-		$this->db->join(TABLA_POSTULACION, 'vacante.idvac = postulacion.idvac','LEFT');
-		$this->db->where('vacante.'.ESTADO_REGISTRO,ESTADO_REGISTRO_ACTIVO);
-		$this->db->order_by('1','DESC');
-
-		$query=$this->db->get();
-		//echo $this->db->last_query();
-
-		if($query->num_rows()>0){
-			return $query;
-		}else{
-			return false;
-		}
-	}
-
-	// Obtener informacion de postulacion por vacante y usuario
-	function getPostulacionByVacanteUsuario($idvac,$idusu){
-		$this->db->where(IDVAC,$idvac);
-		$this->db->where(IDUSU,$idusu);
-		$this->db->where(ESTADO_REGISTRO,ESTADO_REGISTRO_ACTIVO);
-		$query=$this->db->get(TABLA_POSTULACION);
-
-		if($query->num_rows()>0){
-			return $query;
-		}else{
-			return false;
-		}
-	}
-
-	//
+	// Reglas para formularios
 	public $postulacion_rules = array(
 		IDPOS => array(
 			'label' => 'ID'

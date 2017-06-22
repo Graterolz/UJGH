@@ -41,9 +41,9 @@ class Usuario_info extends CI_Controller {
 		$this->load->view(MENU);
 
 		$data['usuario_info'] = $this->Usuario_info_model->get($idusu);
-		$data['usuario_academico'] = $this->Usuario_academico_model->getAcademicoByUsuario($idusu);
-		$data['usuario_laboral'] = $this->Usuario_laboral_model->getLaboralByUsuario($idusu);
-		$data['usuario_adjunto'] = $this->Usuario_adjunto_model->getAdjutosByUsuario($idusu);
+		$data['usuario_academico'] = $this->sys_model->getAcademicoByUsuario($idusu);
+		$data['usuario_laboral'] = $this->sys_model->getLaboralByUsuario($idusu);
+		$data['usuario_adjunto'] = $this->sys_model->getAdjutosByUsuario($idusu);
 		$data['usuario_info_rules'] = $this->Usuario_info_model->usuario_info_rules;
 		$data['usuario_academico_rules'] = $this->Usuario_academico_model->usuario_academico_rules;
 		$data['usuario_laboral_rules'] = $this->Usuario_laboral_model->usuario_laboral_rules;
@@ -113,8 +113,8 @@ class Usuario_info extends CI_Controller {
 				PASS => $this->input->post(PASS)
 			);
 			
-			if($this->Usuario_info_model->login($data)){
-				$data['info'] = $this->Usuario_info_model->login($data);
+			if($this->sys_model->login($data)){
+				$data['info'] = $this->sys_model->login($data);
 
 				$datasession  = array(
 					IDUSU_SESSION => $data['info']->result()[0]->idusu,

@@ -53,7 +53,7 @@ class Vacante extends CI_Controller {
 			$this->load->view(GET_VACANTE_USR,$data);
 		}else{
 			$data['usuario_info_rules'] = $this->Usuario_info_model->usuario_info_rules;
-			$data['usuario_info'] = $this->Usuario_info_model->getUsuariosByVacante($idvac);
+			$data['usuario_info'] = $this->sys_model->getUsuariosByVacante($idvac);
 			$this->load->view(GET_VACANTE_ADM,$data);
 		}
 

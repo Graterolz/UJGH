@@ -84,19 +84,6 @@ class Usuario_laboral_model extends CI_Model{
 		return $query;
 	}
 
-	//Obtener informacion laboral por usuario
-	function getLaboralByUsuario($idusu){
-		$this->db->where(IDUSU,$idusu);
-		$this->db->where(ESTADO_REGISTRO,ESTADO_REGISTRO_ACTIVO);		
-		$query=$this->db->get(TABLA_USUARIO_LABORAL);		
-				
-		if($query->num_rows()>0){
-			return $query;
-		}else{
-			return false;
-		}
-	}
-
 	// Reglas para formularios
 	public $usuario_laboral_rules = array(
 		EMPRESA => array(

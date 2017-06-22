@@ -87,7 +87,7 @@ class Vacante_model extends CI_Model{
 		return $query;
 	}
 
-	//
+	// Reglas para formularios
 	public $vacante_rules = array(
 		IDVAC => array(
 			'label' => 'ID'

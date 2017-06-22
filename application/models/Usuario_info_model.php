@@ -84,37 +84,7 @@ class Usuario_info_model extends CI_Model{
 		$query=$this->db->update(TABLA_USUARIO_INFO,$data);
 		return $query;
 	}
-
-	// Obtener informacion de usuario por vacante
-	function getUsuariosByVacante($idvac){
-		$sql = 	'SELECT * FROM '.TABLA_USUARIO_INFO.
-				' WHERE '.ESTADO_REGISTRO.' = '.ESTADO_REGISTRO_ACTIVO.
-				' AND '.IDUSU.' IN (SELECT '.IDUSU.' FROM '.TABLA_POSTULACION.' WHERE '.IDVAC.' = ?)';
-
-		$query=$this->db->query($sql,$idvac);
-
-		if($query->num_rows()>0){
-			return $query;
-		}else{
-			return false;
-		}
-	}
-
-	// Login de usuario
-	function login($data){
-		$this->db->where(USER,$data[USER]);
-		$this->db->where(PASS,$data[PASS]);
-		$this->db->where(ESTADO_REGISTRO,ESTADO_REGISTRO_ACTIVO);
-		$this->db->limit(1);
-		$query=$this->db->get(TABLA_USUARIO_INFO);
-
-		if($query->num_rows()>0){
-			return $query;
-		}else{
-			return false;
-		}		
-	}
-
+	
 	// Reglas para formularios
 	public $usuario_info_rules = array(
 		IDUSU => array(

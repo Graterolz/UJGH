@@ -62,22 +62,9 @@ class Usuario_adjunto_model extends CI_Model{
 		$this->db->where(ESTADO_REGISTRO,ESTADO_REGISTRO_ACTIVO);
 		$query=$this->db->update(TABLA_USUARIO_ADJUNTO,$data);
 		return $query;
-	}	
-
-	// Obtener informacion adjunta por usuario
-	function getAdjutosByUsuario($idusu){
-		$this->db->where(IDUSU,$idusu);
-		$this->db->where(ESTADO_REGISTRO,ESTADO_REGISTRO_ACTIVO);
-		$query=$this->db->get(TABLA_USUARIO_ADJUNTO);
-				
-		if($query->num_rows()>0){
-			return $query;
-		}else{
-			return false;
-		}
 	}
 
-	//
+	// Reglas para formularios
 	public $usuario_adjunto_rules = array(
 		IDADJ => array(
 			'label' => 'ID'
