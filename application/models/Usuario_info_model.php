@@ -2,12 +2,10 @@
 defined('BASEPATH') OR exit('No direct script access allowed');
 
 class Usuario_info_model extends CI_Model{
-
 	public function __construct(){
 		parent::__construct();
 		$this->load->database();
 	}
-
 	// Obtener informacion de usuario
 	function get($idusu){
 		if($idusu!=NULL){
@@ -15,14 +13,12 @@ class Usuario_info_model extends CI_Model{
 		}
 		$this->db->where(ESTADO_REGISTRO,ESTADO_REGISTRO_ACTIVO);
 		$query=$this->db->get(TABLA_USUARIO_INFO);
-
 		if($query->num_rows()>0){
 			return $query;
 		}else{
 			return false;
 		}
 	}
-	
 	// Insertar informacion de usuario
 	function add($data){
 		$data=array(
@@ -45,11 +41,9 @@ class Usuario_info_model extends CI_Model{
 			FECHA_EDICION => date(FORMATO_FECHA),
 			ESTADO_REGISTRO => ESTADO_REGISTRO_ACTIVO
 		);
-		
 		$query=$this->db->insert(TABLA_USUARIO_INFO,$data);
 		return $query;
 	}
-
 	// Editar informacion de usuario
 	function edit($idusu,$data){
 		$data=array(
@@ -66,25 +60,21 @@ class Usuario_info_model extends CI_Model{
 			EMAIL => $data[EMAIL],
 			FECHA_EDICION => date(FORMATO_FECHA)
 		);
-
 		$this->db->where(IDUSU,$idusu);
 		$this->db->where(ESTADO_REGISTRO,ESTADO_REGISTRO_ACTIVO);
 		$query=$this->db->update(TABLA_USUARIO_INFO,$data);
 		return $query;
 	}
-
 	// Eliminar informacion de usuario
 	function del($idusu){
 		$data=array(
 			ESTADO_REGISTRO => ESTADO_REGISTRO_ELIMINADO
 		);
-
 		$this->db->where(IDUSU,$idusu);
 		$this->db->where(ESTADO_REGISTRO,ESTADO_REGISTRO_ACTIVO);
 		$query=$this->db->update(TABLA_USUARIO_INFO,$data);
 		return $query;
 	}
-	
 	// Reglas para formularios
 	public $usuario_info_rules = array(
 		IDUSU => array(

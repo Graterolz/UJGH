@@ -2,27 +2,23 @@
 defined('BASEPATH') OR exit('No direct script access allowed');
 
 class Usuario_laboral_model extends CI_Model{
-
 	public function __construct(){
 		parent::__construct();
 		$this->load->database();
 	}
-
 	// Obtener informacion laboral
 	function get($idlab){
 		if($idlab!=NULL){
 			$this->db->where(IDLAB,$idlab);
 		}
 		$this->db->where(ESTADO_REGISTRO,ESTADO_REGISTRO_ACTIVO);
-		$query=$this->db->get(TABLA_USUARIO_LABORAL);
-				
+		$query=$this->db->get(TABLA_USUARIO_LABORAL);		
 		if($query->num_rows()>0){
 			return $query;
 		}else{
 			return false;
 		}
 	}
-
 	// Insertar informacion laboral
 	function add($data){
 		$data=array(
@@ -44,11 +40,9 @@ class Usuario_laboral_model extends CI_Model{
 			FECHA_EDICION => date(FORMATO_FECHA),
 			ESTADO_REGISTRO => ESTADO_REGISTRO_ACTIVO
 		);
-
 		$query=$this->db->insert(TABLA_USUARIO_LABORAL,$data);
 		return $query;
 	}
-
 	// Editar informacion laboral
 	function edit($idlab,$data){
 		$data=array(
@@ -66,24 +60,20 @@ class Usuario_laboral_model extends CI_Model{
 			MOTIVO_RETIRO => $data[MOTIVO_RETIRO],
 			FECHA_EDICION => date(FORMATO_FECHA)
 		);
-
 		$this->db->where(IDLAB,$idlab);
 		$this->db->where(ESTADO_REGISTRO,ESTADO_REGISTRO_ACTIVO);
 		$query=$this->db->update(TABLA_USUARIO_LABORAL,$data);
 		return $query;
 	}
-
 	// Eliminar informacion laboral
 	function del($idlab){
 		$data=array(
 			ESTADO_REGISTRO => ESTADO_REGISTRO_ELIMINADO
 		);
-
 		$this->db->where(IDLAB,$idlab);
 		$query=$this->db->update(TABLA_USUARIO_LABORAL,$data);
 		return $query;
 	}
-
 	// Reglas para formularios
 	public $usuario_laboral_rules = array(
 		EMPRESA => array(

@@ -2,12 +2,10 @@
 defined('BASEPATH') OR exit('No direct script access allowed');
 
 class Usuario_academico_model extends CI_Model{
-
 	public function __construct(){
 		parent::__construct();
 		$this->load->database();
 	}
-
 	// Obtener informacion academica
 	function get($idaca){
 		if($idaca!=NULL){
@@ -22,7 +20,6 @@ class Usuario_academico_model extends CI_Model{
 			return false;
 		}
 	}
-
 	// Insertar informacion academica
 	function add($data){
 		$data=array(
@@ -39,11 +36,9 @@ class Usuario_academico_model extends CI_Model{
 			FECHA_EDICION => date(FORMATO_FECHA),
 			ESTADO_REGISTRO => ESTADO_REGISTRO_ACTIVO
 		);
-
 		$query=$this->db->insert(TABLA_USUARIO_ACADEMICO,$data);
 		return $query;
 	}
-	
 	// Editar informacion academica
 	function edit($idaca,$data){
 		$data=array(
@@ -56,24 +51,20 @@ class Usuario_academico_model extends CI_Model{
 			ANIO_FIN => $data[ANIO_FIN],
 			FECHA_EDICION => date(FORMATO_FECHA)
 		);
-
 		$this->db->where(IDACA,$idaca);
 		$this->db->where(ESTADO_REGISTRO,ESTADO_REGISTRO_ACTIVO);
 		$query=$this->db->update(TABLA_USUARIO_ACADEMICO,$data);
 		return $query;
 	}
-
 	// Eliminar informacion academica
 	function del($idaca){
 		$data=array(
 			ESTADO_REGISTRO => ESTADO_REGISTRO_ELIMINADO
 		);
-
 		$this->db->where(IDACA,$idaca);
 		$query=$this->db->update(TABLA_USUARIO_ACADEMICO,$data);
 		return $query;
 	}
-
 	// Reglas para formularios
 	public $usuario_academico_rules = array(
 		TITULO => array(
